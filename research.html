@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research | Eray Mutlu</title>
-  <meta name="description" content="Ongoing research in ear-EEG drowsiness detection and explainable AI for ECG.">
+  <meta name="description" content="Research in ear-EEG, explainable AI for ECG, and embedded auscultation systems.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -58,29 +58,30 @@
   <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <h1 class="text-3xl font-bold text-navy-900 tracking-tight mb-4">Research</h1>
     <p class="text-slate-600 max-w-2xl mb-12 leading-relaxed">
-      Ongoing work on neural and cardiac signal analysis, with emphasis on wearable sensing, 
-      unsupervised and deep learning methods, and explainable AI.
+      Scientific work that has produced peer-reviewed publications or forms part of ongoing thesis-level research. 
+      Focus areas include wearable neural sensing, explainable AI for cardiac signals, and embedded biosignal systems.
     </p>
 
     <!-- Ear-EEG -->
     <article id="ear-eeg" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
         <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2024 – Present</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Publication</span>
         <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Industry collaboration</span>
       </div>
       <h2 class="text-xl font-semibold text-navy-900 mb-4">Early Prediction of Driver Drowsiness Using Ear-EEG</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
-        Fatigue is a major contributor to road accidents. This project, conducted in collaboration with Cebreo Medical, 
-        explores the feasibility of detecting driver drowsiness from in-ear electroencephalography (ear-EEG) — 
-        a more wearable alternative to conventional scalp EEG. We collected ethics-approved data from human participants 
-        during simulated driving sessions and applied unsupervised clustering (K-means, Gaussian Mixture Models, DBSCAN) 
-        on spectral features, including novel composite metrics. K-means achieved a Silhouette score of 0.93, 
-        with the new metrics outperforming traditional band-power ratios in separating alert and drowsy states. 
-        The results support a practical pathway toward real-time, label-free fatigue monitoring systems that can be 
-        integrated into everyday hearables.
+        Fatigue remains a leading factor in road accidents. In collaboration with Cebreo Medical we investigated 
+        the feasibility of detecting driver drowsiness from in-ear electroencephalography (ear-EEG), a more wearable 
+        alternative to conventional scalp EEG. An ethics-approved human study was conducted during simulated driving. 
+        We extracted spectral features (including novel composite metrics) and applied unsupervised clustering 
+        (K-means, GMM, DBSCAN). K-means achieved a Silhouette score of 0.93; the new metrics outperformed traditional 
+        band-power ratios in separating alert and drowsy states. The results demonstrate a practical path toward 
+        real-time, label-free fatigue monitoring systems that can be integrated into everyday hearables.
       </p>
       <p class="text-sm text-slate-500">
-        Related: Clustering-Based Detection of Driver Drowsiness with Ear-EEG — 14th International Conference on Brain–Computer Interface (BCI), 2026.
+        Mutlu, E., Saibene, M., de Araujo, J., Ahrens, E., & Puthusserypady, S. Clustering-Based Detection of Driver Drowsiness with Ear-EEG. 
+        14th International Conference on Brain–Computer Interface (BCI), 2026.
       </p>
     </article>
 
@@ -88,18 +89,42 @@
     <article id="xai-ecg" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
         <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2025 – Present</span>
-        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Explainable AI</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Publication (accepted)</span>
       </div>
       <h2 class="text-xl font-semibold text-navy-900 mb-4">Interpreting AI ECG Models via Physiology-Inspired Counterfactual Explanations</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
-        Deep learning models for electrocardiogram (ECG) analysis often achieve high performance but remain opaque 
-        to clinicians. This work develops counterfactual explanation methods that generate physiologically meaningful 
-        modifications to single-lead, single-beat ECG signals. By showing how small, clinically interpretable changes 
-        alter the model’s prediction, the approach aims to increase trust and support clinical adoption of AI-ECG systems. 
-        The methods are designed to align with known cardiac physiology rather than purely data-driven attributions.
+        Deep learning models for electrocardiogram analysis often reach high performance but remain opaque to clinicians. 
+        This work develops physiology-inspired counterfactual explanations for single-lead, single-beat ECG classification. 
+        By generating small, clinically meaningful modifications that change the model’s prediction, the method reveals 
+        which morphological and temporal features drive decisions. The goal is to increase trust and support clinical 
+        adoption of AI-ECG systems by aligning explanations with known cardiac physiology rather than purely data-driven attributions.
       </p>
       <p class="text-sm text-slate-500">
-        Accepted at IEEE EMBC 2026 (first-author).
+        Mutlu, E.*, Shen, D.*, Hempel, P., Brink-Kjær, A., You, L., & Spicher, N. Interpreting AI ECG Models via Physiology-Inspired Counterfactual Explanations. 
+        Accepted at IEEE EMBC, 2026.
+      </p>
+    </article>
+
+    <!-- Digital Stethoscope -->
+    <article id="stethoscope" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022 – 2023</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Journal + Conference</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">TinyML</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Digital Stethoscope Using TinyML</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        Designed and implemented an embedded digital stethoscope that classifies organ sounds (heart, lung, bowel) 
+        in real time on a resource-constrained device. A custom convolutional neural network (FISC-Net) first identifies 
+        the auscultated organ and then applies organ-specific digital filtering. Quantization-aware training reduced 
+        model size by a factor of four while preserving approximately 90 % accuracy. The system bridges classical 
+        auscultation with edge AI, enabling portable, low-power analysis that keeps computation on-device and thereby 
+        preserves patient privacy. This work formed the undergraduate thesis (grade 4/4) and produced both a journal 
+        article and a conference paper.
+      </p>
+      <p class="text-sm text-slate-500">
+        Mutlu, E., Hüseyin, V., & Serbes, G. Bridging Auscultation and Tiny Machine Learning. Traitement du Signal, 2024.<br>
+        Mutlu, E., Hüseyin, V., & Serbes, G. FISC-Net: Classification of Auscultation Sounds on an Edge Device. 2023 IEEE IMSA.
       </p>
     </article>
 

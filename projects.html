@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | Eray Mutlu</title>
-  <meta name="description" content="Technical projects in embedded biosignal systems, TinyML, and optical imaging.">
+  <meta name="description" content="Technical projects demonstrating skills in machine learning, signal processing, robotics and embedded systems.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -58,28 +58,48 @@
   <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <h1 class="text-3xl font-bold text-navy-900 tracking-tight mb-4">Projects</h1>
     <p class="text-slate-600 max-w-2xl mb-12 leading-relaxed">
-      Selected technical work demonstrating skills in embedded systems, signal processing, 
-      machine learning on edge devices, and experimental design.
+      Technical and engineering work that demonstrates practical skills in machine learning, 
+      signal processing, robotics and embedded systems. These projects did not result in peer-reviewed 
+      publications but showcase applied competence and tool proficiency.
     </p>
 
-    <!-- Digital Stethoscope -->
+    <!-- Diabetes Prediction -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022 – 2023</span>
-        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">TinyML · Embedded</span>
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">Machine Learning</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">EDA · Classification</span>
       </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Digital Stethoscope Using TinyML</h2>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Diabetes Prediction with Exploratory Data Analysis</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
-        Designed and implemented an embedded digital stethoscope capable of classifying organ sounds 
-        (heart, lung, bowel) in real time on a resource-constrained device. A custom convolutional neural network 
-        (FISC-Net) first identifies the auscultated organ and then applies organ-specific digital filtering. 
-        Quantization-aware training reduced the model size by a factor of four while preserving approximately 90% accuracy. 
-        The system bridges classical auscultation with edge AI, enabling portable, low-power analysis that preserves 
-        patient privacy by keeping computation on-device. This work formed the basis of the undergraduate thesis 
-        (grade 4/4) and resulted in a journal publication and a conference paper.
+        Developed a machine-learning pipeline for early prediction of diabetes mellitus using the widely studied 
+        PIMA Indian Diabetes Dataset (768 patients, 8 clinical features). After extensive exploratory data analysis 
+        (handling zero-valued missing entries, feature engineering from correlation structure, normalization), 
+        five supervised algorithms were trained and compared: Naïve Bayes, Decision Tree, K-Nearest Neighbors, 
+        Support Vector Machine and an Adaptive Boosting ensemble. Hyperparameters were optimized systematically. 
+        KNN reached the highest performance (accuracy and F1 ≈ 0.99 on the held-out test set), followed closely 
+        by the ensemble and Naïve Bayes. The work illustrates a complete applied ML workflow suitable for 
+        pre-diagnostic decision support.
       </p>
       <p class="text-sm text-slate-500">
-        Publications: Traitement du Signal (2024); IEEE IMSA 2023.
+        Code available on <a href="https://github.com/MutluEray/Diabetes-Prediction" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
+      </p>
+    </article>
+
+    <!-- Sleep Stage Classification -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">Biosignal · ML</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Sleep-EDF</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Sleep Stage Classification on Sleep-EDF</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        Implemented an end-to-end pipeline for automatic sleep-stage scoring using the Sleep-EDF Expanded dataset 
+        (PhysioNet). The workflow covers raw polysomnography loading (MNE / pyEDFlib), epoching, feature extraction 
+        (spectral, entropy and time-series features via tsfel, tsfresh, antropy, etc.), and supervised classification 
+        of the five standard stages (Wake, N1, N2, N3, REM). Group-aware cross-validation and learning-curve analysis 
+        were used to assess generalization across subjects. The project demonstrates practical competence in 
+        biosignal preprocessing, feature engineering for physiological time series, and rigorous evaluation of 
+        sleep-staging models.
       </p>
     </article>
 
@@ -93,16 +113,41 @@
       <p class="text-slate-700 leading-relaxed mb-4">
         Investigated optical triangulation techniques for imaging sulcus vocalis as an undergraduate researcher 
         at the ITU Electro-Optic Devices Laboratory. Designed mechanical and optical components in SolidWorks, 
-        produced 3D-printed prototypes, and simulated optical paths in ZEMAX. The project provided hands-on experience 
-        in optomechanical design, prototyping, and optical system simulation for biomedical imaging applications.
+        produced 3D-printed prototypes, and simulated optical paths in ZEMAX. The project provided hands-on 
+        experience in optomechanical design, rapid prototyping and optical system simulation for biomedical imaging.
       </p>
     </article>
 
-    <!-- Additional note -->
-    <p class="text-sm text-slate-500 mt-8">
-      Additional technical experience includes testing of RF coils, filters and amplifiers for MRI systems 
-      and assistance with CT system installation and calibration (Medical Imaging Academy internship, 2022).
-    </p>
+    <!-- Obstacle-avoiding robot -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2020 – 2021</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Robotics · Arduino</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Obstacle-Avoiding Robot with Arduino</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        Designed and built an autonomous obstacle-avoiding mobile robot as part of IEEE YTU Student Branch activities. 
+        The system used ultrasonic sensors for distance measurement and an Arduino microcontroller for real-time 
+        control of differential-drive motors. Basic reactive navigation logic enabled the robot to detect and 
+        circumnavigate obstacles in unstructured indoor environments. The project developed practical skills in 
+        embedded programming, sensor interfacing and simple closed-loop control.
+      </p>
+    </article>
+
+    <!-- Eye-tracking robot car -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Robotics · HCI</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Robot Car Movement Controlled by Eye-Tracking</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        Developed a prototype system in which a mobile robot car is steered by eye-gaze direction. 
+        Eye-tracking data were mapped to motion commands, enabling hands-free directional control. 
+        The project combined basic computer-vision / gaze-estimation techniques with embedded motor control 
+        and served as an exploration of human–computer interaction for assistive or remote-operation scenarios.
+      </p>
+    </article>
+
   </main>
 
   <footer class="border-t border-slate-200 bg-slate-50 mt-12">
