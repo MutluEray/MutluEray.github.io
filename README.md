@@ -10,7 +10,6 @@ Professional academic / research portfolio website.
 - `research.html` – Ongoing research (Ear-EEG drowsiness, XAI for ECG)
 - `projects.html` – Technical projects (TinyML stethoscope, optical imaging)
 - `publications.html` – Publication list
-- `about.html` – Education, experience, skills, awards
 - `contact.html` – Contact information and links
 
 ## How to deploy on GitHub Pages
