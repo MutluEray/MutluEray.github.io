@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | Eray Mutlu</title>
-  <meta name="description" content="Technical projects demonstrating skills in various topics in engineering">
+  <meta name="description" content="Technical projects demonstrating skills in assistive technology, machine learning, signal processing, robotics and embedded systems.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -56,29 +56,58 @@
   <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <h1 class="text-3xl font-bold text-navy-900 tracking-tight mb-4">Projects</h1>
     <p class="text-slate-600 max-w-2xl mb-12 leading-relaxed">
-      Technical work that demonstrates practical skills in various topics in engineering.
+      Technical and applied work demonstrating practical skills in assistive technology, 
+      machine learning, signal processing, robotics and embedded systems. These projects 
+      showcase engineering competence and system-building experience.
     </p>
 
-
-
-    <!-- Optical Triangulation -->
+    <!-- Nabuen -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2025 – Present</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Assistive Technology</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Eye-tracking · AI</span>
       </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Optical Triangulation for Imaging Sulcus Vocalis</h2>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Nabuen – Context-Aware Assistive Speller</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
-        Investigated optical triangulation techniques for imaging sulcus vocalis. Designed mechanical and optical components in SolidWorks, 
-        produced 3D-printed prototypes, and simulated optical paths in ZEMAX. 
+        Nabuen is a context-aware assistive speller designed for individuals with severe speech and motor impairments 
+        (e.g. ALS). Unlike traditional letter-by-letter spellers, it listens to the conversational partner, obtains 
+        user approval of the context, and then generates AI-powered suggestions at letter, word and full-sentence levels. 
+        The user retains full control and selects via gaze (or other pointing methods). Early evaluation on 50 real-life 
+        communication scenarios showed approximately 1.7× faster response times (≈40 % reduction) compared with a 
+        conventional eye-tracking speller operating at ~15 words per minute. The current MVP validates the interaction 
+        concept; ongoing work includes webcam-based eye tracking, custom wearable hardware, clinical pilot studies and 
+        regulatory preparation.
+      </p>
+      <p class="text-sm text-slate-500">
+        Keywords: AAC, eye-tracking, context-aware prediction, assistive communication, human–computer interaction.
       </p>
     </article>
 
-
+    <!-- Diabetes Prediction -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Machine Learning · EDA</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Diabetes Prediction with Exploratory Data Analysis</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        Developed a complete machine-learning pipeline for early prediction of diabetes mellitus on the PIMA Indian 
+        Diabetes Dataset (768 patients, 8 clinical features). After thorough exploratory data analysis, feature 
+        engineering and normalization, five supervised algorithms were trained and compared: Naïve Bayes, Decision Tree, 
+        K-Nearest Neighbors, Support Vector Machine and an Adaptive Boosting ensemble. With optimized hyperparameters, 
+        KNN achieved the highest performance (accuracy and F1 ≈ 0.99 on the held-out test set).
+      </p>
+      <p class="text-sm text-slate-500">
+        Code available on <a href="https://github.com/MutluEray/Diabetes-Prediction" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
+      </p>
+    </article>
 
     <!-- Sleep Stage Classification -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
-      <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Biosignal · ML</span>
       </div>
       <h2 class="text-xl font-semibold text-navy-900 mb-4">Sleep Stage Classification on Sleep-EDF</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
@@ -90,47 +119,44 @@
       </p>
     </article>
 
+    <!-- Optical Triangulation -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Optical systems</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Optical Triangulation for Imaging Sulcus Vocalis</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        Investigated optical triangulation techniques for imaging sulcus vocalis as an undergraduate researcher 
+        at the ITU Electro-Optic Devices Laboratory. Designed mechanical and optical components in SolidWorks, 
+        produced 3D-printed prototypes, and simulated optical paths in ZEMAX.
+      </p>
+    </article>
+
     <!-- Eye-tracking robot car -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
-      <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Robotics · HCI</span>
       </div>
       <h2 class="text-xl font-semibold text-navy-900 mb-4">Robot Car Movement Controlled by Eye-Tracking</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
         Developed a prototype system in which a mobile robot car is steered by eye-gaze direction. 
         Eye-tracking data were mapped to motion commands, enabling hands-free directional control. 
+        The project combined basic gaze-estimation techniques with embedded motor control and served as an 
+        exploration of human–computer interaction for assistive scenarios.
       </p>
     </article>
-
-    <!-- Diabetes Prediction -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-      <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Diabetes Prediction with Exploratory Data Analysis</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        Developed a machine-learning pipeline for early prediction of diabetes mellitus using the widely studied 
-        PIMA Indian Diabetes Dataset (768 patients, 8 clinical features). After extensive exploratory data analysis, 
-        five supervised algorithms were trained and compared: Naïve Bayes, Decision Tree, K-Nearest Neighbors, 
-        Support Vector Machine and an Adaptive Boosting ensemble. Hyperparameters were optimized systematically. 
-        KNN reached the highest performance (accuracy and F1 ≈ 0.99 on the held-out test set), followed closely 
-        by the ensemble and Naïve Bayes.
-      </p>
-      <p class="text-sm text-slate-500">
-        Code available on <a href="https://github.com/MutluEray/Diabetes-Prediction" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
-      </p>
-    </article>
-
-    
 
     <!-- Obstacle-avoiding robot -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2021</span>
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2020 – 2021</span>
+        <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">Robotics · Arduino</span>
       </div>
       <h2 class="text-xl font-semibold text-navy-900 mb-4">Obstacle-Avoiding Robot with Arduino</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
-        Designed and built an autonomous obstacle-avoiding mobile robot. 
+        Designed and built an autonomous obstacle-avoiding mobile robot as part of IEEE YTU Student Branch activities. 
         The system used ultrasonic sensors for distance measurement and an Arduino microcontroller for real-time 
         control of differential-drive motors. Basic reactive navigation logic enabled the robot to detect and 
         circumnavigate obstacles in unstructured indoor environments.
