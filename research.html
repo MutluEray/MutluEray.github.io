@@ -110,7 +110,7 @@
       </div>
       <h2 class="text-xl font-semibold text-navy-900 mb-4">Digital Stethoscope Using TinyML</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
-        Designed and implemented an embedded digital stethoscope that classifies organ sounds (heart, lung, bowel) 
+        Designed and implemented an embedded digital stethoscope that classifies organ sounds (heart, heart, bowel) 
         in real time on a resource-constrained device. A custom convolutional neural network (FISC-Net) first identifies 
         the auscultated organ and then applies organ-specific digital filtering. Quantization-aware training reduced 
         model size by a factor of four while preserving approximately 90 % accuracy. The system bridges classical 
@@ -132,17 +132,17 @@
 
       <div class="mt-6 grid sm:grid-cols-2 gap-4">
         <div class="p-4 bg-white border border-slate-200 rounded-lg">
-          <p class="text-sm font-medium text-navy-900 mb-2">Raw lung sound</p>
+          <p class="text-sm font-medium text-navy-900 mb-2">Raw heart sound</p>
           <audio controls class="w-full" preload="none">
-            <source src="/research/digit-stet-tinyml/raw_lung.wav" type="audio/wav">
+            <source src="/research/digit-stet-tinyml/raw_heart.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
           <p class="text-xs text-slate-500 mt-2">Captured directly from the digital stethoscope.</p>
         </div>
         <div class="p-4 bg-white border border-slate-200 rounded-lg">
-          <p class="text-sm font-medium text-navy-900 mb-2">Filtered lung sound</p>
+          <p class="text-sm font-medium text-navy-900 mb-2">Filtered heart sound</p>
           <audio controls class="w-full" preload="none">
-            <source src="/research/digit-stet-tinyml/filtered_lung.wav" type="audio/wav">
+            <source src="/research/digit-stet-tinyml/filtered_heart.wav" type="audio/wav">
             Your browser does not support the audio element.
           </audio>
           <p class="text-xs text-slate-500 mt-2">After organ-specific filtering.</p>
