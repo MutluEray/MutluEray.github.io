@@ -119,6 +119,33 @@
         Mutlu, E., Hüseyin, V., & Serbes, G. Bridging Auscultation and Tiny Machine Learning. Traitement du Signal, 2024.<br>
         Mutlu, E., Hüseyin, V., & Serbes, G. FISC-Net: Classification of Auscultation Sounds on an Edge Device. 2023 IEEE IMSA.
       </p>
+      <div class="mt-6">
+        <img src="/research/digit-stet-tinyml/flowchart.png" 
+             alt="Digital stethoscope TinyML pipeline: microphone capture, bandpass filtering, feature extraction, and embedded CNN classification"
+             class="w-full rounded-lg border border-slate-200">
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          End-to-end pipeline: signal acquisition → filtering → feature extraction → embedded CNN inference.
+        </p>
+      </div>
+
+      <div class="mt-6 grid sm:grid-cols-2 gap-4">
+        <div class="p-4 bg-white border border-slate-200 rounded-lg">
+          <p class="text-sm font-medium text-navy-900 mb-2">Raw lung sound</p>
+          <audio controls class="w-full" preload="none">
+            <source src="/research/digit-stet-tinyml/raw_lung.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+          <p class="text-xs text-slate-500 mt-2">Captured directly from the digital stethoscope, raw.</p>
+        </div>
+        <div class="p-4 bg-white border border-slate-200 rounded-lg">
+          <p class="text-sm font-medium text-navy-900 mb-2">Filtered lung sound</p>
+          <audio controls class="w-full" preload="none">
+            <source src="/research/digit-stet-tinyml/filtered_lung.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+          <p class="text-xs text-slate-500 mt-2">After organ-specific filtering.</p>
+        </div>
+      </div>
     </article>
 
     <!-- Research Interests -->
