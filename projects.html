@@ -160,6 +160,141 @@
       <p class="text-sm text-slate-500">
         Code available on <a href="https://github.com/MutluEray/Diabetes-Prediction" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
       </p>
+            <div class="mt-6 p-5 sm:p-6 bg-white border border-slate-200 rounded-xl">
+        <h3 class="text-base font-semibold text-navy-900 mb-1">Interactive Risk Calculator</h3>
+        <p class="text-xs text-slate-500 mb-5">
+          Real machine learning, zero server calls — this model runs entirely on your device.
+          Just 4 questions, all things you actually know off the top of your head.
+        </p>
+
+        <div id="diabetes-calc" class="space-y-5">
+          <!-- rows injected here by JS -->
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-slate-100">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-medium text-navy-900">Predicted risk</span>
+            <span id="risk-pct" class="text-lg font-bold text-accent-700">—</span>
+          </div>
+          <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+            <div id="risk-bar" class="h-full bg-accent-500 transition-all duration-200" style="width:0%"></div>
+          </div>
+          <p id="risk-label" class="text-xs text-slate-500 mt-2"></p>
+        </div>
+
+        <p class="text-[11px] text-slate-400 mt-5 leading-relaxed">
+          Trained on the public PIMA Indian Diabetes dataset for demonstration purposes only. This is not a diagnostic
+          tool and should not be used to make health decisions — consult a medical professional for that.
+        </p>
+      </div>
+
+      <script>
+      (function() {
+        const FEATURES = [
+          {
+            key: 'Pregnancies', label: 'Pregnancies', unit: '',
+            min: 0, max: 17, step: 1, default: 3,
+            info: 'Number of times pregnant. Directly known — no test required.'
+          },
+          {
+            key: 'Glucose', label: 'Glucose', unit: 'mg/dL',
+            min: 44, max: 200, step: 1, default: 117,
+            info: 'Plasma glucose 2 hours after a 75g oral glucose tolerance test (OGTT), not a random finger-prick reading. A fasting or home glucometer value is a rough substitute — ask your doctor about an OGTT for an exact figure.'
+          },
+          {
+            key: 'BMI', label: 'BMI', unit: '',
+            min: 15, max: 60, step: 0.1, default: 32.3,
+            info: 'Body Mass Index = weight (kg) / height (m)\u00B2. Underweight < 18.5, normal 18.5\u201324.9, overweight 25\u201329.9, obese \u2265 30. Easy to compute yourself if you know your height and weight.'
+          },
+          {
+            key: 'Age', label: 'Age', unit: 'years',
+            min: 21, max: 90, step: 1, default: 29,
+            info: 'The slider tops out at 90 for readability \u2014 type an exact value in the box if you are older.'
+          },
+        ];
+
+        const MEAN = [3.8599, 122.0521, 32.5277, 33.1515];
+        const STD  = [3.3986, 30.5226, 6.9158, 11.64];
+        const COEF = [0.322, 0.99856, 0.48301, 0.06688];
+        const INTERCEPT = -0.70784;
+
+        const container = document.getElementById('diabetes-calc');
+        const values = {};
+
+        FEATURES.forEach((f) => {
+          values[f.key] = f.default;
+
+          const row = document.createElement('div');
+          row.innerHTML = `
+            <div class="flex items-center justify-between mb-1">
+              <div class="flex items-center gap-1.5">
+                <label class="text-sm text-slate-700">${f.label}${f.unit ? ' <span class=\"text-slate-400\">(' + f.unit + ')</span>' : ''}</label>
+                <button type="button" class="info-btn w-4 h-4 rounded-full bg-slate-200 text-slate-600 text-[10px] font-bold leading-none flex items-center justify-center hover:bg-accent-100 hover:text-accent-700 transition" aria-label="Info">i</button>
+              </div>
+              <input type="number" min="${f.min}" max="${f.max * 3}" step="${f.step}" value="${f.default}"
+                     id="num-${f.key}"
+                     class="w-20 text-sm text-right font-medium text-navy-900 border border-slate-200 rounded px-1.5 py-0.5 focus:outline-none focus:ring-1 focus:ring-accent-500">
+            </div>
+            <div class="info-panel hidden text-xs text-slate-500 bg-slate-50 border border-slate-100 rounded-md p-2 mb-2 leading-relaxed">
+              ${f.info}
+            </div>
+            <input type="range" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.default}"
+                   id="slider-${f.key}"
+                   class="w-full h-2 rounded-lg appearance-none bg-slate-200 accent-teal-600 cursor-pointer">
+          `;
+          container.appendChild(row);
+
+          const slider = row.querySelector(`#slider-${f.key}`);
+          const num = row.querySelector(`#num-${f.key}`);
+          const infoBtn = row.querySelector('.info-btn');
+          const infoPanel = row.querySelector('.info-panel');
+
+          infoBtn.addEventListener('click', () => infoPanel.classList.toggle('hidden'));
+
+          function setValue(v) {
+            const clamped = Math.max(f.min, Math.min(f.max * 3, v));
+            values[f.key] = clamped;
+            num.value = Number.isInteger(f.step) ? Math.round(clamped) : clamped.toFixed(2);
+            // slider clamps visually at its max even if the number input goes higher
+            slider.value = Math.min(clamped, f.max);
+            compute();
+          }
+
+          slider.addEventListener('input', (e) => setValue(parseFloat(e.target.value)));
+          num.addEventListener('change', (e) => setValue(parseFloat(e.target.value) || f.default));
+        });
+
+        function sigmoid(z) { return 1 / (1 + Math.exp(-z)); }
+
+        function compute() {
+          let z = INTERCEPT;
+          FEATURES.forEach((f, i) => {
+            const standardized = (values[f.key] - MEAN[i]) / STD[i];
+            z += standardized * COEF[i];
+          });
+          const p = sigmoid(z);
+          const pct = Math.round(p * 100);
+
+          document.getElementById('risk-pct').textContent = pct + '%';
+          const barEl = document.getElementById('risk-bar');
+          barEl.style.width = pct + '%';
+          const labelEl = document.getElementById('risk-label');
+
+          if (pct < 30) {
+            barEl.className = 'h-full bg-accent-500 transition-all duration-200';
+            labelEl.textContent = 'Lower predicted likelihood relative to this dataset.';
+          } else if (pct < 60) {
+            barEl.className = 'h-full bg-amber-500 transition-all duration-200';
+            labelEl.textContent = 'Moderate predicted likelihood relative to this dataset.';
+          } else {
+            barEl.className = 'h-full bg-rose-500 transition-all duration-200';
+            labelEl.textContent = 'Higher predicted likelihood relative to this dataset.';
+          }
+        }
+
+        compute();
+      })();
+      </script>
     </article>
 
     <!-- Obstacle-avoiding robot -->
