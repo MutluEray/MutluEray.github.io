@@ -78,7 +78,8 @@
       </p>
     </article>
 
-        <!-- SSVEP Detection in BCIs -->
+
+    <!-- SSVEP Detection in BCIs -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
         <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2025</span>
@@ -89,6 +90,94 @@
         The optimized Extra Trees classifier achieved the highest accuracy (82.5 %) and consistently strong performance across confusion matrices, ROC-AUC and precision-recall metrics. 
       </p>
     </article>
+
+    <!--  3D U-Net Stroke Lesion Segmentation -->
+<article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+  <div class="flex flex-wrap items-center gap-3 mb-4">
+    <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2024</span>
+  </div>
+  <h2 class="text-xl font-semibold text-navy-900 mb-4">3D U-Net for Ischemic Stroke Lesion Segmentation</h2>
+  <p class="text-slate-700 leading-relaxed mb-4">
+    A patch-based 3D U-Net that segments ischemic stroke lesions directly from diffusion-weighted MRI,
+    trained on the ISLES 2022 dataset (250 cases, DWI + ADC). The network samples 3D patches biased
+    toward lesion tissue during training, then reconstructs full-volume predictions at evaluation time
+    via overlap-averaged sliding-window inference.
+  </p>
+
+  <div class="mt-6 grid sm:grid-cols-3 gap-3">
+    <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+      <div class="text-lg font-bold text-navy-900">0.81</div>
+      <div class="text-xs text-slate-600">Median Dice, held-out test set</div>
+    </div>
+    <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+      <div class="text-lg font-bold text-navy-900">12.7M</div>
+      <div class="text-xs text-slate-600">Parameters, single model</div>
+    </div>
+  </div>
+
+  <!-- Results carousel -->
+  <div class="mt-8">
+    <h3 class="text-base font-semibold text-navy-900 mb-3">Results</h3>
+    <div class="relative rounded-lg border border-slate-200 bg-white overflow-hidden">
+      <img id="stroke-carousel-img" src="" alt="DWI with ground truth (cyan) and predicted (orange) lesion contours"
+           class="w-full h-auto block">
+      <button id="stroke-carousel-prev" type="button" aria-label="Previous example"
+              class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button id="stroke-carousel-next" type="button" aria-label="Next example"
+              class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="flex items-center justify-between mt-3">
+      <div class="flex items-center gap-3 text-xs text-slate-500">
+        <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#22B8CF"></span>ground truth</span>
+        <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#F76707"></span>prediction</span>
+      </div>
+      <span id="stroke-carousel-dice" class="text-sm font-semibold text-accent-700"></span>
+    </div>
+  </div>
+
+  <p class="text-sm text-slate-500 mt-6">
+    Code available on <a href="#" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
+  </p>
+</article>
+
+<script>
+(function() {
+  const cases = [
+    { file: 'sub-strokecase0237.png', dice: '0.941' },
+    { file: 'sub-strokecase0208.png', dice: '0.883' },
+    { file: 'sub-strokecase0029.png', dice: '0.842' },
+    { file: 'sub-strokecase0056.png', dice: '0.789' }
+  ];
+  const basePath = '/projects/stroke-lesion-unet/';
+  let i = 0;
+
+  const img = document.getElementById('stroke-carousel-img');
+  const diceEl = document.getElementById('stroke-carousel-dice');
+
+  function render() {
+    img.src = basePath + cases[i].file;
+    diceEl.textContent = 'Dice ' + cases[i].dice;
+  }
+
+  document.getElementById('stroke-carousel-prev').addEventListener('click', () => {
+    i = (i - 1 + cases.length) % cases.length;
+    render();
+  });
+  document.getElementById('stroke-carousel-next').addEventListener('click', () => {
+    i = (i + 1) % cases.length;
+    render();
+  });
+
+  render();
+})();
+</script>
+
+
+
 
         <!-- Motor Imagery Stroke Rehabilitation -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
