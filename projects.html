@@ -110,11 +110,45 @@
       </div>
       <h2 class="text-xl font-semibold text-navy-900 mb-4">Sleep Stage Classification on Sleep-EDF</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
-        Implemented an end-to-end pipeline for automatic sleep-stage scoring using the Sleep-EDF Expanded dataset 
-        (PhysioNet). The workflow covers raw polysomnography loading (MNE / pyEDFlib), epoching, feature extraction 
-        (spectral, entropy and time-series features via tsfel, tsfresh, antropy, etc.), and supervised classification 
-        of the five standard stages (Wake, N1, N2, N3, REM). Group-aware cross-validation and learning-curve analysis 
-        were used to assess generalization across subjects.
+        Built an end-to-end pipeline for automatic 5-class sleep-stage scoring (Wake, N1, N2, N3, REM) from
+        polysomnography (EEG, EOG, EMG) on the Sleep-EDF Expanded dataset (22 patients). Engineered ~900
+        time/frequency-domain features per 30s epoch via tsflex, tsfresh, antropy, and YASA band power, with
+        strictly patient-grouped cross-validation throughout — no patient's epochs ever appear in both train and
+        test within a fold. A gradient-boosted model (CatBoost) was tuned with early stopping and statistical
+        feature selection to close an initial overfitting gap, but a simpler linear baseline matched it on accuracy
+        while generalizing better.
+      </p>
+
+      <div class="mt-6 grid sm:grid-cols-4 gap-3">
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">0.79</div>
+          <div class="text-xs text-slate-600">Macro F1</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">82.8%</div>
+          <div class="text-xs text-slate-600">Accuracy</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">0.76</div>
+          <div class="text-xs text-slate-600">Cohen's kappa</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">22</div>
+          <div class="text-xs text-slate-600">Patients, grouped CV</div>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <img src="/projects/sleep-edf/hypnogram.png"
+             alt="Full-night hypnogram for a held-out patient: true sleep stage over time as a solid line, predicted stage as a dashed line"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          Held-out patient, full night — true stage (solid) vs. predicted stage (dashed)
+        </p>
+      </div>
+
+      <p class="text-sm text-slate-500 mt-6">
+        Code available on <a href="#" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
       </p>
     </article>
 
