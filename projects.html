@@ -177,8 +177,6 @@
 </script>
 
 
-
-
         <!-- Motor Imagery Stroke Rehabilitation -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
@@ -187,8 +185,56 @@
       <h2 class="text-xl font-semibold text-navy-900 mb-4">Motor Imagery BCI for Stroke Rehabilitation</h2>
       <p class="text-slate-700 leading-relaxed mb-4">
         The goal was to decode left versus right hand motor imagery from 16-channel EEG for upper-extremity stroke rehabilitation. 
-        After band-pass filtering and common-reference averaging, temporal and spectral features were extracted from 1.5-second epochs. 
-        Random Forest and linear SVM classifiers were trained on pre- and post-BCI-intervention sessions from three participants. 
+        Implemented Filter Bank CSP and Riemannian-geometry classifiers (tangent-space
+        logistic regression and MDM) alongside a regularized CSP+LDA baseline. 
+      </p>
+
+      <div class="mt-6 grid sm:grid-cols-4 gap-3">
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">91.7%</div>
+          <div class="text-xs text-slate-600">Best model (FBCSP, ours)</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">81.6%</div>
+          <div class="text-xs text-slate-600">Published CSP+LDA</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">92.2%</div>
+          <div class="text-xs text-slate-600">Published TVLDA</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">3</div>
+          <div class="text-xs text-slate-600">Patients, pre/post therapy</div>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <img src="/projects/motor-imagery-bci/results_comparison.png"
+             alt="Bar chart comparing our best model accuracy against published CSP+LDA and TVLDA benchmarks, per patient and therapy phase"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">Our best model per session vs. both published benchmarks</p>
+        <p class="text-xs text-slate-400 mt-2">
+          Published benchmarks: Sebastián-Romagosa et al.,
+          <a href="https://doi.org/10.3389/fnins.2020.591435" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Front. Neurosci. 2020</a>
+          (CSP+LDA) and Gruenwald et al.,
+          <a href="https://doi.org/10.3389/fnins.2019.00901" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Front. Neurosci. 2019</a>
+          (TVLDA).
+        </p>
+      </div>
+
+      <div class="mt-6">
+        <img src="/projects/motor-imagery-bci/csp_feature_view.png"
+             alt="CSP feature time course on held-out test data, showing right-hand and left-hand imagery separating cleanly in the model's actual feature space after the cue"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          The classifier's actual feature (CSP log-variance) on held-out test trials — right- and left-hand
+          imagery separate clearly once the model looks at the right spatial combination of channels, not any
+          single electrode.
+        </p>
+      </div>
+
+      <p class="text-sm text-slate-500 mt-6">
+        Code available on <a href="https://github.com/MutluEray/motor-imagery-stroke-bci" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
       </p>
     </article>
 
