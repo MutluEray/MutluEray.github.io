@@ -186,7 +186,7 @@
         A head-to-head comparison of two paradigms for trusting a clinical model: inherently interpretable
         models (logistic regression, a shallow decision tree) versus post-hoc explanations (SHAP, permutation
         importance) applied to a black-box gradient-boosted model — trained on identical baseline clinical
-        features from the International Stroke Trial (19,435 patients) to predict 6-month death/dependency.
+        features from the International Stroke Trial to predict 6-month death/dependency.
         Beyond just running SHAP on a black box, as most clinical XAI papers do, this project directly tests
         whether the two paradigms agree, whether the post-hoc explanation is faithful to what the model
         actually does (against a random-order baseline), and whether it's reproducible across resampled
@@ -195,7 +195,7 @@
 
       <div class="mt-6 grid sm:grid-cols-4 gap-3">
         <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.804 / 0.806</div>
+          <div class="text-lg font-bold text-navy-900">0.8 / 0.8</div>
           <div class="text-xs text-slate-600">AUROC, interpretable vs. black-box</div>
         </div>
         <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
@@ -203,20 +203,13 @@
           <div class="text-xs text-slate-600">Rank correlation across methods</div>
         </div>
         <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.805</div>
+          <div class="text-lg font-bold text-navy-900">0.8</div>
           <div class="text-xs text-slate-600">SHAP stability, 50 bootstrap resamples</div>
         </div>
         <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
           <div class="text-lg font-bold text-navy-900">19,435</div>
           <div class="text-xs text-slate-600">Patients, IST database</div>
         </div>
-      </div>
-
-      <div class="mt-6 p-4 bg-accent-50 border border-accent-100 rounded-lg text-sm text-slate-700 leading-relaxed">
-        <span class="font-semibold text-navy-900">Key finding:</span> the black-box model barely outperformed
-        plain logistic regression (0.806 vs. 0.804 AUROC) — yet its post-hoc SHAP explanation agreed only
-        moderately with what logistic regression's own coefficients said mattered (ρ ≈ 0.23–0.46). A stable,
-        faithful post-hoc explanation is not automatically the same thing as an interpretable model's own logic.
       </div>
 
       <div class="mt-6 p-5 sm:p-6 bg-white border border-slate-200 rounded-xl">
@@ -234,7 +227,7 @@
         <p class="text-[11px] text-slate-400 mt-5 leading-relaxed">
           LogReg = logistic regression coefficient magnitude · Tree = depth-4 decision tree split importance
           (both native/interpretable) · SHAP and Permutation = post-hoc explanations of the black-box
-          (HistGradientBoosting) model. Trained on International Stroke Trial baseline variables, n = 19,435.
+          (HistGradientBoosting) model.
         </p>
       </div>
 
