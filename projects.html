@@ -479,6 +479,151 @@
       </p>
     </article>
 
+
+    <!-- Explainable knowledge-graph drug repurposing -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Explainable Knowledge-Graph Drug Repurposing for Alzheimer's and Parkinson's Disease</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        A pipeline that ranks drug-repurposing hypotheses for Alzheimer's and Parkinson's disease on Hetionet
+        (47,031 nodes, 2.25M edges) and shows the evidence behind each one. Degree-weighted path counts over three
+        compound-to-disease metapaths are combined with a z-score against 100 degree-preserving permutations of the
+        graph, so the ranking is not simply a list of promiscuous drugs. Each shortlisted candidate is explained by its
+        actual supporting paths, retrieved with SPARQL (rdflib) from an RDF export of the graph, and audited with
+        gene-level counterfactuals: remove the gene driving a candidate and see where it lands. On a 58-disease benchmark
+        the consensus score reaches AUROC 0.76 against 0.70 for a "number of bound genes" baseline. A literature check
+        found that the best-supported candidates had already been tested clinically, mostly with mixed or negative results,
+        and that two top hits probably act in the wrong direction; the main limitation is that graph edges carry no
+        direction of effect.
+      </p>
+
+      <div class="mt-6 grid sm:grid-cols-4 gap-3">
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">0.76 vs 0.70</div>
+          <div class="text-xs text-slate-600">AUROC, consensus vs degree baseline</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">2.25M</div>
+          <div class="text-xs text-slate-600">Edges, all 1,552 &times; 137 pairs scored in &lt;1 s</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">16 / 16</div>
+          <div class="text-xs text-slate-600">SPARQL path weights equal the matrix score</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">1 &rarr; 162</div>
+          <div class="text-xs text-slate-600">Top Parkinson's rank after removing one gene</div>
+        </div>
+      </div>
+
+      <!-- Benchmark figure -->
+      <div class="mt-8">
+        <h3 class="text-base font-semibold text-navy-900 mb-3">Results</h3>
+        <img src="/projects/kg-drug-repurposing/fig_benchmark.png"
+             alt="Pan-disease benchmark: AUROC of DWPC, permutation z-score and consensus scores versus a degree baseline, and each score's dependence on the number of bound genes"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          58 diseases, 731 known treatments. Left: AUROC with 95% bootstrap CI. Right: accuracy against dependence on
+          how many genes a compound binds &mdash; the consensus keeps most of the accuracy with none of the popularity effect.
+        </p>
+      </div>
+
+      <!-- Path-graph carousel -->
+      <div class="mt-8">
+        <h3 class="text-base font-semibold text-navy-900 mb-3">Why the graph suggests a compound</h3>
+        <div class="relative rounded-lg border border-slate-200 bg-white overflow-hidden">
+          <img id="kg-carousel-img" src="" alt="Layered path graph from the compound through bound genes and pathways to disease-associated genes and the disease"
+               class="w-full h-auto block">
+          <button id="kg-carousel-prev" type="button" aria-label="Previous candidate"
+                  class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button id="kg-carousel-next" type="button" aria-label="Next candidate"
+                  class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-3 gap-2 sm:gap-3">
+          <div class="flex items-center gap-3 text-xs text-slate-500 flex-wrap">
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#4c78a8"></span>compound</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#9ecae9"></span>bound gene</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#a1d99b"></span>pathway</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#fdae6b"></span>disease gene</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#e6550d"></span>disease</span>
+          </div>
+          <span id="kg-carousel-cap" class="text-sm font-semibold text-accent-700 sm:text-right"></span>
+        </div>
+        <p id="kg-carousel-note" class="text-xs text-slate-500 mt-2"></p>
+      </div>
+
+      <!-- Interactive explorer -->
+      <details class="mt-8 border border-slate-200 rounded-xl p-4">
+        <summary class="cursor-pointer text-base font-semibold text-navy-900">Try the interactive path explorer</summary>
+        <p class="text-xs text-slate-500 mt-3 mb-3 leading-relaxed">
+          Pick a disease and a candidate, toggle the three metapaths, and click a node to see the paths through it.
+          Candidates excluded by triage are listed with the reason.
+          <a href="/projects/kg-drug-repurposing/explorer.html" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Open full page</a>.
+        </p>
+        <iframe src="/projects/kg-drug-repurposing/explorer.html?theme=light&embed=1" loading="lazy"
+                title="Interactive path explorer for knowledge-graph drug repurposing"
+                class="w-full h-[900px] rounded-lg border border-slate-200 bg-white"></iframe>
+      </details>
+
+      <p class="text-xs text-slate-400 mt-6">
+        Data: Hetionet v1.0, Himmelstein et al.,
+        <a href="https://doi.org/10.7554/eLife.26726" target="_blank" rel="noopener" class="text-accent-600 hover:underline">eLife 2017</a>
+        (content CC0; individual source licenses apply). Graph evidence prioritises hypotheses; it does not validate them.
+      </p>
+
+      <p class="text-sm text-slate-500 mt-6">
+        Code available on <a href="https://github.com/MutluEray/hetionet-repurposing" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
+        full <a href="https://github.com/MutluEray/hetionet-repurposing/blob/main/docs/writeup.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
+        with limitations and a literature triage of the top candidates.
+      </p>
+    </article>
+
+    <script>
+    (function() {
+      const cases = [
+        { file: 'path_alzheimer_Topiramate.png',  cap: 'Topiramate \u00b7 Alzheimer\u2019s',
+          note: 'Rank 2; 13 without its top gene, so several genes support it (kainate/AMPA-receptor genes). Documented cognitive side effects make it a questionable candidate.' },
+        { file: 'path_alzheimer_Lithium.png',     cap: 'Lithium \u00b7 Alzheimer\u2019s',
+          note: 'Rank 7; 8 without its top gene (GSK3A). Mechanistically coherent, but clinical trials have been mixed.' },
+        { file: 'path_parkinson_Dronedarone.png', cap: 'Dronedarone \u00b7 Parkinson\u2019s',
+          note: 'Rank 1, but 93% of its direct evidence is one gene (HCN3): rank 162 without it. A fragile top hit.' },
+        { file: 'path_parkinson_Sunitinib.png',   cap: 'Sunitinib \u00b7 Parkinson\u2019s',
+          note: 'Rank 3; 6 without its top gene. Stable only because it binds 132 genes: breadth, not specificity.' }
+      ];
+      const basePath = '/projects/kg-drug-repurposing/';
+      let i = 0;
+
+      const img = document.getElementById('kg-carousel-img');
+      const cap = document.getElementById('kg-carousel-cap');
+      const note = document.getElementById('kg-carousel-note');
+
+      function render() {
+        img.src = basePath + cases[i].file;
+        img.alt = 'Path graph for ' + cases[i].cap;
+        cap.textContent = cases[i].cap;
+        note.textContent = cases[i].note;
+      }
+
+      document.getElementById('kg-carousel-prev').addEventListener('click', () => {
+        i = (i - 1 + cases.length) % cases.length;
+        render();
+      });
+      document.getElementById('kg-carousel-next').addEventListener('click', () => {
+        i = (i + 1) % cases.length;
+        render();
+      });
+
+      render();
+    })();
+    </script>
+
+
         <!-- fMRI GLM: Calibration vs. Reliability -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
