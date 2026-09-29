@@ -479,6 +479,49 @@
       </p>
     </article>
 
+        <!-- fMRI GLM: Calibration vs. Reliability -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Does a Better-Calibrated fMRI Model Reproduce Better? A From-Scratch GLM Audit</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        Implemented a first-level and group-level fMRI general linear model from scratch in NumPy — design matrix
+        construction, AR(1) noise prewhitening, group inference — and validated it against nilearn and against
+        simulations with known ground truth. Found that standard per-voxel AR(1) prewhitening carries a small
+        anticonservative bias (present in nilearn's own implementation too), implemented a documented correction,
+        and confirmed the effect on two independent public datasets. Preprocessed raw multi-session data with
+        fMRIPrep and tested whether better statistical calibration also means a more reproducible activation map
+        across scanning sessions. It doesn't, cleanly: whole-brain-corrected significance can differ sharply
+        between two sessions even where the underlying response looks similar, consistent with the low
+        test-retest reliability widely reported for task-fMRI.
+      </p>
+
+      <div class="mt-6">
+        <img src="/projects/fmri-glm/finger_test_retest.png"
+             alt="Two rows of brain slices showing the Finger versus other-conditions contrast in the same subject's right precentral cortex, for a test session and a retest six months later, plotted with identical slice position, threshold and color scale"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          Same subject, same task, same statistical threshold and color scale, two scanning sessions ~6 months
+          apart. The peak response near right precentral/postcentral cortex looks comparable in both sessions
+          here — but after correcting for ~228,000 whole-brain comparisons, only the top session's cluster
+          survived at FDR q&lt;.05 (314 voxels vs. 4).
+        </p>
+      </div>
+
+      <p class="text-xs text-slate-400 mt-6">
+        Test-retest reliability benchmark: Elliott et al.,
+        <a href="https://doi.org/10.1177/0956797620916786" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Psychological Science 2020</a>
+        (mean ICC ≈ 0.40 across 90 task-fMRI studies), with commentary from
+        <a href="https://doi.org/10.1177/0956797621989730" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Kragel et al., 2021</a>.
+        Prewhitening bias correction follows Worsley et al., NeuroImage 2002.
+      </p>
+
+      <p class="text-sm text-slate-500 mt-6">
+        Code available on <a href="https://github.com/MutluEray/fmri-language-glm" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
+      </p>
+    </article>
+
      <!-- Diabetes Prediction -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
