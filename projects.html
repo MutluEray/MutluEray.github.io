@@ -493,10 +493,7 @@
         graph, so the ranking is not simply a list of promiscuous drugs. Each shortlisted candidate is explained by its
         actual supporting paths, retrieved with SPARQL (rdflib) from an RDF export of the graph, and audited with
         gene-level counterfactuals: remove the gene driving a candidate and see where it lands. On a 58-disease benchmark
-        the consensus score reaches AUROC 0.76 against 0.70 for a "number of bound genes" baseline. A literature check
-        found that the best-supported candidates had already been tested clinically, mostly with mixed or negative results,
-        and that two top hits probably act in the wrong direction; the main limitation is that graph edges carry no
-        direction of effect.
+        the consensus score reaches AUROC 0.76 against 0.70 for a "number of bound genes" baseline.
       </p>
 
       <div class="mt-6 grid sm:grid-cols-4 gap-3">
@@ -511,10 +508,6 @@
         <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
           <div class="text-lg font-bold text-navy-900">16 / 16</div>
           <div class="text-xs text-slate-600">SPARQL path weights equal the matrix score</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">1 &rarr; 162</div>
-          <div class="text-xs text-slate-600">Top Parkinson's rank after removing one gene</div>
         </div>
       </div>
 
@@ -579,7 +572,7 @@
 
       <p class="text-sm text-slate-500 mt-6">
         Code available on <a href="https://github.com/MutluEray/hetionet-repurposing" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
-        full <a href="https://github.com/MutluEray/hetionet-repurposing/blob/main/docs/writeup.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
+        full <a href="https://github.com/MutluEray/hetionet-repurposing/blob/main/writeup.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
         with limitations and a literature triage of the top candidates.
       </p>
     </article>
