@@ -479,6 +479,79 @@
       </p>
     </article>
 
+      <!-- Seizure onset as a bifurcation -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Seizure Onset as a Bifurcation: An Excitatory/Inhibitory Network Model</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        A simulation study that treats seizure onset as a dynamical transition instead of a detection problem.
+        Starting from a published excitatory/inhibitory network (Kim &amp; Nykamp, 2017; originally written for Brian&nbsp;1),
+        I ported it to Brian2 (3,750 conductance-based Morris&ndash;Lecar neurons) and tested whether interneurons that stop
+        firing under strong input (depolarization block) give an abrupt, hysteretic and triggerable switch from a calm state
+        to a seizure-like state as the external drive is ramped up and back down. At a fixed drive the network sits in either
+        state depending on its history, and a 100&nbsp;ms pulse moves it from one to the other for good. A two-population rate
+        model built from the measured neuron responses reproduces the two stable states and the unstable state between them,
+        and removing the interneuron shutdown removes most of the bistable window. Adding a slow adaptation variable makes the
+        high state switch itself off and repeat.
+      </p>
+
+      <div class="mt-6 grid sm:grid-cols-4 gap-3">
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">27 &rarr; 200 Hz</div>
+          <div class="text-xs text-slate-600">Excitatory rate at the same drive: calm vs. seizure-like, set by history</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">23&ndash;35%</div>
+          <div class="text-xs text-slate-600">Interneurons silent and depolarized on the seizure-like branch</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">&asymp; 90%</div>
+          <div class="text-xs text-slate-600">Bistable window lost without interneuron shutdown (rate model)</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">&le; 0.01 kHz</div>
+          <div class="text-xs text-slate-600">Spread of the jump thresholds across 3 random seeds</div>
+        </div>
+      </div>
+
+      <!-- Hero animation (MP4). To use the GIF instead, replace the <video> element with:
+           <img src="/projects/seizure-bifurcation/hero.gif" loading="lazy" alt="..." class="w-full rounded-lg border border-slate-200 bg-white"> -->
+      <div class="mt-8">
+        <h3 class="text-base font-semibold text-navy-900 mb-3">The transition</h3>
+        <video class="w-full rounded-lg border border-slate-200 bg-white"
+               autoplay loop muted playsinline controls preload="metadata"
+               poster="/projects/seizure-bifurcation/hero_poster.jpg"
+               aria-label="Animation of the spiking network going from a calm state to a seizure-like state and back as the input drive is raised and lowered">
+          <source src="/projects/seizure-bifurcation/hero.mp4" type="video/mp4">
+        </video>
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          Left: spikes of excitatory (blue) and inhibitory (orange) neurons. Top right: population rates and the input drive
+          (dashed, right axis). Bottom right: excitatory rate against drive. Raising the drive makes the network jump to a
+          high-rate state near 1.5&nbsp;kHz as the interneurons shut down; lowering it, the state persists until about
+          0.56&nbsp;kHz, so between the two thresholds the same input can give either state
+          (E<sub>K</sub>&nbsp;=&nbsp;&minus;90&nbsp;mV).
+        </p>
+      </div>
+
+      <p class="text-xs text-slate-400 mt-6">
+        A replication and extension of Kim &amp; Nykamp,
+        <a href="https://doi.org/10.1007/s10827-017-0647-7" target="_blank" rel="noopener" class="text-accent-600 hover:underline">J. Comput. Neurosci. 2017</a>
+        (ModelDB&nbsp;189346). The rate model is a simplification built from the measured neuron responses; the spiking network
+        is the reference. The repository also contains an exploratory, qualitative comparison with public human Utah-array
+        recordings (one subject, three seizures;
+        <a href="https://www.nature.com/articles/s41597-025-05026-4" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Scientific Data 2025</a>,
+        EBRAINS): compatible with, but not a validation of, the model.
+      </p>
+
+      <p class="text-sm text-slate-500 mt-6">
+        Code available on <a href="https://github.com/MutluEray/seizure-bifurcation" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
+        full <a href="https://github.com/MutluEray/seizure-bifurcation/blob/main/WRITEUP.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
+        with methods, controls and limitations.
+      </p>
+    </article>
+
 
     <!-- Explainable knowledge-graph drug repurposing -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
