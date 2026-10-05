@@ -886,6 +886,93 @@
       </script>
     </article>
 
+        <!-- Hierarchical latent planning for BCI-controlled assistive manipulation (simulation study) -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2021</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">How Much Autonomy Does a Sparse BCI Channel Need? Hierarchical Latent Planning for Assistive Manipulation</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        A simulation study of how much robot autonomy a noisy, low-bandwidth BCI intent channel needs. A simulated user
+        repeats one high-level command (which disc, which zone) through a decoder with a given accuracy; a Bayesian belief
+        over the possible intents commits once it is confident; and a CAVIN-inspired two-level latent planner (effect codes
+        and motion codes, trained on self-supervised interaction data in MuJoCo, planning with CEM/MPC) fills in the
+        multi-step manipulation. I compare it with direct low-level control (four directions plus grip, same noisy decoder)
+        and with a scripted oracle executor that separates decoding errors from planning errors. The planner needs 1&ndash;5
+        commands per task instead of 31&ndash;71, and succeeds more often than direct control when decoder accuracy is about
+        0.7 or lower; above about 0.9, direct control succeeds more often, and the planner trails the oracle throughout.
+        It also fails at pushing, which I report together with four attempted fixes that did not work. One round of
+        on-policy data aggregation raised success from 0.78/0.73 to 0.86/0.80 (unblocked/blocked, fresh scenes).
+      </p>
+
+      <div class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed">
+        <strong>The BCI signal is simulated, not EEG</strong>: a discrete command vocabulary with a confusion matrix set by
+        decoder accuracy. The arm is cosmetic, grasping is a kinematic weld, observations are low-dimensional states, and
+        there is no user study. The write-up spells out what that does and does not support.
+      </div>
+
+      <div class="mt-6 grid sm:grid-cols-4 gap-3">
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">1&ndash;5 vs 31&ndash;71</div>
+          <div class="text-xs text-slate-600">BCI commands per task: planner vs direct control</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">14&ndash;42&times; fewer</div>
+          <div class="text-xs text-slate-600">BCI commands than direct control at the same decoder accuracy</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">0.69&ndash;0.88</div>
+          <div class="text-xs text-slate-600">Planner success over decoder accuracy 0.5&ndash;1.0 (direct control: 0.15&ndash;1.00)</div>
+        </div>
+      </div>
+
+      <!-- Best-performing session (disclosed as such) -->
+      <div class="mt-8">
+        <h3 class="text-base font-semibold text-navy-900 mb-3">Three tasks in a row from sparse, noisy commands</h3>
+        <video class="w-full rounded-lg border border-slate-200 bg-black"
+               autoplay loop muted playsinline controls preload="metadata"
+               aria-label="Simulated robot arm completing three fetch tasks from sparse noisy BCI commands, with a side panel showing the planner's predicted subgoals, the belief over intents and the running task tally">
+          <source src="/projects/hierarchical-bci-planning/default_session3.mp4" type="video/mp4">
+        </video>
+        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+          Session 3 of 4, the best of four fixed-seed sessions at decoder accuracy 0.8: 3 of 3 tasks completed with 6 BCI
+          commands in total.
+        </p>
+        <p class="text-xs text-slate-400 mt-2">
+          Left: the simulated scene. Right: the planner's view (dashed circles are its predicted subgoals for the commanded
+          disc), the belief over intents as commands arrive, the task tally, and the user input so far compared with direct
+          control.
+        </p>
+      </div>
+
+      <!-- Figures -->
+      <div class="mt-8 grid sm:grid-cols-2 gap-4">
+        <div>
+          <img src="/projects/hierarchical-bci-planning/effort_vs_success_final_v2.png"
+               alt="Task success rate versus number of BCI commands per task for the hierarchical planner and direct control, labelled by decoder accuracy"
+               class="w-full rounded-lg border border-slate-200 bg-white p-2" loading="lazy">
+          <p class="text-xs text-slate-500 mt-2 text-center">Success vs. BCI commands per task (labels: decoder accuracy)</p>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-400 mt-6">
+        Method follows the two-level latent planning idea of Fang et al.,
+        <a href="https://arxiv.org/abs/1910.13395" target="_blank" rel="noopener" class="text-accent-600 hover:underline">CoRL 2019</a>
+        (CAVIN), re-implemented on low-dimensional states rather than reproduced. Task-level hierarchical BCI control with
+        noisy commands is an established idea (for example Chung et al.,
+        <a href="https://ijcai.org/Abstract/11/277" target="_blank" rel="noopener" class="text-accent-600 hover:underline">IJCAI 2011</a>);
+        this study contributes a controlled simulation sweep of success and user input against decoder accuracy, and documented negative results.
+        Limitations: simulated decoder and user, abstract manipulation, planner reliability below the oracle, pushing unsolved, no user study.
+      </p>
+
+      <p class="text-sm text-slate-500 mt-6">
+        Code available on <a href="https://github.com/MutluEray/bci-hierarchical-planning" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
+        full <a href="https://github.com/MutluEray/bci-hierarchical-planning/blob/main/docs/WRITEUP.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
+        with methods, ablations, the pushing investigation and limitations.
+      </p>
+    </article>
+
+
     <!-- Obstacle-avoiding robot -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
