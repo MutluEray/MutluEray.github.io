@@ -962,6 +962,280 @@
       </p>
     </article>
 
+    <!-- NeuroAI: EEG alignment with deep vision models -->
+    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2021</span>
+      </div>
+      <h2 class="text-xl font-semibold text-navy-900 mb-4">Do Deep Vision Models Predict Human EEG? A Brain-Score-Style Layer Analysis on THINGS-EEG2</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">
+        A Brain-Score-style analysis adapted from primate recordings to human EEG. For every layer of ImageNet-trained
+        ResNet-50 and ViT-B/16, a cross-validated ridge regression maps the layer&rsquo;s activations to the EEG response to the
+        same image (THINGS-EEG2: 9 subjects, 17 occipito-parietal channels, 16,540 training and 200 held-out test images).
+        Predictivity is scored on the held-out images and divided by the EEG&rsquo;s own split-half reliability. To see what
+        &ldquo;learned&rdquo; adds, every comparison includes an untrained ResNet-50 (with calibrated normalization) and a
+        non-learned Gabor-energy + Fourier-power baseline. Uncertainty comes from a two-way bootstrap over subjects and test
+        images, and each model&rsquo;s layer is chosen leave-one-subject-out. Because readout choices moved the first results,
+        I added a spatial-pooling sensitivity analysis and report where the conclusions change.
+      </p>
+
+      <ul class="list-disc pl-5 text-slate-700 leading-relaxed mb-4 space-y-1.5 text-[15px]">
+        <li>Trained networks predict EEG far better than an untrained network (+0.21 normalized r overall), and the advantage is larger after 200&nbsp;ms (+0.24) than before (+0.17).</li>
+        <li>An untrained ResNet-50 is statistically indistinguishable from a Gabor/Fourier baseline: much of the early predictivity is low-level image structure.</li>
+        <li>The depth profile depends on the metric: the sharp early peak favours early-to-mid layers, sustained late predictivity favours deeper ones.</li>
+        <li>ResNet-50 and ViT-B/16 are comparable. How the ViT is read out matters more (&asymp;&nbsp;+0.05 for a spatial vs. mean-token readout), and the early-window sign of their difference flips at the finest readout.</li>
+      </ul>
+
+      <div class="mt-6 grid sm:grid-cols-4 gap-3">
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">51% / 82%</div>
+          <div class="text-xs text-slate-600">Top-1 / top-5, EEG &rarr; viewed image among 200 (chance 0.5% / 2.5%)</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">+0.21</div>
+          <div class="text-xs text-slate-600">Trained minus untrained ResNet-50, normalized r (95% CI 0.18&ndash;0.23)</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">&asymp; 0</div>
+          <div class="text-xs text-slate-600">Untrained ResNet-50 vs. Gabor/Fourier baseline (&minus;0.01, CI includes 0)</div>
+        </div>
+        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
+          <div class="text-lg font-bold text-navy-900">+0.02</div>
+          <div class="text-xs text-slate-600">ResNet-50 minus ViT-B/16 at a matched readout: small, readout-dependent</div>
+        </div>
+      </div>
+
+      <div class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed">
+        <strong>Scope</strong>: an encoding analysis on public data with simple linear models. The decoding views below are
+        illustrative: they use 17 channels, linear read-outs and EEG averaged over 80 repetitions, so they are <strong>not</strong>
+        comparable to deep decoders on 63-channel data. Only two supervised architectures were tested, so this says nothing
+        general about CNNs versus transformers.
+      </div>
+
+      <!-- Interactive layer explorer -->
+      <div class="mt-8 p-5 sm:p-6 bg-white border border-slate-200 rounded-xl">
+        <h3 class="text-base font-semibold text-navy-900 mb-1">Explore: which layers predict the EEG?</h3>
+        <p class="text-xs text-slate-500 mb-4">
+          Pick a response window and compare layer depth for ResNet-50 and ViT-B/16 (4&times;4 spatial readout, mean over 9
+          subjects). Hover a point for its value. The dashed line is the best layer of the non-learned Gabor/Fourier baseline.
+        </p>
+        <div id="eeg-pills" class="flex flex-wrap gap-2 mb-4"></div>
+        <svg id="eeg-chart" viewBox="0 0 640 300" class="w-full h-auto" role="img"
+             aria-label="EEG predictivity against relative network depth for ResNet-50 and ViT-B/16 in the selected response window"></svg>
+        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 mt-2">
+          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#0072B2"></span>ResNet-50 (ImageNet)</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#D55E00"></span>ViT-B/16 (ImageNet)</span>
+          <span class="inline-flex items-center gap-1"><span class="inline-block w-5 border-t-2 border-dashed" style="border-color:#CC79A7"></span>Gabor/Fourier baseline</span>
+        </div>
+        <div id="eeg-caption" class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed"></div>
+        <p class="text-[11px] text-slate-400 mt-3">
+          ResNet-50 is shown from conv1 to layer3_5 (layer4 was not extracted at this readout), so its curve ends before the
+          network&rsquo;s output; ViT-B/16 is shown for 8 of its 12 blocks.
+        </p>
+      </div>
+
+      <!-- Effect sizes -->
+      <div class="mt-8">
+        <h3 class="text-base font-semibold text-navy-900 mb-3">Effect sizes</h3>
+        <img src="/projects/neuroai-eeg/figC_effect_sizes.png" loading="lazy"
+             alt="Forest plot of differences in normalized EEG predictivity between model pairs for early, late and all response windows, with 95% confidence intervals"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          Differences in normalized r with 95% CIs from a two-way bootstrap over subjects and test images (2&times;2 readout;
+          each model at its leave-one-subject-out best layer).
+        </p>
+      </div>
+
+      <!-- Decoding carousel -->
+      <div class="mt-8">
+        <h3 class="text-base font-semibold text-navy-900 mb-3">Layer &times; time, and decoding views</h3>
+        <div class="relative rounded-lg border border-slate-200 bg-white overflow-hidden">
+          <img id="eeg-car-img" src="" alt="" class="w-full max-h-[720px] object-contain block mx-auto bg-white">
+          <button id="eeg-car-prev" type="button" aria-label="Previous figure"
+                  class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button id="eeg-car-next" type="button" aria-label="Next figure"
+                  class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="flex items-center justify-between mt-3">
+          <span id="eeg-car-cap" class="text-sm font-semibold text-accent-700"></span>
+          <span id="eeg-car-count" class="text-xs text-slate-400"></span>
+        </div>
+        <p id="eeg-car-note" class="text-xs text-slate-500 mt-2 leading-relaxed"></p>
+      </div>
+
+      <p class="text-xs text-slate-400 mt-6">
+        Data: THINGS-EEG2, Gifford et al.,
+        <a href="https://doi.org/10.1016/j.neuroimage.2022.119754" target="_blank" rel="noopener" class="text-accent-600 hover:underline">NeuroImage 2022</a>
+        (CC-BY 4.0), authors&rsquo; preprocessed epochs. Method follows the Brain-Score idea (Schrimpf et al., 2018, 2020). The analysis adds untrained and low-level baselines, a noise-ceiling normalization, an image-level bootstrap and a readout-sensitivity analysis.
+        Limitations: 9 subjects and 200 test images, 17 channels, overlapping responses in the 5&nbsp;Hz image stream, and
+        layer-selection uncertainty is not propagated into the intervals.
+      </p>
+
+      <p class="text-sm text-slate-500 mt-6">
+        Code available on <a href="https://github.com/MutluEray/neuroai-eeg-alignment" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
+        the <a href="https://github.com/MutluEray/neuroai-eeg-alignment/blob/main/README.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">README</a>
+        has methods, all result tables and limitations.
+      </p>
+    </article>
+
+    <script>
+    (function() {
+      // Layer explorer: means over 9 subjects, 4x4 readout. x = relative depth in the FULL network
+      // (ResNet-50: position among 19 stages; ViT-B/16: (block-1)/11).
+      const RES = [
+        { l: 'conv1',    x: 0.0000, all: 0.410, early: 0.542, late: 0.288, peak: 0.637 },
+        { l: 'layer1_0', x: 0.0556, all: 0.502, early: 0.640, late: 0.380, peak: 0.702 },
+        { l: 'layer1_1', x: 0.1111, all: 0.512, early: 0.646, late: 0.393, peak: 0.701 },
+        { l: 'layer1_2', x: 0.1667, all: 0.522, early: 0.656, late: 0.402, peak: 0.708 },
+        { l: 'layer2_0', x: 0.2222, all: 0.537, early: 0.661, late: 0.423, peak: 0.700 },
+        { l: 'layer2_1', x: 0.2778, all: 0.551, early: 0.678, late: 0.439, peak: 0.707 },
+        { l: 'layer2_2', x: 0.3333, all: 0.566, early: 0.692, late: 0.453, peak: 0.712 },
+        { l: 'layer2_3', x: 0.3889, all: 0.572, early: 0.697, late: 0.460, peak: 0.713 },
+        { l: 'layer3_0', x: 0.4444, all: 0.579, early: 0.688, late: 0.479, peak: 0.690 },
+        { l: 'layer3_1', x: 0.5000, all: 0.591, early: 0.696, late: 0.492, peak: 0.694 },
+        { l: 'layer3_2', x: 0.5556, all: 0.597, early: 0.696, late: 0.503, peak: 0.691 },
+        { l: 'layer3_3', x: 0.6111, all: 0.606, early: 0.696, late: 0.516, peak: 0.684 },
+        { l: 'layer3_4', x: 0.6667, all: 0.615, early: 0.698, late: 0.530, peak: 0.678 },
+        { l: 'layer3_5', x: 0.7222, all: 0.617, early: 0.694, late: 0.538, peak: 0.668 }
+      ];
+      const VIT = [
+        { l: 'block01', x: 0.0000, all: 0.479, early: 0.616, late: 0.361, peak: 0.682 },
+        { l: 'block02', x: 0.0909, all: 0.527, early: 0.662, late: 0.408, peak: 0.703 },
+        { l: 'block03', x: 0.1818, all: 0.554, early: 0.680, late: 0.440, peak: 0.706 },
+        { l: 'block04', x: 0.2727, all: 0.576, early: 0.694, late: 0.468, peak: 0.705 },
+        { l: 'block05', x: 0.3636, all: 0.593, early: 0.698, late: 0.495, peak: 0.696 },
+        { l: 'block07', x: 0.5455, all: 0.600, early: 0.676, late: 0.519, peak: 0.661 },
+        { l: 'block09', x: 0.7273, all: 0.596, early: 0.648, late: 0.533, peak: 0.628 },
+        { l: 'block12', x: 1.0000, all: 0.572, early: 0.629, late: 0.501, peak: 0.618 }
+      ];
+      const BASE = { all: 0.403, early: 0.535, late: 0.306, peak: 0.613 };
+      const METRICS = [
+        { key: 'early', label: 'Early (50\u2013200 ms)', axis: 'normalized r',
+          note: 'Early response: both models are best at early-to-mid layers. The ResNet-50 curve is a plateau (about 0.69\u20130.70) from layer2_3 onward; the ViT peaks at block05 and then declines.' },
+        { key: 'late', label: 'Late (200\u2013500 ms)', axis: 'normalized r',
+          note: 'Late response: predictivity keeps rising with depth (ResNet-50 layer3_5, ViT block09), and the ViT declines at its final block. Learned features matter most here.' },
+        { key: 'peak', label: 'Peak over time', axis: 'raw r (channel mean)',
+          note: 'Peak over time: the sharpest early peak is best predicted by early-to-mid layers (ResNet-50 layer2_3, ViT block03); deeper layers lose it.' },
+        { key: 'all', label: 'All (50\u2013400 ms)', axis: 'normalized r',
+          note: 'Averaged over 50\u2013400 ms the best layers are ResNet-50 layer3_5 and ViT block07, a compromise between the early peak and the late response.' }
+      ];
+
+      const W = 640, H = 300, L = 58, R = 18, T = 14, B = 46;
+      const pw = W - L - R, ph = H - T - B;
+      let current = 'early';
+      const pillsEl = document.getElementById('eeg-pills');
+      const svg = document.getElementById('eeg-chart');
+      const capEl = document.getElementById('eeg-caption');
+
+      METRICS.forEach((m) => {
+        const btn = document.createElement('button');
+        btn.textContent = m.label;
+        btn.className = 'eeg-pill text-xs px-3 py-1.5 rounded-full border transition';
+        btn.dataset.key = m.key;
+        btn.addEventListener('click', () => { current = m.key; render(); });
+        pillsEl.appendChild(btn);
+      });
+
+      function updatePills() {
+        document.querySelectorAll('.eeg-pill').forEach((btn) => {
+          const active = btn.dataset.key === current;
+          btn.className = 'eeg-pill text-xs px-3 py-1.5 rounded-full border transition ' +
+            (active
+              ? 'bg-accent-600 text-white border-accent-600'
+              : 'bg-white text-slate-600 border-slate-200 hover:border-accent-400 hover:text-accent-700');
+        });
+      }
+
+      function xpos(x) { return L + x * pw; }
+
+      function render() {
+        updatePills();
+        const k = current;
+        const metric = METRICS.find((m) => m.key === k);
+        const vals = RES.map((d) => d[k]).concat(VIT.map((d) => d[k]), [BASE[k]]);
+        let lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+        const pad = (hi - lo) * 0.12;
+        lo -= pad; hi += pad;
+        const ypos = (v) => T + (1 - (v - lo) / (hi - lo)) * ph;
+        let s = '';
+
+        for (let i = 0; i <= 4; i++) {
+          const v = lo + (hi - lo) * i / 4, y = ypos(v);
+          s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y + '" y2="' + y + '" stroke="#e2e8f0" stroke-width="1"/>';
+          s += '<text x="' + (L - 8) + '" y="' + (y + 4) + '" text-anchor="end" font-size="11" fill="#64748b">' + v.toFixed(2) + '</text>';
+        }
+        [0, 0.2, 0.4, 0.6, 0.8, 1].forEach((t) => {
+          s += '<text x="' + xpos(t) + '" y="' + (H - B + 18) + '" text-anchor="middle" font-size="11" fill="#64748b">' + t.toFixed(1) + '</text>';
+        });
+        s += '<text x="' + (L + pw / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="11" fill="#475569">relative depth in the full network</text>';
+        s += '<text transform="rotate(-90 13 ' + (T + ph / 2) + ')" x="13" y="' + (T + ph / 2) + '" text-anchor="middle" font-size="11" fill="#475569">' + metric.axis + '</text>';
+
+        const by = ypos(BASE[k]);
+        s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + by + '" y2="' + by + '" stroke="#CC79A7" stroke-width="1.6" stroke-dasharray="6 4"/>';
+        s += '<text x="' + (W - R) + '" y="' + (by - 5) + '" text-anchor="end" font-size="10.5" fill="#CC79A7">Gabor/Fourier baseline</text>';
+
+        [[RES, '#0072B2', 'ResNet-50', -11], [VIT, '#D55E00', 'ViT-B/16', 19]].forEach((series) => {
+          const data = series[0], color = series[1], name = series[2], dy = series[3];
+          const pts = data.map((d) => xpos(d.x).toFixed(1) + ',' + ypos(d[k]).toFixed(1)).join(' ');
+          s += '<polyline points="' + pts + '" fill="none" stroke="' + color + '" stroke-width="2.5" stroke-linejoin="round"/>';
+          let best = 0;
+          data.forEach((d, i) => { if (d[k] > data[best][k]) best = i; });
+          data.forEach((d, i) => {
+            const r = i === best ? 6 : 3.5;
+            s += '<circle cx="' + xpos(d.x).toFixed(1) + '" cy="' + ypos(d[k]).toFixed(1) + '" r="' + r + '" fill="' + color +
+                 '" stroke="#fff" stroke-width="' + (i === best ? 2 : 1) + '"><title>' + name + ' ' + d.l + ': ' + d[k].toFixed(3) + '</title></circle>';
+          });
+          const b = data[best];
+          s += '<text x="' + xpos(b.x).toFixed(1) + '" y="' + (ypos(b[k]) + dy).toFixed(1) + '" text-anchor="middle" font-size="11" font-weight="600" fill="' + color + '">' + b.l + '</text>';
+        });
+
+        svg.innerHTML = s;
+        capEl.innerHTML = metric.note;
+      }
+      render();
+    })();
+
+    (function() {
+      const cases = [
+        { file: 'figB_layer_by_time.png', cap: 'When does each layer predict the EEG?',
+          alt: 'Layer by time heatmaps of noise-ceiling-normalized EEG predictivity for ResNet-50, ViT-B/16 and an untrained ResNet-50',
+          note: 'Noise-ceiling-normalized predictivity by layer and time (4\u00d74 readout; dotted lines mark stimulus onset and the next image at 200 ms). The early peak near 100 ms is shared with the untrained network; sustained predictivity after 200 ms is where learned features stand out.' },
+        { file: 'figE_identification.png', cap: 'Identifying the viewed image from EEG',
+          alt: 'Top-1 identification accuracy by layer, response window and number of averaged repetitions',
+          note: 'Observed EEG matched to the EEG predicted by each layer\u2019s encoding model, 200-way (chance 0.5%). Up to 69% top-1 with 80 averaged repetitions (ResNet-50 layer3_5); roughly half that with 10. Untrained ResNet-50 and Gabor/Fourier baselines are shown at both repetition counts.' },
+        { file: 'figF2_retrieval_gallery.png', cap: 'Decoding EEG into feature space',
+          alt: 'Examples of viewed images and the three images retrieved from EEG through ResNet-50 layer3_5 features',
+          note: 'Ridge from EEG to ResNet-50 layer3_5 features, then retrieval among the 200 test images: 51% top-1 and 82% top-5 over subjects (best untrained layer: about 14% / 35%). Examples are random, not cherry-picked; green frames mark the exact image, and errors are often semantic or colour neighbours.' },
+        { file: 'figG_reconstructions.png', cap: 'What can be linearly recovered?',
+          alt: '16 by 16 linear reconstructions of viewed images from EEG time windows and from network layers',
+          note: 'Linear 16\u00d716 reconstructions. EEG carries coarse luminance and colour layout (r \u2248 0.27, 0.30 and 0.24 in the 50\u2013150, 150\u2013250 and 250\u2013350 ms windows; 0.12 at 350\u2013450 ms) \u2014 not object detail. Network layers, shown as a reference, reach r = 0.68\u20130.87.' },
+        { file: 'decoding.gif', cap: 'Reconstruction building up over time (animation)',
+          alt: 'Animation of 16 by 16 reconstructions from EEG appearing window by window from 50 to 450 ms',
+          note: 'The same reconstructions as an animation: each 100 ms EEG window adds a reconstruction as the time bar advances; the last frame shows the ResNet-50 layer3_5 reference. Random test images of one subject, not cherry-picked.' }
+      ];
+      const basePath = '/projects/neuroai-eeg/';
+      let i = 0;
+      const img = document.getElementById('eeg-car-img');
+      const cap = document.getElementById('eeg-car-cap');
+      const note = document.getElementById('eeg-car-note');
+      const count = document.getElementById('eeg-car-count');
+
+      function render() {
+        img.src = basePath + cases[i].file;
+        img.alt = cases[i].alt;
+        cap.textContent = cases[i].cap;
+        note.textContent = cases[i].note;
+        count.textContent = (i + 1) + ' / ' + cases.length;
+      }
+      document.getElementById('eeg-car-prev').addEventListener('click', () => { i = (i - 1 + cases.length) % cases.length; render(); });
+      document.getElementById('eeg-car-next').addEventListener('click', () => { i = (i + 1) % cases.length; render(); });
+      render();
+    })();
+    </script>    
 
     <!-- Obstacle-avoiding robot -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
