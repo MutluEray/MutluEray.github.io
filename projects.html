@@ -164,7 +164,7 @@
     </article>
 
 
-<!-- Self-tuning DBS under electrode drift (online learning, MIT 6.S890 self-study) -->
+<!-- Self-tuning DBS under electrode drift  -->
     <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
       <div class="flex flex-wrap items-center gap-3 mb-4">
         <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2025</span>
@@ -230,34 +230,6 @@
           both regimes, is the best of the adversarial group but still about 4&times; behind at this horizon.
         </p>
       </div>
-
-      <details class="mt-8 border border-slate-200 rounded-xl p-4">
-        <summary class="cursor-pointer text-base font-semibold text-navy-900">Try it: watch two algorithms track the optimum</summary>
-        <p class="text-xs text-slate-500 mt-3 mb-3 leading-relaxed">
-          Pick a drift scenario and two algorithms, press play, and hover the charts for values. Runs in your browser from the
-          fitted surrogate.
-          <a href="/projects/adbs-drift-tuning/demo.html" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Open full page</a>.
-        </p>
-        <iframe src="/projects/adbs-drift-tuning/demo.html?embed=1" loading="lazy"
-                title="Interactive demo: online-learning algorithms tracking the best DBS amplitude under electrode drift"
-                class="w-full h-[860px] rounded-lg border border-slate-200 bg-white"></iframe>
-      </details>
-
-      <details class="mt-4 border border-slate-200 rounded-xl p-4">
-        <summary class="cursor-pointer text-sm font-semibold text-navy-900">Predictions written before any run, and what happened</summary>
-        <table class="w-full text-xs text-slate-700 mt-3">
-          <thead class="text-slate-500"><tr><th class="text-left py-1 pr-3">Prediction</th><th class="text-left py-1 pr-3">Outcome</th><th class="text-left py-1">Verdict</th></tr></thead>
-          <tbody>
-            <tr class="border-t border-slate-100"><td class="py-1.5 pr-3">The time-varying GP is best under smooth drift</td><td class="py-1.5 pr-3">Tuned UCB variants are marginally better (17&ndash;18 vs 22)</td><td class="py-1.5">False</td></tr>
-            <tr class="border-t border-slate-100"><td class="py-1.5 pr-3">Exp3.S / Tsallis-INF recover fastest after an abrupt shift</td><td class="py-1.5 pr-3">UCB1 and the GP: 18&ndash;19 evaluations; Exp3.S: 646</td><td class="py-1.5">False</td></tr>
-            <tr class="border-t border-slate-100"><td class="py-1.5 pr-3">The Exp3 family chooses unsafe settings most often</td><td class="py-1.5 pr-3">Highest in every scenario</td><td class="py-1.5">True</td></tr>
-            <tr class="border-t border-slate-100"><td class="py-1.5 pr-3">Stationary bandits fail after an abrupt shift</td><td class="py-1.5 pr-3">Tuned UCB1 recovers in 18 evaluations (flat optimum keeps neighbours sampled)</td><td class="py-1.5">False</td></tr>
-          </tbody>
-        </table>
-        <p class="text-[11px] text-slate-400 mt-2">
-          With default settings, UCB and Exp3 regret was inflated 2&ndash;10&times;; the untuned comparison would have pointed the wrong way, so only tuned results are reported.
-        </p>
-      </details>
 
       <p class="text-xs text-slate-400 mt-6">
         Applies the online-learning part (regret, bandit feedback: Exp3, Exp3.P, Exp3.S, Tsallis-INF) of MIT 6.S890
