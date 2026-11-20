@@ -1,0 +1,342 @@
+{
+  "downloads": {
+    "experiment-manual.pdf": true,
+    "preprocessFromBIDS.m": true,
+    "preprocessedData.zip": true
+  },
+  "mat_files": {
+    "preprocessedData/dataSubject1.mat": {
+      "bytes": 27149949,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject10.mat": {
+      "bytes": 28693047,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject11.mat": {
+      "bytes": 29723170,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject12.mat": {
+      "bytes": 27454433,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject13.mat": {
+      "bytes": 26932085,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject14.mat": {
+      "bytes": 26199481,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject15.mat": {
+      "bytes": 29401418,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject2.mat": {
+      "bytes": 27922888,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject3.mat": {
+      "bytes": 28640232,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject4.mat": {
+      "bytes": 28930859,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject5.mat": {
+      "bytes": 26926952,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject6.mat": {
+      "bytes": 27376755,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject7.mat": {
+      "bytes": 28292763,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject8.mat": {
+      "bytes": 25634147,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    },
+    "preprocessedData/dataSubject9.mat": {
+      "bytes": 26238792,
+      "reader": "pymatreader",
+      "keys": [
+        "__header__",
+        "__version__",
+        "__globals__",
+        "acousticEdges",
+        "attSpeaker",
+        "attendedEar",
+        "channels",
+        "eegTrials",
+        "envelopes",
+        "fs",
+        "videoCondition"
+      ]
+    }
+  },
+  "bids_meta": {
+    "n_entries": 152,
+    "extracted": [
+      "bids_dataset/dataset_description.json",
+      "bids_dataset/participants.tsv",
+      "bids_dataset/README",
+      "bids_dataset/sub-01/ses-01/eeg/sub-01_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-01/ses-01/eeg/sub-01_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-01/ses-01/eeg/sub-01_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-01/ses-01/eeg/sub-01_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-02/ses-01/eeg/sub-02_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-02/ses-01/eeg/sub-02_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-02/ses-01/eeg/sub-02_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-02/ses-01/eeg/sub-02_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-03/ses-01/eeg/sub-03_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-03/ses-01/eeg/sub-03_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-03/ses-01/eeg/sub-03_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-03/ses-01/eeg/sub-03_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-04/ses-01/eeg/sub-04_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-04/ses-01/eeg/sub-04_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-04/ses-01/eeg/sub-04_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-04/ses-01/eeg/sub-04_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-05/ses-01/eeg/sub-05_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-05/ses-01/eeg/sub-05_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-05/ses-01/eeg/sub-05_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-05/ses-01/eeg/sub-05_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-06/ses-01/eeg/sub-06_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-06/ses-01/eeg/sub-06_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-06/ses-01/eeg/sub-06_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-06/ses-01/eeg/sub-06_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-07/ses-01/eeg/sub-07_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-07/ses-01/eeg/sub-07_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-07/ses-01/eeg/sub-07_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-07/ses-01/eeg/sub-07_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-08/ses-01/eeg/sub-08_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-08/ses-01/eeg/sub-08_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-08/ses-01/eeg/sub-08_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-08/ses-01/eeg/sub-08_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-09/ses-01/eeg/sub-09_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-09/ses-01/eeg/sub-09_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-09/ses-01/eeg/sub-09_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-09/ses-01/eeg/sub-09_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-10/ses-01/eeg/sub-10_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-10/ses-01/eeg/sub-10_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-10/ses-01/eeg/sub-10_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-10/ses-01/eeg/sub-10_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-11/ses-01/eeg/sub-11_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-11/ses-01/eeg/sub-11_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-11/ses-01/eeg/sub-11_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-11/ses-01/eeg/sub-11_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-12/ses-01/eeg/sub-12_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-12/ses-01/eeg/sub-12_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-12/ses-01/eeg/sub-12_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-12/ses-01/eeg/sub-12_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-13/ses-01/eeg/sub-13_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-13/ses-01/eeg/sub-13_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-13/ses-01/eeg/sub-13_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-13/ses-01/eeg/sub-13_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-14/ses-01/eeg/sub-14_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-14/ses-01/eeg/sub-14_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-14/ses-01/eeg/sub-14_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-14/ses-01/eeg/sub-14_ses-01_task-selectiveAttention_events.tsv",
+      "bids_dataset/sub-15/ses-01/eeg/sub-15_ses-01_task-selectiveAttention_channels.tsv",
+      "bids_dataset/sub-15/ses-01/eeg/sub-15_ses-01_task-selectiveAttention_eeg.json",
+      "bids_dataset/sub-15/ses-01/eeg/sub-15_ses-01_task-selectiveAttention_events.json",
+      "bids_dataset/sub-15/ses-01/eeg/sub-15_ses-01_task-selectiveAttention_events.tsv"
+    ]
+  },
+  "chanlocs": {
+    "nbchan": "64",
+    "srate": "1000",
+    "pnts": "3600000",
+    "trials": "1",
+    "ref": "common",
+    "n_channels": 64,
+    "n_with_xyz": 0
+  },
+  "notes": []
+}

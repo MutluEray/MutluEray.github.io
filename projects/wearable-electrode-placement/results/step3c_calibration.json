@@ -1,0 +1,237 @@
+{
+  "n_configs": 378,
+  "template_config": {
+    "dy_cm": 0.0,
+    "dz_cm": 0.0,
+    "s_up_cm": 3.5,
+    "s_post_cm": 2.5
+  },
+  "best_config_all": {
+    "dy_cm": -1.0,
+    "dz_cm": 1.0,
+    "s_up_cm": 2.5,
+    "s_post_cm": 2.0
+  },
+  "loso_configs": {
+    "1": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "2": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "3": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "4": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "5": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "6": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "7": {
+      "dy_cm": -1.0,
+      "dz_cm": 0.5,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "8": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "9": {
+      "dy_cm": -1.0,
+      "dz_cm": 0.0,
+      "s_up_cm": 3.0,
+      "s_post_cm": 2.0
+    },
+    "10": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "11": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "12": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "13": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "14": {
+      "dy_cm": -1.0,
+      "dz_cm": 0.5,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    },
+    "15": {
+      "dy_cm": -1.0,
+      "dz_cm": 1.0,
+      "s_up_cm": 2.5,
+      "s_post_cm": 2.0
+    }
+  },
+  "signal_heldout": {
+    "template_median": 0.27499911726986953,
+    "calibrated_median": 0.28762257841119154,
+    "n_subjects": 15,
+    "n_better": 15,
+    "p_one_sided": 3.0517578125e-05
+  },
+  "trials_skipped": {
+    "2": 3,
+    "5": 1
+  },
+  "chosen_on_grid_edge": {
+    "1": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "2": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "3": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "4": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "5": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "6": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "7": [
+      "dy",
+      "s_up",
+      "s_post"
+    ],
+    "8": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "9": [
+      "dy",
+      "s_post"
+    ],
+    "10": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "11": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "12": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "13": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ],
+    "14": [
+      "dy",
+      "s_up",
+      "s_post"
+    ],
+    "15": [
+      "dy",
+      "dz",
+      "s_up",
+      "s_post"
+    ]
+  },
+  "template_score_per_subject": {
+    "1": 0.17575258089986937,
+    "2": 0.33298781598675586,
+    "3": 0.32193247467775626,
+    "4": 0.2233220285480502,
+    "5": 0.1951407745833304,
+    "6": 0.308448020369315,
+    "7": 0.1938292212619249,
+    "8": 0.25529642903037103,
+    "9": 0.1485660283060507,
+    "10": 0.3988690115043266,
+    "11": 0.3929674014241112,
+    "12": 0.34408986923288,
+    "13": 0.42144100400785695,
+    "14": 0.27499911726986953,
+    "15": 0.2446843261873108
+  },
+  "decoding_rank": {
+    "n_subjects": 13,
+    "n_pairs": 81,
+    "template_rho_group": 0.2192186088527552,
+    "template_rho_subject_median": 0.08987716251848996,
+    "calibrated_rho_group": 0.3434733514001807,
+    "calibrated_rho_subject_median": 0.21054652213188796,
+    "ridge_ceiling_rho_group": 0.46,
+    "noise_ceiling_rho": 0.7,
+    "mean_dr_template": 0.017244918954795966,
+    "mean_dr_calibrated": 0.020401293700966217
+  },
+  "go_threshold": 0.35,
+  "go_no_go": "NO-GO for off-cap claims: step 4 on-cap; off-cap layouts reported at signal level"
+}

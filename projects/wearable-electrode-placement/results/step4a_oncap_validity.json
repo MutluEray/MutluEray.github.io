@@ -1,0 +1,54 @@
+{
+  "n_subjects": 15,
+  "n_pairs": 55,
+  "max_dist_cm": 7.000000000000001,
+  "pairs_present_in_at_least": 12,
+  "rank_agreement": {
+    "physics_rho_group": 0.6809523809523811,
+    "spline_rho_group": 0.7992063492063494,
+    "physics_rho_subject_median": 0.6479979509946213,
+    "spline_rho_subject_median": 0.5979185520361989,
+    "offcap_reference": {
+      "template": 0.22,
+      "calibrated": 0.343
+    }
+  },
+  "noise_ceiling": {
+    "split_half": 0.666883116883117,
+    "full_SB": 0.8001558239189717,
+    "ceiling_rho_approx": 0.8945142949774317
+  },
+  "signal_validity_bipolar": {
+    "physics_subject_median": 0.6125047324781945,
+    "spline_subject_median": 0.546240114061572,
+    "p_two_sided": 6.103515625e-05
+  },
+  "fast_objective": {
+    "spearman_group_means": 0.9990620490620492,
+    "spearman_all_cells": 0.999011334250684
+  },
+  "mean_dr": {
+    "measured": 0.017112910679260025,
+    "physics": 0.018616268228767326,
+    "spline": 0.013644914341604704
+  },
+  "best_pair_measured": "P7-CP5",
+  "best_pair_physics": "CP5-C3",
+  "measured_rank_of_physics_best": 3,
+  "top5_measured": [
+    "P7-CP5",
+    "P3-C3",
+    "CP5-C3",
+    "P8-T8",
+    "M2-T8"
+  ],
+  "top5_physics": [
+    "CP5-C3",
+    "P3-CP1",
+    "P3-C3",
+    "M2-T8",
+    "P7-CP5"
+  ],
+  "go_placement": true,
+  "go_fast_objective": true
+}

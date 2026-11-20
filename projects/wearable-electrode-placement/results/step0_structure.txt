@@ -1,0 +1,353 @@
+[download] experiment-manual.pdf
+    saved 1.2 MB
+[download] preprocessFromBIDS.m
+    saved 0.0 MB
+[download] preprocessedData.zip
+    saved 415.6 MB
+[unzip] preprocessedData.zip
+
+=== 15 .mat files in /Users/eraymutlu/Desktop/wearable-electrode-placement/data/preprocessed ===
+
+--- preprocessedData/dataSubject1.mat (27.1 MB) ---
+__header__: bytes b'MATLAB 5.0 MAT-file, Platform: PCWIN64, Created on: Mon Jul 28 15:05:35 2025'
+__version__: str '1.0'
+__globals__: list len=0
+acousticEdges: list len=6
+  acousticEdges[0]: array shape=(12000, 2) dtype=float64 min=-0.04226 max=0.06686 mean=1.613e-19
+  acousticEdges[1]: array shape=(12000, 2) dtype=float64 min=-0.05792 max=0.05919 mean=-1.735e-20
+  acousticEdges[2]: array shape=(12000, 2) dtype=float64 min=-0.04728 max=0.05956 mean=3.643e-20
+  ... (3 more)
+attSpeaker: array shape=(6,) dtype=uint8 [2, 2, 2, 1, 1, 1]
+attendedEar: array shape=(6,) dtype=uint8 [2, 2, 2, 1, 1, 1]
+channels: list len=61
+  values: ['O1', 'Pz', 'P3', 'P7', 'CP1', 'CP5', 'M1', 'Cz', 'C3', 'T7', 'FC1', 'FC5', 'F3', 'F7', 'Fp1', 'O2', 'P4', 'P8', 'CP2', 'CP6', 'M2', 'C4', 'T8', 'FC2', 'FC6', 'Fz', 'F4', 'F8', 'Fp2', 'Fp1-cr', 'ELA', 'ELB', 'ELC', 'ELE', 'ELI', 'ELT', 'cEL1', 'cEL2', 'cEL3', 'cEL4', 'cEL5', 'cEL6', 'cEL7', 'cEL8', 'cEL9', 'ERA', 'ERB', 'ERC', 'ERE', 'ERI', 'ERT', 'cER1', 'cER2', 'cER3', 'cER4', 'cER5', 'cER6', 'cER7', 'cER8', 'cER9', 'cER10']
+eegTrials: list len=6
+  eegTrials[0]: array shape=(12000, 61) dtype=float64 min=-94.5 max=115.1 mean=-0.0124
+  eegTrials[1]: array shape=(12000, 61) dtype=float64 min=-151.3 max=119.4 mean=0.0006121
+  eegTrials[2]: array shape=(12000, 61) dtype=float64 min=-202.2 max=183.1 mean=0.0133
+  ... (3 more)
+envelopes: list len=6
+  envelopes[0]: array shape=(12000, 2) dtype=float64 min=-0.8911 max=1.406 mean=-3.53e-18
+  envelopes[1]: array shape=(12000, 2) dtype=float64 min=-1.892 max=1.576 mean=-3.923e-18
+  envelopes[2]: array shape=(12000, 2) dtype=float64 min=-1.378 max=1.601 mean=4.866e-18
+  ... (3 more)
+fs: int 20
+videoCondition: array shape=(6,) dtype=uint8 [0, 1, 0, 1, 0, 1]
+
+--- preprocessedData/dataSubject10.mat (28.7 MB) ---
+__header__: bytes b'MATLAB 5.0 MAT-file, Platform: PCWIN64, Created on: Mon Jul 28 15:05:36 2025'
+__version__: str '1.0'
+__globals__: list len=0
+acousticEdges: list len=6
+  acousticEdges[0]: array shape=(12000, 2) dtype=float64 min=-0.04226 max=0.06686 mean=1.628e-19
+  acousticEdges[1]: array shape=(12000, 2) dtype=float64 min=-0.07119 max=0.1374 mean=-2.345e-19
+  acousticEdges[2]: array shape=(12000, 2) dtype=float64 min=-0.05954 max=0.09277 mean=-7.748e-20
+  ... (3 more)
+attSpeaker: array shape=(6,) dtype=uint8 [1, 2, 1, 1, 2, 2]
+attendedEar: array shape=(6,) dtype=uint8 [1, 2, 1, 1, 2, 2]
+channels: list len=61
+  values: ['O1', 'Pz', 'P3', 'P7', 'CP1', 'CP5', 'M1', 'Cz', 'C3', 'T7', 'FC1', 'FC5', 'F3', 'F7', 'Fp1', 'O2', 'P4', 'P8', 'CP2', 'CP6', 'M2', 'C4', 'T8', 'FC2', 'FC6', 'Fz', 'F4', 'F8', 'Fp2', 'Fp1-cr', 'ELA', 'ELB', 'ELC', 'ELE', 'ELI', 'ELT', 'cEL1', 'cEL2', 'cEL3', 'cEL4', 'cEL5', 'cEL6', 'cEL7', 'cEL8', 'cEL9', 'ERA', 'ERB', 'ERC', 'ERE', 'ERI', 'ERT', 'cER1', 'cER2', 'cER3', 'cER4', 'cER5', 'cER6', 'cER7', 'cER8', 'cER9', 'cER10']
+eegTrials: list len=6
+  eegTrials[0]: array shape=(12000, 61) dtype=float64 min=-28.34 max=29.49 mean=0.03617
+  eegTrials[1]: array shape=(12000, 61) dtype=float64 min=-34.17 max=32.9 mean=0.05563
+  eegTrials[2]: array shape=(12000, 61) dtype=float64 min=-34.77 max=32.91 mean=0.02265
+  ... (3 more)
+envelopes: list len=6
+  envelopes[0]: array shape=(12000, 2) dtype=float64 min=-0.8911 max=1.406 mean=-3.34e-18
+  envelopes[1]: array shape=(12000, 2) dtype=float64 min=-1.535 max=1.685 mean=1.536e-18
+  envelopes[2]: array shape=(12000, 2) dtype=float64 min=-1.027 max=1.543 mean=-2.544e-18
+  ... (3 more)
+fs: int 20
+videoCondition: array shape=(6,) dtype=uint8 [1, 0, 1, 0, 1, 0]
+
+--- preprocessedData/dataSubject11.mat (29.7 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject12.mat (27.5 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject13.mat (26.9 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject14.mat (26.2 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject15.mat (29.4 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject2.mat (27.9 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject3.mat (28.6 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject4.mat (28.9 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject5.mat (26.9 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject6.mat (27.4 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject7.mat (28.3 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject8.mat (25.6 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+--- preprocessedData/dataSubject9.mat (26.2 MB) ---
+keys: ['__header__', '__version__', '__globals__', 'acousticEdges', 'attSpeaker', 'attendedEar', 'channels', 'eegTrials', 'envelopes', 'fs', 'videoCondition']
+
+=== BIDS zip (remote) ===
+[remote extract] bids_dataset/sub-01/ses-01/eeg/sub-01_ses-01_task-selectiveAttention_eeg.set (14.4 MB)
+extracted 63 metadata files -> data/bids_meta/
+
+--- bids_dataset/README ---
+Ear-SAAD BIDS dataset
+
+This dataset contains simultaneous scalp, around-ear, and in-ear EEG recordings of 15 participants during a selective listening task for auditory attention decoding.
+A detailed description of the dataset and the protocol can be found in the paper: '
+
+Data are epoched in 10-minute trials. The events/triggers file can be used to extract the relevant trials.
+
+Data are organized according to the BIDS specification (v1.10.0).
+
+
+--- bids_dataset/dataset_description.json ---
+{
+  "Name": "Ear-SAAD dataset",
+  "BIDSVersion": "1.10.0",
+  "DatasetType": "raw",
+  "License": "CC BY-NC-SA 4.0",
+  "Authors": [
+    "Simon Geirnaert",
+    "Simon L. Kappel",
+    "Preben Kidmose"
+  ],
+  "Acknowledgements": "The authors thank Nhan Duc Thanh Nguyen for providing help in implementing the protocol and Anna Sergeeva for providing help with the modeling and production of the earpieces",
+  "HowToAcknowledge": "Please cite the paper in Scientific Reports presenting the dataset, and cite the Zenodo dataset",
+  "Funding": [
+    "A junior postdoctoral fellowship fundamental research (for S. Geirnaert, grant No. 1242524N) from the Research Foundation Flanders (FWO)",
+    "A travel grant for a long stay abroad (for S. Geirnaert, grant No. V418923N) from the Research Foundation Flanders (FWO)",
+    "Equipment and laboratory facilities were provided by the Center for Ear-EEG at Aarhus University"
+  ],
+  "EthicsApprovals": [
+    "The study was approved by the Institutional Review Board at Aarhus University (approval number 2024-0673174)"
+  ]
+}
+
+--- bids_dataset/participants.tsv ---
+participant_id	age	sex
+sub-01	22	F
+sub-02	19	F
+sub-03	28	M
+sub-04	31	F
+sub-05	19	M
+sub-06	23	M
+sub-07	23	M
+sub-08	29	M
+sub-09	25	F
+sub-10	26	F
+sub-11	21	F
+sub-12	26	M
+sub-13	26	M
+sub-14	27	M
+sub-15	26	F
+
+
+--- bids_dataset/sub-01/ses-01/eeg/sub-01_ses-01_task-selectiveAttention_channels.tsv ---
+name	type	units	description
+O1	EEG	NA	scalp-EEG
+Pz	EEG	NA	scalp-EEG
+P3	EEG	NA	scalp-EEG
+P7	EEG	NA	scalp-EEG
+CP1	EEG	NA	scalp-EEG
+CP5	EEG	NA	scalp-EEG
+M1	EEG	NA	scalp-EEG
+Cz	EEG	NA	scalp-EEG
+C3	EEG	NA	scalp-EEG
+T7	EEG	NA	scalp-EEG
+FC1	EEG	NA	scalp-EEG
+FC5	EEG	NA	scalp-EEG
+F3	EEG	NA	scalp-EEG
+F7	EEG	NA	scalp-EEG
+Fp1	EEG	NA	scalp-EEG
+EOG3	EOG	NA	EOG
+O2	EEG	NA	scalp-EEG
+P4	EEG	NA	scalp-EEG
+P8	EEG	NA	scalp-EEG
+CP2	EEG	NA	scalp-EEG
+CP6	EEG	NA	scalp-EEG
+M2	EEG	NA	scalp-EEG
+C4	EEG	NA	scalp-EEG
+T8	EEG	NA	scalp-EEG
+FC2	EEG	NA	scalp-EEG
+FC6	EEG	NA	scalp-EEG
+Fz	EEG	NA	scalp-EEG
+F4	EEG	NA	scalp-EEG
+F8	EEG	NA	scalp-EEG
+Fp2	EEG	NA	scalp-EEG
+EOG2	EOG	NA	EOG
+EOG4	EOG	NA	EOG
+Fp1-cr	EEG	NA	
+ELA	EEG	NA	left in-ear EEG
+ELB	EEG	NA	left in-ear EEG
+ELC	EEG	NA	left in-ear EEG
+ELE	EEG	NA	left in-ear EEG
+ELI	EEG	NA	left in-ear EEG
+ELT	EEG	NA	left in-ear EEG
+cEL1	EEG	NA	left around-ear EEG
+cEL2	EEG	NA	left around-ear EEG
+cEL3	EEG	NA	left around-ear EEG
+cEL4	EEG	NA	left around-ear EEG
+cEL5	EEG	NA	left around-ear EEG
+cEL6	EEG	NA	left around-ear EEG
+cEL7	EEG	NA	left around-ear EEG
+cEL8	EEG	NA	left around-ear EEG
+cEL9	EEG	NA	left around-ear EEG
+ERA	EEG	NA	right in-ear EEG
+ERB	EEG	NA	right in-ear EEG
+ERC	EEG	NA	right in-ear EEG
+ERE	EEG	NA	right in-ear EEG
+ERI	EEG	NA	right in-ear EEG
+ERT	EEG	NA	right in-ear EEG
+cER1	EEG	NA	right around-ear EEG
+cER2	EEG	NA	right around-ear EEG
+cER3	EEG	NA	right around-ear EEG
+cER4	EEG	NA	right around-ear EEG
+cER5	EEG	NA	right around-ear EEG
+cER6	EEG	NA	right around-ear EEG
+cER7	EEG	NA	right around-ear EEG
+cER8	EEG	NA	right around-ear EEG
+cER9	EEG	NA	right around-ear EEG
+cER10	EEG	NA	right around-ear EEG
+
+
+--- bids_dataset/sub-01/ses-01/eeg/sub-01_ses-01_task-selectiveAttention_eeg.json ---
+{
+  "TaskName": "selectiveAttention",
+  "TaskDescription": "Participants have to attend to one of two competing speech signals, while focusing on a crosshair (half of trials) or watching a video of the attended speaker (half of trials)",
+  "SamplingFrequency": 1000,
+  "EEGReference": "common",
+  "PowerLineFrequency": 50,
+  "EEGChannelCount": 61,
+  "EOGChannelCount": 3,
+  "RecordingType": "epoched",
+  "SoftwareFilters": "n/a",
+  "EpochLength": 600,
+  "EEGGround": "placed on CPz",
+  "CapManufacturer": "Custom",
+  "Institution": "Aarhus University",
+  "InstitutionalDepartmentName": "Department of Electrical and Computer Engineering"
+}
+
+--- bids_dataset/sub-01/ses-01/eeg/sub-01_ses-01_task-selectiveAttention_events.tsv ---
+onset	duration	trial_type	stim_file	attended_speaker	attended_ear	video_condition
+0.000	600.000	trial1	Speaker1Part2.wav;Speaker4Part1.wav	Speaker4	right	no
+600.000	600.000	trial2	Speaker4Part2.wav;Speaker6Part1.wav	Speaker6	right	yes
+1200.000	600.000	trial3	Speaker6Part2.wav;Speaker3Part1.wav	Speaker3	right	no
+1800.000	600.000	trial4	Speaker2Part1.wav;Speaker5Part2.wav	Speaker2	left	yes
+2400.000	600.000	trial5	Speaker5Part1.wav;Speaker3Part2.wav	Speaker5	left	no
+3000.000	600.000	trial6	Speaker1Part1.wav;Speaker2Part2.wav	Speaker1	left	yes
+
+
+--- bids_dataset/sub-01/ses-01/eeg/sub-01_ses-01_task-selectiveAttention_events.json ---
+{
+  "onset": {
+    "Description": "Onset of the trial, in seconds from start of recording"
+  },
+  "duration": {
+    "Description": "Duration of the trial, in seconds"
+  },
+  "trial_type": {
+    "Description": "Label for the trial (e.g., trial1, trial2, ...)"
+  },
+  "stim_file": {
+    "Description": "Semicolon-separated list of stimulus audio files used in the trial"
+  },
+  "attended_speaker": {
+    "Description": "Speaker attended by the participant in this trial, referring to the stimulus file names"
+  },
+  "attended_ear": {
+    "Description": "Ear attended by the participant in this trial"
+  },
+  "video_condition": {
+    "Description": "Whether a video of the attended speaker was shown (yes/no)"
+  }
+}
+
+=== chanlocs from sub-01_ses-01_task-selectiveAttention_eeg.set ===
+nbchan: 64
+srate: 1000
+pnts: 3600000
+trials: 1
+ref: common
+64 channels, 0 with finite X/Y/Z
+          O1  type=[]  X=[]  Y=[]  Z=[]
+          Pz  type=[]  X=[]  Y=[]  Z=[]
+          P3  type=[]  X=[]  Y=[]  Z=[]
+          P7  type=[]  X=[]  Y=[]  Z=[]
+         CP1  type=[]  X=[]  Y=[]  Z=[]
+         CP5  type=[]  X=[]  Y=[]  Z=[]
+          M1  type=[]  X=[]  Y=[]  Z=[]
+          Cz  type=[]  X=[]  Y=[]  Z=[]
+          C3  type=[]  X=[]  Y=[]  Z=[]
+          T7  type=[]  X=[]  Y=[]  Z=[]
+         FC1  type=[]  X=[]  Y=[]  Z=[]
+         FC5  type=[]  X=[]  Y=[]  Z=[]
+          F3  type=[]  X=[]  Y=[]  Z=[]
+          F7  type=[]  X=[]  Y=[]  Z=[]
+         Fp1  type=[]  X=[]  Y=[]  Z=[]
+        EOG3  type=[]  X=[]  Y=[]  Z=[]
+          O2  type=[]  X=[]  Y=[]  Z=[]
+          P4  type=[]  X=[]  Y=[]  Z=[]
+          P8  type=[]  X=[]  Y=[]  Z=[]
+         CP2  type=[]  X=[]  Y=[]  Z=[]
+         CP6  type=[]  X=[]  Y=[]  Z=[]
+          M2  type=[]  X=[]  Y=[]  Z=[]
+          C4  type=[]  X=[]  Y=[]  Z=[]
+          T8  type=[]  X=[]  Y=[]  Z=[]
+         FC2  type=[]  X=[]  Y=[]  Z=[]
+         FC6  type=[]  X=[]  Y=[]  Z=[]
+          Fz  type=[]  X=[]  Y=[]  Z=[]
+          F4  type=[]  X=[]  Y=[]  Z=[]
+          F8  type=[]  X=[]  Y=[]  Z=[]
+         Fp2  type=[]  X=[]  Y=[]  Z=[]
+        EOG2  type=[]  X=[]  Y=[]  Z=[]
+        EOG4  type=[]  X=[]  Y=[]  Z=[]
+      Fp1-cr  type=[]  X=[]  Y=[]  Z=[]
+         ELA  type=[]  X=[]  Y=[]  Z=[]
+         ELB  type=[]  X=[]  Y=[]  Z=[]
+         ELC  type=[]  X=[]  Y=[]  Z=[]
+         ELE  type=[]  X=[]  Y=[]  Z=[]
+         ELI  type=[]  X=[]  Y=[]  Z=[]
+         ELT  type=[]  X=[]  Y=[]  Z=[]
+        cEL1  type=[]  X=[]  Y=[]  Z=[]
+        cEL2  type=[]  X=[]  Y=[]  Z=[]
+        cEL3  type=[]  X=[]  Y=[]  Z=[]
+        cEL4  type=[]  X=[]  Y=[]  Z=[]
+        cEL5  type=[]  X=[]  Y=[]  Z=[]
+        cEL6  type=[]  X=[]  Y=[]  Z=[]
+        cEL7  type=[]  X=[]  Y=[]  Z=[]
+        cEL8  type=[]  X=[]  Y=[]  Z=[]
+        cEL9  type=[]  X=[]  Y=[]  Z=[]
+         ERA  type=[]  X=[]  Y=[]  Z=[]
+         ERB  type=[]  X=[]  Y=[]  Z=[]
+         ERC  type=[]  X=[]  Y=[]  Z=[]
+         ERE  type=[]  X=[]  Y=[]  Z=[]
+         ERI  type=[]  X=[]  Y=[]  Z=[]
+         ERT  type=[]  X=[]  Y=[]  Z=[]
+        cER1  type=[]  X=[]  Y=[]  Z=[]
+        cER2  type=[]  X=[]  Y=[]  Z=[]
+        cER3  type=[]  X=[]  Y=[]  Z=[]
+        cER4  type=[]  X=[]  Y=[]  Z=[]
+        cER5  type=[]  X=[]  Y=[]  Z=[]
+        cER6  type=[]  X=[]  Y=[]  Z=[]
+        cER7  type=[]  X=[]  Y=[]  Z=[]
+        cER8  type=[]  X=[]  Y=[]  Z=[]
+        cER9  type=[]  X=[]  Y=[]  Z=[]
+       cER10  type=[]  X=[]  Y=[]  Z=[]
+
+EEG header fields: ['__header__', '__version__', '__globals__', 'setname', 'filename', 'filepath', 'subject', 'group', 'condition', 'session', 'comments', 'nbchan', 'trials', 'pnts', 'srate', 'xmin', 'xmax', 'times', 'data', 'icaact', 'icawinv', 'icasphere', 'icaweights', 'icachansind', 'chanlocs', 'urchanlocs', 'chaninfo', 'ref', 'event', 'urevent', 'eventdescription', 'epoch', 'epochdescription', 'reject', 'stats', 'specdata', 'specicaact', 'splinefile', 'icasplinefile', 'dipfit', 'history', 'saved', 'etc', 'run', 'datfile']
+events: 6; unique types: ['trial1', 'trial2', 'trial3', 'trial4', 'trial5', 'trial6']

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design your own wearable EEG: electrode placement explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f172a; --ink2: #475569; --muted: #64748b; --line: #e2e8f0; --bg: #ffffff; --soft: #f8fafc;
+    --accent: #0f766e; --accent-bg: #f0fdfa; --pair: #eb6834; --real: #1baf7a; --off: #e5e7eb;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+  body.embed { background: transparent; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 16px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 20px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+  .controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 12px; }
+  .ctl-label { font-size: 13px; color: var(--ink2); margin-right: 6px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button { border: 0; background: var(--bg); padding: 6px 12px; font: inherit; font-size: 13px; color: var(--ink2); cursor: pointer; }
+  .seg button.on { background: var(--accent); color: #fff; }
+  .seg button:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  input[type=range] { width: 180px; accent-color: var(--accent); vertical-align: middle; }
+  .noise-val { font-size: 13px; font-weight: 600; min-width: 46px; display: inline-block; }
+  svg { width: 100%; height: auto; display: block; touch-action: manipulation; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--bg); }
+  .stat { font-size: 28px; font-weight: 600; line-height: 1.1; }
+  .stat-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .row { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; padding: 6px 0; border-top: 1px solid var(--line); }
+  .row span:first-child { color: var(--ink2); }
+  .btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .btn { border: 1px solid var(--line); background: var(--bg); border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 13px; color: var(--ink); cursor: pointer; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .hint { font-size: 13px; color: var(--ink2); line-height: 1.55; margin: 0 0 10px; }
+  .note { font-size: 12px; color: var(--muted); line-height: 1.55; margin-top: 12px; }
+  .legend { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .ramp { flex: 1; height: 10px; border-radius: 5px; border: 1px solid var(--line); }
+  .key { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink2); margin-right: 12px; }
+  .sw { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+  .tip { position: absolute; pointer-events: none; background: var(--ink); color: #fff; font-size: 12px; padding: 5px 8px; border-radius: 6px; white-space: nowrap; transform: translate(-50%, -130%); display: none; }
+  .mapbox { position: relative; }
+  .pt { cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h2 class="sr">Interactive map of where a two-electrode EEG wearable should sit on the scalp for auditory attention decoding, with controls for electrode noise and electrode spacing.</h2>
+
+  <div class="controls">
+    <div>
+      <span class="ctl-label">Electrode spacing</span>
+      <span class="seg" role="group" aria-label="Electrode spacing">
+        <button type="button" id="cls-mini">1–3 cm (small device)</button>
+        <button type="button" id="cls-short" class="on">3–7 cm</button>
+      </span>
+    </div>
+    <div>
+      <label class="ctl-label" for="noise">Electrode noise</label>
+      <input type="range" id="noise" min="0" max="5" step="1" value="3" aria-describedby="noise-out">
+      <span class="noise-val" id="noise-out">1 µV</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="mapbox">
+        <svg id="map" viewBox="-115 -135 230 250" role="img" aria-label="Top view of the scalp. Each dot is a candidate electrode position, shaded by predicted decoding score."></svg>
+        <div class="tip" id="tip"></div>
+      </div>
+      <div class="legend"><span id="leg-lo">low</span><div class="ramp" id="ramp"></div><span id="leg-hi">high</span></div>
+      <div class="legend" id="leg-txt">Shading: best pair through each point</div>
+    </div>
+
+    <div>
+      <p class="hint" id="hint">Click a point to place electrode 1. The map then shows how good every possible electrode 2 would be. Click a second point to fix the pair.</p>
+      <div class="card" aria-live="polite">
+        <div class="stat" id="s-main">—</div>
+        <div class="stat-sub" id="s-sub">Select a pair to see its score</div>
+        <div style="margin-top:10px">
+          <div class="row"><span>Δr (attended − unattended)</span><span id="r-dr">—</span></div>
+          <div class="row"><span>vs best real 10-20 pair</span><span id="r-real">—</span></div>
+          <div class="row"><span>Electrode distance</span><span id="r-dist">—</span></div>
+          <div class="row"><span>Electrode 1 near</span><span id="r-a">—</span></div>
+          <div class="row"><span>Electrode 2 near</span><span id="r-b">—</span></div>
+        </div>
+      </div>
+      <div class="btns">
+        <button type="button" class="btn" id="b-best">Show best pair</button>
+        <button type="button" class="btn" id="b-real">Show best real 10-20 pair</button>
+        <button type="button" class="btn" id="b-clear">Clear</button>
+      </div>
+      <div><span class="key"><span class="sw" style="background:var(--pair)"></span>your pair</span><span class="key"><span class="sw" style="background:var(--real)"></span>best real 10-20 pair</span></div>
+      <p class="note">
+        Scores are model predictions: signals predicted from 29 recorded scalp channels with a template head model
+        (on-cap only, where predictions were checked against real electrode pairs) plus modelled independent electrode
+        noise, averaged over 15 people (in-sample). They rank positions; they are not measured accuracies from a device.
+        Data: Ear-SAAD (Geirnaert, Kappel &amp; Kidmose, 2025). Only aggregate scores are included in this page.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+
+(function () {
+  if (new URLSearchParams(location.search).get('embed') === '1') document.body.classList.add('embed');
+  if (!DATA) { document.getElementById('hint').textContent = 'No data embedded. Run step7_export_explorer.py.'; return; }
+
+  function b64(s, Type) {
+    const bin = atob(s), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    return new Type(buf.buffer);
+  }
+  const P = DATA.points;                       // [[x_mm, y_mm, nearIdx, nearDist_mm], ...]
+  const E = DATA.electrodes;                   // [[name, x_mm, y_mm], ...]
+  const I = b64(DATA.I, Uint16Array), J = b64(DATA.J, Uint16Array);
+  const NMINI = DATA.n_mini;                   // pairs [0, NMINI) are 1-3 cm, the rest 3-7 cm
+  const SIG = DATA.sigmas;
+  const S = DATA.scores.map(s => b64(s, Uint16Array));
+  const dec = v => v * DATA.scale - DATA.offset;
+  const REAL = DATA.real;                      // [{name, a:[x,y], b:[x,y], dr:[per sigma]}]
+
+  // CSR adjacency: point -> pair indices
+  const nP = P.length, deg = new Uint32Array(nP + 1);
+  for (let k = 0; k < I.length; k++) { deg[I[k] + 1]++; deg[J[k] + 1]++; }
+  for (let p = 0; p < nP; p++) deg[p + 1] += deg[p];
+  const adj = new Uint32Array(deg[nP]), fill = deg.slice(0, nP);
+  for (let k = 0; k < I.length; k++) { adj[fill[I[k]]++] = k; adj[fill[J[k]]++] = k; }
+
+  let sIdx = 3, cls = 1, sel = null, pin = null, showReal = false;
+  const range = () => cls === 0 ? [0, NMINI] : [NMINI, I.length];
+
+  function stats() {
+    const [lo, hi] = range(), sc = S[sIdx];
+    const best = new Float64Array(nP).fill(-Infinity);
+    let gk = lo, gv = -Infinity;
+    for (let k = lo; k < hi; k++) {
+      const v = dec(sc[k]);
+      if (v > best[I[k]]) best[I[k]] = v;
+      if (v > best[J[k]]) best[J[k]] = v;
+      if (v > gv) { gv = v; gk = k; }
+    }
+    return { best, gk, gv };
+  }
+  function realBest() {
+    let r = { name: 'none', a: [0, 0], b: [0, 0], dr: SIG.map(() => NaN) };
+    REAL.forEach(x => { if (!(x.dr[sIdx] <= r.dr[sIdx])) r = x; });
+    return r;
+  }
+
+  // colour ramp (one hue, light -> dark)
+  const C0 = [230, 241, 251], C1 = [12, 68, 124];
+  const col = t => { t = Math.max(0, Math.min(1, t)); return `rgb(${C0.map((c, i) => Math.round(c + (C1[i] - c) * t)).join(',')})`; };
+  document.getElementById('ramp').style.background = `linear-gradient(90deg, ${col(0)}, ${col(1)})`;
+
+  const svg = document.getElementById('map'), NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs) => { const el = document.createElementNS(NS, tag); for (const a in attrs) el.setAttribute(a, attrs[a]); return el; };
+  const Y = y => -y;                            // svg y down; data y = front
+
+  // head outline from the point cloud
+  let rx = 0, ymin = 1e9, ymax = -1e9;
+  P.forEach(p => { rx = Math.max(rx, Math.abs(p[0])); ymin = Math.min(ymin, p[1]); ymax = Math.max(ymax, p[1]); });
+  const cy = (ymin + ymax) / 2, ry = (ymax - ymin) / 2 + 8;
+  const vx = rx + 22, vTop = -(ymax + 22), vH = (ymax + 22) - (ymin - 14);
+  svg.setAttribute('viewBox', `${-vx} ${vTop} ${2 * vx} ${vH}`);
+  const gHead = mk('g', {});
+  gHead.appendChild(mk('ellipse', { cx: 0, cy: Y(cy), rx: rx + 8, ry: ry, fill: 'none', stroke: '#cbd5e1', 'stroke-width': 1.2 }));
+  gHead.appendChild(mk('path', { d: `M -9 ${Y(ymax + 6)} L 0 ${Y(ymax + 17)} L 9 ${Y(ymax + 6)}`, fill: 'none', stroke: '#cbd5e1', 'stroke-width': 1.2 }));
+  [-1, 1].forEach(s => gHead.appendChild(mk('ellipse', { cx: s * (rx + 12), cy: Y(cy + 4), rx: 5, ry: 13, fill: 'none', stroke: '#cbd5e1', 'stroke-width': 1.2 })));
+  svg.appendChild(gHead);
+
+  const dots = [];
+  const gPts = mk('g', {});
+  P.forEach((p, i) => {
+    const c = mk('circle', { cx: p[0], cy: Y(p[1]), r: 3.1, class: 'pt', tabindex: -1 });
+    c.addEventListener('click', () => click(i));
+    c.addEventListener('mousemove', ev => hover(i, ev));
+    c.addEventListener('mouseleave', () => { tip.style.display = 'none'; drawLines(); });
+    gPts.appendChild(c); dots.push(c);
+  });
+  svg.appendChild(gPts);
+  const gEl = mk('g', {});
+  E.forEach(e => {
+    gEl.appendChild(mk('circle', { cx: e[1], cy: Y(e[2]), r: 1.6, fill: '#475569' }));
+    const t = mk('text', { x: e[1] + 2.5, y: Y(e[2]) - 2.5, 'font-size': 6, fill: '#334155', 'pointer-events': 'none', stroke: '#ffffff', 'stroke-width': 1.6, 'paint-order': 'stroke', 'font-weight': 500 });
+    t.textContent = e[0]; gEl.appendChild(t);
+  });
+  svg.appendChild(gEl);
+  const gLines = mk('g', { 'pointer-events': 'none' });
+  svg.appendChild(gLines);
+
+  const tip = document.getElementById('tip');
+  let cur = stats(), hov = null;
+
+  function partnerScores(p) {
+    const [lo, hi] = range(), sc = S[sIdx], m = new Map();
+    for (let q = deg[p]; q < deg[p + 1]; q++) {
+      const k = adj[q];
+      if (k < lo || k >= hi) continue;
+      m.set(I[k] === p ? J[k] : I[k], { k, v: dec(sc[k]) });
+    }
+    return m;
+  }
+  function paint() {
+    let vals, lo, hi;
+    if (sel === null) {
+      vals = cur.best;
+      lo = Infinity; hi = -Infinity;
+      vals.forEach(v => { if (isFinite(v)) { lo = Math.min(lo, v); hi = Math.max(hi, v); } });
+      dots.forEach((d, i) => d.setAttribute('fill', isFinite(vals[i]) ? col((vals[i] - lo) / (hi - lo || 1)) : '#e5e7eb'));
+      document.getElementById('leg-txt').textContent = 'Shading: best pair through each point';
+    } else {
+      const m = partnerScores(sel);
+      lo = Infinity; hi = -Infinity;
+      m.forEach(o => { lo = Math.min(lo, o.v); hi = Math.max(hi, o.v); });
+      dots.forEach((d, i) => d.setAttribute('fill', m.has(i) ? col((m.get(i).v - lo) / (hi - lo || 1)) : '#eef0f3'));
+      document.getElementById('leg-txt').textContent = 'Shading: score of pairing with electrode 1 (grey = outside the spacing range)';
+    }
+    document.getElementById('leg-lo').textContent = isFinite(lo) ? lo.toFixed(3) : 'low';
+    document.getElementById('leg-hi').textContent = isFinite(hi) ? hi.toFixed(3) : 'high';
+    dots.forEach((d, i) => { d.setAttribute('stroke', i === sel || i === pin ? 'var(--pair)' : 'none'); d.setAttribute('stroke-width', 1.6); });
+    drawLines(); readout();
+  }
+  function line(a, b, color, w) {
+    gLines.appendChild(mk('line', { x1: a[0], y1: Y(a[1]), x2: b[0], y2: Y(b[1]), stroke: color, 'stroke-width': w, 'stroke-linecap': 'round' }));
+    [a, b].forEach(p => gLines.appendChild(mk('circle', { cx: p[0], cy: Y(p[1]), r: 3.6, fill: color, stroke: '#fff', 'stroke-width': 1.2 })));
+  }
+  function drawLines() {
+    while (gLines.firstChild) gLines.removeChild(gLines.firstChild);
+    if (showReal) { const r = realBest(); line(r.a, r.b, 'var(--real)', 2.2); }
+    const b = pin !== null ? pin : (sel !== null ? hov : null);
+    if (sel !== null && b !== null && b !== sel) line(P[sel], P[b], 'var(--pair)', 2.4);
+  }
+  function near(i) { const p = P[i]; return `${E[p[2]][0]} (${(p[3] / 10).toFixed(1)} cm)`; }
+  function readout() {
+    const real = realBest().dr[sIdx];
+    const set = (id, t) => document.getElementById(id).textContent = t;
+    let k = null, a = sel, b = pin;
+    if (sel !== null && pin !== null) { const o = partnerScores(sel).get(pin); k = o ? o.k : null; }
+    if (k === null) {
+      set('s-main', '—'); set('r-dr', '—'); set('r-real', '—'); set('r-dist', '—');
+      set('r-a', a !== null ? near(a) : '—'); set('r-b', '—');
+      set('s-sub', sel === null ? 'Click a point to place electrode 1' : (pin === null ? 'Click a second point to fix the pair' : 'That pair is outside the selected spacing range'));
+      return;
+    }
+    const v = dec(S[sIdx][k]);
+    const pct = 100 * v / cur.gv;
+    set('s-main', `${pct.toFixed(0)}%`);
+    set('s-sub', 'of the best pair at this noise and spacing');
+    set('r-dr', v.toFixed(4));
+    const rel = 100 * (v / real - 1);
+    set('r-real', `${rel >= 0 ? '+' : ''}${rel.toFixed(0)}% (${realBest().name}: ${real.toFixed(4)})`);
+    const dx = P[a][0] - P[b][0], dy = P[a][1] - P[b][1];
+    set('r-dist', `${(Math.hypot(dx, dy) / 10).toFixed(1)} cm (top view)`);
+    set('r-a', near(a)); set('r-b', near(b));
+  }
+  function setHint() {
+    document.getElementById('hint').textContent = sel === null
+      ? 'Click a point to place electrode 1. The map then shows how good every possible electrode 2 would be. Click a second point to fix the pair.'
+      : 'Hover to preview a partner, click to fix it. Click electrode 1 again to start over.';
+  }
+  function click(i) {
+    if (sel === null) { sel = i; pin = null; }
+    else if (i === sel) { sel = null; pin = null; }
+    else if (!partnerScores(sel).has(i)) {
+      document.getElementById('hint').textContent = 'That point is outside the selected spacing range. Pick a shaded point, or switch the spacing.';
+      return;
+    }
+    else { pin = i; }
+    setHint(); paint();
+  }
+  function hover(i, ev) {
+    hov = i;
+    const box = svg.getBoundingClientRect(), host = svg.parentElement.getBoundingClientRect();
+    tip.style.left = (ev.clientX - host.left) + 'px'; tip.style.top = (ev.clientY - host.top) + 'px';
+    let t;
+    if (sel === null) t = isFinite(cur.best[i]) ? `best pair through here: Δr ${cur.best[i].toFixed(4)} · near ${near(i)}` : 'no pair in this spacing range';
+    else if (i === sel) t = 'electrode 1 (click to clear)';
+    else { const o = partnerScores(sel).get(i); t = o ? `with electrode 1: Δr ${o.v.toFixed(4)} (${(100 * o.v / cur.gv).toFixed(0)}% of best)` : 'outside the spacing range'; }
+    tip.textContent = t; tip.style.display = 'block';
+    if (sel !== null && pin === null) drawLines();
+  }
+  function update() { cur = stats(); paint(); }
+  document.getElementById('noise').addEventListener('input', e => {
+    sIdx = +e.target.value;
+    const s = SIG[sIdx]; document.getElementById('noise-out').textContent = (s === 0 ? '0' : s) + ' µV';
+    update();
+  });
+  const setCls = c => {
+    cls = c;
+    document.getElementById('cls-mini').classList.toggle('on', c === 0);
+    document.getElementById('cls-short').classList.toggle('on', c === 1);
+    if (sel !== null && pin !== null && !partnerScores(sel).has(pin)) pin = null;
+    update();
+  };
+  document.getElementById('cls-mini').addEventListener('click', () => setCls(0));
+  document.getElementById('cls-short').addEventListener('click', () => setCls(1));
+  document.getElementById('b-best').addEventListener('click', () => { sel = I[cur.gk]; pin = J[cur.gk]; setHint(); paint(); });
+  document.getElementById('b-real').addEventListener('click', e => {
+    showReal = !showReal;
+    e.currentTarget.textContent = showReal ? 'Hide best real 10-20 pair' : 'Show best real 10-20 pair';
+    paint();
+  });
+  document.getElementById('b-clear').addEventListener('click', () => {
+    sel = null; pin = null; showReal = false;
+    document.getElementById('b-real').textContent = 'Show best real 10-20 pair';
+    setHint(); paint();
+  });
+  update();
+})();
+</script>
+</body>
+</html>

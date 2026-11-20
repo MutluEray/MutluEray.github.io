@@ -1,0 +1,120 @@
+{
+  "reliability": {
+    "measured_split_half_median": 0.36452122854561875,
+    "measured_full_SB": 0.5342844375299978,
+    "physics_split_half_median": 0.8333672086720867,
+    "physics_full_SB": 0.9091110659448273,
+    "rho_physics_vs_measured": 0.2192186088527552,
+    "noise_ceiling_rho": 0.6969389460495293,
+    "rho_over_ceiling": 0.3145449254850166
+  },
+  "ridge_ceiling_decoding": {
+    "rho_group": 0.4649728997289973,
+    "rho_per_subject_median": 0.39857868673226576,
+    "physics_rho_per_subject_median": 0.08987716251848994,
+    "mean_dr_ceiling": 0.024596454221315164,
+    "mean_dr_measured": 0.009172182527975406,
+    "mean_dr_physics": 0.017271836698723172
+  },
+  "subject_level_signal": {
+    "physics_median": 0.2615497534799993,
+    "spline": {
+      "median": 0.12525106192001156,
+      "n_subjects_physics_better": 12,
+      "p_one_sided": 0.0003662109375
+    },
+    "nearest": {
+      "median": 0.1373997694365589,
+      "n_subjects_physics_better": 11,
+      "p_one_sided": 0.0006103515625
+    },
+    "ceiling": {
+      "median": 0.3875573699670758,
+      "n_subjects_physics_better": 0
+    }
+  },
+  "per_electrode": {
+    "cEL1": {
+      "physics_overrating_rank": 28.0,
+      "nan_fraction": 0.10353952991452992
+    },
+    "cEL2": {
+      "physics_overrating_rank": 22.5,
+      "nan_fraction": 0.08325106837606838
+    },
+    "cEL3": {
+      "physics_overrating_rank": -2.5,
+      "nan_fraction": 0.0480042735042735
+    },
+    "cEL4": {
+      "physics_overrating_rank": -20.375,
+      "nan_fraction": 0.07912286324786325
+    },
+    "cEL5": {
+      "physics_overrating_rank": -11.625,
+      "nan_fraction": 0.013338675213675214
+    },
+    "cEL6": {
+      "physics_overrating_rank": -0.25,
+      "nan_fraction": 0.016872863247863246
+    },
+    "cEL7": {
+      "physics_overrating_rank": 0.0,
+      "nan_fraction": 0.01919017094017094
+    },
+    "cEL8": {
+      "physics_overrating_rank": -1.375,
+      "nan_fraction": 0.021116452991452993
+    },
+    "cEL9": {
+      "physics_overrating_rank": -2.625,
+      "nan_fraction": 0.027119658119658115
+    },
+    "cER1": {
+      "physics_overrating_rank": 20.22222222222222,
+      "nan_fraction": 0.020977564102564104
+    },
+    "cER2": {
+      "physics_overrating_rank": 4.333333333333333,
+      "nan_fraction": 0.0588386752136752
+    },
+    "cER3": {
+      "physics_overrating_rank": -1.7777777777777777,
+      "nan_fraction": 0.013268162393162393
+    },
+    "cER4": {
+      "physics_overrating_rank": -4.111111111111111,
+      "nan_fraction": 0.08372222222222223
+    },
+    "cER5": {
+      "physics_overrating_rank": -3.4444444444444446,
+      "nan_fraction": 0.06614529914529914
+    },
+    "cER6": {
+      "physics_overrating_rank": -8.555555555555555,
+      "nan_fraction": 0.013992521367521368
+    },
+    "cER7": {
+      "physics_overrating_rank": -13.88888888888889,
+      "nan_fraction": 0.017769230769230766
+    },
+    "cER8": {
+      "physics_overrating_rank": -0.3333333333333333,
+      "nan_fraction": 0.09602457264957266
+    },
+    "cER9": {
+      "physics_overrating_rank": 8.777777777777779,
+      "nan_fraction": 0.018428418803418802
+    },
+    "cER10": {
+      "physics_overrating_rank": -11.666666666666666,
+      "nan_fraction": 0.019167735042735043
+    }
+  },
+  "overrating_vs_nan_spearman": 0.2771929824561403,
+  "exploratory_without_top_electrodes": {
+    "n_pairs": 49,
+    "rho_physics": 0.15693877551020405,
+    "rho_ridge_ceiling": 0.18857142857142856
+  }
+}
