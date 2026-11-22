@@ -4,1674 +4,252 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | Eray Mutlu</title>
-  <meta name="description" content="Technical projects demonstrating skills in engineering.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            accent: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#0d9488', 600: '#0f766e', 700: '#115e59' },
-            navy: { 800: '#1e293b', 900: '#0f172a' }
-          },
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
-        }
-      }
-    }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>body { font-family: 'Inter', system-ui, sans-serif; }</style>
+  <meta name="description" content="Course, workshop and independent projects by Eray Mutlu in wearable neurotechnology, neural decoding, brain models and clinical AI.">
+  <meta property="og:title" content="Projects | Eray Mutlu">
+  <meta property="og:description" content="Course, workshop and independent projects by Eray Mutlu in wearable neurotechnology, neural decoding, brain models and clinical AI.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mutlueray.github.io/projects.html">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/tailwind.css">
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
-
-  <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16 items-center">
-        <a href="index.html" class="text-lg font-semibold text-navy-900 tracking-tight">Eray Mutlu</a>
-        <div class="hidden md:flex space-x-8 text-sm font-medium">
-          <a href="index.html" class="text-slate-600 hover:text-accent-600 transition">Home</a>
-          <a href="research.html" class="text-slate-600 hover:text-accent-600 transition">Research</a>
-          <a href="projects.html" class="text-accent-600">Projects</a>
-          <a href="publications.html" class="text-slate-600 hover:text-accent-600 transition">Publications</a>
-          <a href="contact.html" class="text-slate-600 hover:text-accent-600 transition">Contact</a>
-          <a href="documents/Resume.pdf" target="_blank" rel="noopener" class="text-slate-600 hover:text-accent-600 transition">CV</a>
-        </div>
-        <button id="menu-btn" class="md:hidden p-2 text-slate-600">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+<body class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="bar">
+        <a href="/" class="wordmark">Eray Mutlu</a>
+        <nav class="nav-links" aria-label="Main">
+          <a href="/research.html">Research</a>
+          <a href="/projects.html" aria-current="page">Projects</a>
+          <a href="/publications.html">Publications</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/documents/Resume.pdf" class="nav-cv" target="_blank" rel="noopener">CV (PDF)</a>
+        </nav>
+        <button id="menu-btn" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
       </div>
+      <nav id="mobile-menu" class="mobile-menu" aria-label="Main (mobile)">
+        <a href="/research.html">Research</a>
+        <a href="/projects.html" aria-current="page">Projects</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/documents/Resume.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </nav>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white">
-      <div class="px-4 py-3 space-y-2 text-sm font-medium">
-        <a href="index.html" class="block text-slate-600">Home</a>
-        <a href="research.html" class="block text-slate-600">Research</a>
-        <a href="projects.html" class="block text-accent-600">Projects</a>
-        <a href="publications.html" class="block text-slate-600">Publications</a>
-        <a href="contact.html" class="block text-slate-600">Contact</a>
-        <a href="documents/Resume.pdf" target="_blank" rel="noopener" class="text-slate-600 hover:text-accent-600 transition">CV</a>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <div class="page-head">
+        <h1 class="page-title">Projects</h1>
+        <p class="lead">Course, workshop and independent projects from 2021 to 2026, most with public code and a write-up.
+        Several earlier projects were re-analysed and written up again in 2026, which each entry notes. None of them are
+        peer-reviewed; published work is on the <a href="/research.html">Research</a> page.</p>
+        <nav class="jump" aria-label="Project themes"><a href="#wearable">Wearable and assistive neurotechnology</a> <a href="#models">Brain models and neural decoding</a> <a href="#clinical">Clinical AI that can be checked</a> <a href="#hardware">Hardware and early engineering</a></nav>
       </div>
-    </div>
-  </nav>
-
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-    <h1 class="text-3xl font-bold text-navy-900 tracking-tight mb-4">Projects</h1>
-    <p class="text-slate-600 max-w-2xl mb-12 leading-relaxed">
-      Technical and applied work demonstrating practical skills in various engineering topics.
-    </p>
-
-    <!-- Nabuen -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2025 – 2026</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4"> Context-Aware Speller</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        A context-aware assistive speller designed for individuals with severe speech and motor impairments 
-        (e.g. ALS). Unlike traditional letter-by-letter spellers, it listens to the conversational partner, obtains 
-        user approval of the context, and then generates AI-powered suggestions at letter, word and full-sentence levels. 
-        The user retains full control and selects via gaze (or other pointing methods). Early evaluation on 50 real-life 
-        communication scenarios showed approximately 1.7× faster response times (≈40 % reduction) compared with a 
-        conventional eye-tracking speller operating at ~15 words per minute. 
-      </p>
-      </p>
-    </article>
-
-
-    <!-- SSVEP Detection in BCIs -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2025</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">High-Speed SSVEP Speller: Benchmarking Detectors on a 40-Target BCI</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        Steady-state visual evoked potentials (SSVEPs) power the fastest non-invasive brain&ndash;computer interface spellers:
-        each key flickers at its own frequency, and the visual cortex echoes the frequency the user looks at. The hard part is
-        telling 40 targets only 0.2&nbsp;Hz apart from a fraction of a second of EEG. On the public Tsinghua benchmark
-        (35 participants, 64-channel EEG), I implemented and compared three established detectors:
-        training-free filter-bank CCA, extended CCA with user templates, and ensemble task-related component analysis (TRCA).
-        Each was evaluated by training on five blocks of a participant's data and testing on the sixth, at data lengths from
-        0.3 to 2&nbsp;s, with paired statistics across participants.
-      </p>
- 
-      <div class="mt-6 grid sm:grid-cols-4 gap-3">
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">98.3%</div>
-          <div class="text-xs text-slate-600">Accuracy from 2&nbsp;s of EEG, 40 targets</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">&asymp; 229 bits/min</div>
-          <div class="text-xs text-slate-600">Peak information transfer rate (0.4&ndash;0.5&nbsp;s windows)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">98.8%</div>
-          <div class="text-xs text-slate-600">With no calibration at all (FBCCA, 5&nbsp;s)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">35</div>
-          <div class="text-xs text-slate-600">Participants, held-out blocks only</div>
-        </div>
-      </div>
- 
-      <!-- Hero animation (MP4). To use the GIF instead, replace the <video> element with:
-           <img src="/projects/ssvep-bci/speller.gif" loading="lazy" alt="..." class="w-full rounded-lg border border-slate-200 bg-white"> -->
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">The speller, replayed from real EEG</h3>
-        <video class="w-full rounded-lg border border-slate-200 bg-white"
-               autoplay loop muted playsinline controls preload="metadata"
-               poster="/projects/ssvep-bci/speller_poster.png"
-               aria-label="Animation of a 40-key SSVEP speller typing a word: for each character the target is cued, occipital EEG is recorded, and the decoder's scores for all 40 targets select the key">
-          <source src="/projects/ssvep-bci/speller.mp4" type="video/mp4">
-        </video>
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          Every character is a real recorded trial the model never saw during training: ensemble TRCA is calibrated on the
-          other five blocks of the same participant and decides from 0.5&nbsp;s of EEG. Right: occipital EEG with the analysis
-          window, and the score for each of the 40 targets. Key flicker is slowed 8&times; for display (real stimuli run at
-          8&ndash;15.8&nbsp;Hz).
-        </p>
-      </div>
- 
-      <!-- Results figure -->
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">Speed versus accuracy</h3>
-        <img src="/projects/ssvep-bci/accuracy_itr_all_methods.png"
-             alt="Accuracy and information transfer rate against data length for FBCCA, extended CCA and ensemble TRCA, mean and standard error over 35 participants"
-             class="w-full rounded-lg border border-slate-200 bg-white p-2">
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          35 participants, mean &plusmn; SEM. A few minutes of a user's own calibration data lifts accuracy at 0.5&nbsp;s from
-          25% to 81%. Ensemble TRCA gives the best trade-off, significantly ahead of extended CCA at every window up to
-          0.8&nbsp;s (paired Wilcoxon, Holm-corrected); above 1&nbsp;s all calibrated methods exceed 94%.
-        </p>
-      </div>
- 
-      <p class="text-xs text-slate-400 mt-6">
-        Methods: Chen et al.,
-        <a href="https://doi.org/10.1088/1741-2560/12/4/046008" target="_blank" rel="noopener" class="text-accent-600 hover:underline">J. Neural Eng. 2015</a>
-        (FBCCA) and
-        <a href="https://doi.org/10.1073/pnas.1508080112" target="_blank" rel="noopener" class="text-accent-600 hover:underline">PNAS 2015</a>
-        (extended CCA); Nakanishi et al.,
-        <a href="https://doi.org/10.1109/TBME.2017.2694818" target="_blank" rel="noopener" class="text-accent-600 hover:underline">IEEE TBME 2018</a>
-        (TRCA). Data: Wang et al.,
-        <a href="https://doi.org/10.1109/TNSRE.2016.2627556" target="_blank" rel="noopener" class="text-accent-600 hover:underline">IEEE TNSRE 2017</a>.
-      </p>
- 
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/ssvep-benchmark-classification" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
-        full <a href="https://github.com/MutluEray/ssvep-benchmark-classification/blob/main/WRITEUP.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
-        with the re-analysis and limitations.
-      </p>
-    </article>
-
-    <!--  3D U-Net Stroke Lesion Segmentation -->
-<article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-  <div class="flex flex-wrap items-center gap-3 mb-4">
-    <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2024</span>
-  </div>
-  <h2 class="text-xl font-semibold text-navy-900 mb-4">3D U-Net for Ischemic Stroke Lesion Segmentation</h2>
-  <p class="text-slate-700 leading-relaxed mb-4">
-    A patch-based 3D U-Net that segments ischemic stroke lesions directly from diffusion-weighted MRI,
-    trained on the ISLES 2022 dataset (250 cases, DWI + ADC). The network samples 3D patches biased
-    toward lesion tissue during training, then reconstructs full-volume predictions at evaluation time
-    via overlap-averaged sliding-window inference.
-  </p>
-
-  <div class="mt-6 grid sm:grid-cols-3 gap-3">
-    <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-      <div class="text-lg font-bold text-navy-900">0.81</div>
-      <div class="text-xs text-slate-600">Median Dice, held-out test set</div>
-    </div>
-    <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-      <div class="text-lg font-bold text-navy-900">12.7M</div>
-      <div class="text-xs text-slate-600">Parameters, single model</div>
-    </div>
-  </div>
-
-  <!-- Results carousel -->
-  <div class="mt-8">
-    <h3 class="text-base font-semibold text-navy-900 mb-3">Results</h3>
-    <div class="relative rounded-lg border border-slate-200 bg-white overflow-hidden">
-      <img id="stroke-carousel-img" src="" alt="DWI with ground truth (cyan) and predicted (orange) lesion contours"
-           class="w-full h-auto block">
-      <button id="stroke-carousel-prev" type="button" aria-label="Previous example"
-              class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-      </button>
-      <button id="stroke-carousel-next" type="button" aria-label="Next example"
-              class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-      </button>
-    </div>
-    <div class="flex items-center justify-between mt-3">
-      <div class="flex items-center gap-3 text-xs text-slate-500">
-        <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#22B8CF"></span>ground truth</span>
-        <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#F76707"></span>prediction</span>
-      </div>
-      <span id="stroke-carousel-dice" class="text-sm font-semibold text-accent-700"></span>
-    </div>
-  </div>
-
-  <p class="text-sm text-slate-500 mt-6">
-    Code available on <a href="https://github.com/MutluEray/stroke_lesion_unet/" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
-  </p>
-</article>
-
-<script>
-(function() {
-  const cases = [
-    { file: 'sub-strokecase0237.png', dice: '0.941' },
-    { file: 'sub-strokecase0208.png', dice: '0.883' },
-    { file: 'sub-strokecase0029.png', dice: '0.842' },
-    { file: 'sub-strokecase0056.png', dice: '0.789' }
-  ];
-  const basePath = '/projects/stroke-lesion-unet/';
-  let i = 0;
-
-  const img = document.getElementById('stroke-carousel-img');
-  const diceEl = document.getElementById('stroke-carousel-dice');
-
-  function render() {
-    img.src = basePath + cases[i].file;
-    diceEl.textContent = 'Dice ' + cases[i].dice;
-  }
-
-  document.getElementById('stroke-carousel-prev').addEventListener('click', () => {
-    i = (i - 1 + cases.length) % cases.length;
-    render();
-  });
-  document.getElementById('stroke-carousel-next').addEventListener('click', () => {
-    i = (i + 1) % cases.length;
-    render();
-  });
-
-  render();
-})();
-</script>
-
-
-<!-- Physics-guided wearable EEG electrode placement -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2024</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Can Physics Tell You Where to Put a Wearable EEG Electrode?</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        A wearable has room for two electrodes, not a cap. Choosing where they go is usually done by picking channels from a
-        full cap recording, which can only choose among positions the cap measured. A head model can evaluate
-        <em>any</em> position. This study tests whether its predictions hold up against real recordings, on a public dataset
-        with scalp, around-ear and in-ear EEG recorded at the same time (15 participants, auditory attention decoding).
-        Each virtual electrode is a minimum-norm source estimate from the scalp channels, projected forward to any point on
-        the skin (MNE, fsaverage, 3-layer BEM). Every step had a pre-registered prediction or go/no-go criterion. All
-        ~110,000 candidate pairs on the scalp were scored with a closed-form version of the decoder, and the
-        one-layout-for-everyone choice was tested leave-one-subject-out.
-      </p>
-
-      <ul class="list-disc pl-5 text-slate-700 leading-relaxed mb-4 space-y-1.5 text-[15px]">
-        <li><strong>Where electrodes exist, simple interpolation is enough; where they don't, physics helps.</strong> Predicting around-ear EEG from the scalp alone, the head model reaches 0.29 against 0.12 for interpolation, about 80&nbsp;% of the best any linear method achieves (0.37).</li>
-        <li><strong>But it predicts the signal better than the decoding ranking.</strong> Around the ear it ranks electrode pairs for attention decoding at &rho;&nbsp;=&nbsp;0.34 after calibration, just below the pre-registered 0.35, so off-cap layouts still need a recording. On the cap, with real pairs removed and predicted, it ranks 55 pairs at 0.68 (interpolation 0.80, noise ceiling 0.89).</li>
-        <li><strong>The best spot is broad and robust.</strong> It sits over left centro-parietal scalp around CP5. It barely moves when skull and scalp conductivity change, and it moves about 1&nbsp;cm (under 2&nbsp;% decoding loss) when the cap electrodes are mis-registered by about 1&nbsp;cm.</li>
-        <li><strong>Miniaturisation costs depend on electrode noise.</strong> With noise-free virtual electrodes, 1&ndash;3&nbsp;cm pairs lose nothing; with realistic electrode noise they lose 21&ndash;33&nbsp;%.</li>
-      </ul>
-
-      <div class="mt-6 grid sm:grid-cols-4 gap-3">
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.68</div>
-          <div class="text-xs text-slate-600">On-cap rank agreement, real pairs never seen (ceiling 0.89)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.29 vs 0.12</div>
-          <div class="text-xs text-slate-600">Around-ear signal r: head model vs interpolation</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">&ge; 97%</div>
-          <div class="text-xs text-slate-600">Decoding kept with each electrode 1&nbsp;cm off the optimum</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">21%</div>
-          <div class="text-xs text-slate-600">Loss of a 1&ndash;3&nbsp;cm pair at 1&nbsp;&micro;V electrode noise</div>
-        </div>
-      </div>
-
-      <div class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed">
-        <strong>Scope</strong>: accuracies for model-placed pairs come from <strong>physics-predicted</strong> signals plus
-        modelled electrode noise, not from a device. Virtual electrodes are combinations of the 29 recorded scalp channels,
-        so the model can say where a small device captures what the cap sees, not find information the cap missed.
-        Template head (no pinna, no ear canal), one task, 15 participants. Five of the twelve pre-registered predictions
-        failed; the write-up lists all twelve.
-      </div>
-
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">Where the model can be trusted</h3>
-        <img src="/projects/wearable-electrode-placement/figures/site_validity.png" loading="lazy"
-             alt="Left: correlation between predicted and measured around-ear EEG for the head model, spline interpolation, nearest electrode and a data-driven ceiling. Right: rank agreement between predicted and measured decoding performance of electrode pairs, around the ear and on the cap, with ceilings and the pre-registered threshold"
-             class="w-full rounded-lg border border-slate-200 bg-white p-2">
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          Left: around-ear signals predicted from scalp EEG only, with the mastoid electrodes withheld. Right: how well
-          predicted decoding performance ranks real electrode pairs. Around the ear the ranking misses the pre-registered
-          go (dashed); on the cap it reaches about three quarters of the noise ceiling.
-        </p>
-      </div>
-
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">Design your own wearable</h3>
-        <p class="text-xs text-slate-500 mb-3 leading-relaxed">
-          Click a point to place electrode 1; the map shows how well every possible electrode 2 would work. Move the noise
-          slider to see small devices lose out, and compare with the best real 10-20 pair.
-          <a href="/projects/wearable-electrode-placement/explorer.html" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Open full page</a>.
-        </p>
-        <iframe src="/projects/wearable-electrode-placement/figures/explorer.html?embed=1" loading="lazy"
-                title="Interactive explorer for wearable EEG electrode placement"
-                class="w-full h-[1180px] md:h-[700px] rounded-lg border border-slate-200 bg-white"></iframe>
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          One layout for every user. Against the best real 10-20 pair (P3&ndash;C3), both run through the model at
-          1&nbsp;&micro;V, the model-placed pair wins in 12 of 15 held-out users (median +1.7 accuracy points).
-        </p>
-      </div>
-
-      <p class="text-xs text-slate-400 mt-6">
-        Data: Ear-SAAD, Geirnaert, Kappel &amp; Kidmose,
-        <a href="https://arxiv.org/abs/2505.14478" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Scientific Reports 2025</a>
-        (<a href="https://doi.org/10.5281/zenodo.16536441" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Zenodo</a>;
-        treated as CC BY-NC-SA, no data in the repository). Related work selects channels from measured caps
-        (Mundanad Narayanan et al.,
-        <a href="https://doi.org/10.1088/1741-2552/ac2629" target="_blank" rel="noopener" class="text-accent-600 hover:underline">J. Neural Eng. 2021</a>)
-        or designs arrays for source localisation; this study tests forward-model placement for decoding against held-out
-        real electrodes.
-      </p>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/wearable-electrode-placement" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
-        full <a href="https://github.com/MutluEray/wearable-electrode-placement/blob/main/README.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
-        with all pre-registered predictions, credibility checks and limitations.
-      </p>
-    </article>    
-
-    
-<!-- Mirror-symmetry priors after stroke (geometric deep learning applied to motor-imagery BCI) -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Does the Brain&rsquo;s Left&ndash;Right Symmetry Survive Stroke? Testing a Mirror-Symmetry Prior for Motor-Imagery BCIs</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        Many motor-imagery decoders assume that the two hemispheres mirror each other: imagining the left hand should look like
-        imagining the right hand, reflected across the midline. In the language of geometric deep learning, the decoder is made
-        <em>equivariant</em> to a two-element symmetry group, so mirroring the EEG flips the decision. I tested whether this prior,
-        designed around healthy brains, still helps after a stroke. The data are 50 acute stroke patients and 50 matched healthy
-        subjects, with the same 29 channels and pipeline. The decoder is a Riemannian tangent-space model in which the mirror
-        splits every feature into a part that flips sign and a part that does not, so exact equivariance means keeping only
-        the first. The key control replaces the real left&ndash;right pairing with 200 random pairings of the same shape. If the
-        real mirror only helped by constraining the model, random mirrors would help just as much.
-      </p>
-
-      <div class="mt-6 grid sm:grid-cols-4 gap-3">
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">+3.6 pp</div>
-          <div class="text-xs text-slate-600">Healthy: real mirror vs random mirrors (beats 200/200, p&nbsp;=&nbsp;0.005)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">&asymp; 6&times; weaker</div>
-          <div class="text-xs text-slate-600">Left&ndash;right motor signature after stroke (lateralization 0.05 vs 0.28)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">&plusmn;0.5 pp</div>
-          <div class="text-xs text-slate-600">Stroke: symmetry prior vs no prior (no gain, no harm)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">50 + 50</div>
-          <div class="text-xs text-slate-600">Patients and matched healthy subjects, cross-subject CV</div>
-        </div>
-      </div>
-
-      <!-- Interactive mirror explorer -->
-      <div class="mt-8 p-5 sm:p-6 bg-white border border-slate-200 rounded-xl">
-        <h3 class="text-base font-semibold text-navy-900 mb-1">Explore: the real mirror vs random mirrors</h3>
-        <p class="text-xs text-slate-500 mb-4">
-          The decoder is forced to treat each pair of linked electrodes as mirror images. With the brain&rsquo;s real
-          left&ndash;right pairing (C3&harr;C4, &hellip;) this helps a little; with a random pairing it hurts. Pick a group, then
-          shuffle a random pairing and see where it lands.
-        </p>
-        <div class="flex flex-wrap gap-2 mb-5">
-          <div id="msym-cohort" class="flex gap-2"></div>
-          <span class="w-px bg-slate-200 mx-1"></span>
-          <div id="msym-chset" class="flex gap-2"></div>
-          <span class="w-px bg-slate-200 mx-1"></span>
-          <div id="msym-mode" class="flex gap-2"></div>
-          <button id="msym-shuffle" type="button"
-                  class="text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-accent-400 hover:text-accent-700 transition">&#8635; Shuffle</button>
-        </div>
-        <div class="grid sm:grid-cols-[280px_1fr] gap-6 items-start">
-          <svg id="msym-head" viewBox="0 0 300 300" class="w-full max-w-[280px] mx-auto" role="img"
-               aria-label="Scalp map of the 29 electrodes with the current mirror pairing drawn as arcs"></svg>
+    <section class="theme" id="wearable" aria-labelledby="wearable-h">
+      <div class="theme-head"><div>
+        <h2 class="section-title" id="wearable-h" style="margin:0">Wearable and assistive neurotechnology</h2>
+        <p>Sensing with small devices, and turning a weak, noisy signal of intent into communication or action.</p>
+      </div></div>
+      <ul class="rows">
+        <li class="row has-thumb">
+          <div class="row-year">2024</div>
           <div>
-            <svg id="msym-hist" viewBox="0 0 440 232" class="w-full h-auto" role="img"
-                 aria-label="Histogram of accuracies for 200 random electrode pairings, with the no-prior and real-mirror decoders as reference lines"></svg>
+            <h3 class="row-title"><a href="/projects/wearable-electrode-placement.html">Can Physics Tell You Where to Put a Wearable EEG Electrode?</a></h3>
+            <p class="row-text">Tests whether a head model can choose where a two-electrode wearable should go, checked against real scalp, around-ear and in-ear EEG from 15 people.</p>
+            <p class="row-note">Re-analysed and written up in 2026</p>
           </div>
-        </div>
-        <div id="msym-read" class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed"></div>
-      </div>
-
-      <div class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed">
-        <strong>What it means</strong>: in healthy subjects the real mirror carries real information. A wrong symmetry costs
-        about 2.7 points, while the right one adds about 1 point over no prior. After stroke, the left&ndash;right motor
-        signature itself is about six times weaker, so the prior has little to work with. It no longer helps, but the real
-        mirror still beats 98% of random ones on the central channels (p&nbsp;=&nbsp;0.025). Flipping each patient so the
-        affected side is always the same (canonicalization) gave no benefit either. An apparent +3-point gain in stroke came
-        from three high-amplitude recordings and disappeared when they were removed; stroke results are shown without them.
-      </div>
-
-      <p class="text-xs text-slate-400 mt-6">
-        Built on the geometric deep learning module of MIT 6.S980 <em>Machine Learning for Inverse Graphics</em> (self-study).
-        Data: acute stroke motor imagery, Liu et al.,
-        <a href="https://doi.org/10.1038/s41597-023-02787-8" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Sci. Data 2024</a>
-        (CC BY 4.0); healthy reference, PhysioNet EEG Motor Movement/Imagery (Schalk et al., 2004). Prior symmetry methods:
-        <a href="https://doi.org/10.1109/TNSRE.2022.3186442" target="_blank" rel="noopener" class="text-accent-600 hover:underline">EEGSym</a> and
-        <a href="https://arxiv.org/abs/2412.03224" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Channel Reflection</a>,
-        both evaluated on healthy data. Limitations: acute patients with mostly subcortical or brainstem lesions; left versus
-        right decoding in stroke is close to chance (54&ndash;56%); linear decoder only; the healthy&ndash;stroke contrast is
-        confounded by different recording setups.
-      </p>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/stroke-mirror-symmetry" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
-        full <a href="https://github.com/MutluEray/stroke-mirror-symmetry/blob/main/docs/WRITEUP.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
-        with all controls, the robustness check and limitations.
-      </p>
-    </article>
-
-    <script src="/projects/stroke-mirror-symmetry/web/mirror_data.js"></script>
-    <script>
-    (function() {
-      const D = window.MIRROR_DATA;
-      if (!D) return;
-      const COL = { healthy: '#0072B2', stroke: '#D55E00', fake: '#cbd5e1', fakeOn: '#475569',
-                    ink: '#0f172a', ink2: '#64748b', grid: '#e2e8f0' };
-      const S = { cohort: 'healthy', chset: 'shared', mode: 'real', draw: 0 };
-      const NS = 'http://www.w3.org/2000/svg';
-      const L = D.layout, IDX = {};
-      L.names.forEach((n, i) => { IDX[n] = i; });
-
-      function el(tag, attrs, parent) {
-        const e = document.createElementNS(NS, tag);
-        for (const k in attrs) e.setAttribute(k, attrs[k]);
-        if (parent) parent.appendChild(e);
-        return e;
-      }
-      function txt(parent, x, y, s, attrs) {
-        const t = el('text', Object.assign({ x: x, y: y, fill: COL.ink2, 'font-size': 11 }, attrs || {}), parent);
-        t.textContent = s;
-        return t;
-      }
-      function fmt(v) { return (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(1); }
-
-      function pills(id, key, options) {
-        const box = document.getElementById(id);
-        options.forEach(([value, label]) => {
-          const b = document.createElement('button');
-          b.type = 'button';
-          b.textContent = label;
-          b.dataset.value = value;
-          b.addEventListener('click', () => {
-            S[key] = value;
-            if (key === 'mode' && value === 'fake') S.draw = Math.floor(Math.random() * D.fake[S.cohort][S.chset].fake_accs.length);
-            render();
-          });
-          box.appendChild(b);
-        });
-      }
-      function updatePills() {
-        [['msym-cohort', 'cohort'], ['msym-chset', 'chset'], ['msym-mode', 'mode']].forEach(([id, key]) => {
-          document.querySelectorAll('#' + id + ' button').forEach((b) => {
-            const on = b.dataset.value === S[key];
-            b.className = 'text-xs px-3 py-1.5 rounded-full border transition ' + (on
-              ? 'bg-accent-600 text-white border-accent-600'
-              : 'bg-white text-slate-600 border-slate-200 hover:border-accent-400 hover:text-accent-700');
-          });
-        });
-      }
-      pills('msym-cohort', 'cohort', [['healthy', 'Healthy'], ['stroke', 'Stroke']]);
-      pills('msym-chset', 'chset', [['shared', 'All 29 channels'], ['shared_sensorimotor', '8 central']]);
-      pills('msym-mode', 'mode', [['real', 'Real mirror'], ['fake', 'Random mirror']]);
-      document.getElementById('msym-shuffle').addEventListener('click', () => {
-        S.mode = 'fake';
-        S.draw = Math.floor(Math.random() * D.fake[S.cohort][S.chset].fake_accs.length);
-        render();
-      });
-
-      function drawHead(F) {
-        const svg = document.getElementById('msym-head');
-        svg.innerHTML = '';
-        const cx = 150, cy = 158, R = 128;
-        el('circle', { cx: cx, cy: cy, r: R, fill: 'none', stroke: COL.ink2, 'stroke-width': 1.3 }, svg);
-        el('path', { d: `M${cx - 0.12 * R},${cy - 0.99 * R} L${cx},${cy - 1.12 * R} L${cx + 0.12 * R},${cy - 0.99 * R}`,
-                     fill: 'none', stroke: COL.ink2, 'stroke-width': 1.3 }, svg);
-        const P = (n) => [cx + L.x[IDX[n]] * R, cy - L.y[IDX[n]] * R];
-        const active = new Set(F.channels);
-        const pairs = S.mode === 'real' ? F.real_pairs : F.fake_pairs[S.draw];
-        const color = S.mode === 'real' ? COL[S.cohort] : COL.fakeOn;
-        pairs.forEach(([a, b]) => {
-          const [x1, y1] = P(a), [x2, y2] = P(b);
-          const dx = x2 - x1, dy = y2 - y1, bow = 0.12 + 0.25 * Math.hypot(dx, dy) / (2 * R);
-          const mx = (x1 + x2) / 2 - dy * bow, my = (y1 + y2) / 2 + dx * bow;
-          el('path', { d: `M${x1},${y1} Q${mx},${my} ${x2},${y2}`, fill: 'none', stroke: color,
-                       'stroke-width': 2, 'stroke-opacity': 0.85 }, svg);
-        });
-        L.names.forEach((n, i) => {
-          const on = active.has(n), [x, y] = P(n);
-          el('circle', { cx: x, cy: y, r: 7, fill: '#fff', stroke: on ? COL.ink : COL.grid, 'stroke-width': 1.3 }, svg);
-          txt(svg, x, y + 17, L.labels[i], { 'text-anchor': 'middle', 'font-size': 8.5, fill: on ? COL.ink2 : '#cbd5e1' });
-        });
-      }
-
-      function drawHist(F) {
-        const H = document.getElementById('msym-hist');
-        H.innerHTML = '';
-        const accs = F.fake_accs, all = accs.concat([F.real_acc, F.baseline_acc]);
-        const lo = Math.floor(Math.min.apply(null, all) - 1), hi = Math.ceil(Math.max.apply(null, all) + 1), bw = 0.5;
-        const x0 = 40, x1 = 425, yb = 175, X = (v) => x0 + (v - lo) / (hi - lo) * (x1 - x0);
-        const nb = Math.ceil((hi - lo) / bw), counts = new Array(nb).fill(0);
-        const bin = (a) => Math.min(nb - 1, Math.max(0, Math.floor((a - lo) / bw)));
-        accs.forEach((a) => { counts[bin(a)]++; });
-        const cmax = Math.max.apply(null, counts), Y = (c) => yb - c / cmax * 120;
-        const cur = S.mode === 'fake' ? accs[S.draw] : null, curBin = cur === null ? -1 : bin(cur);
-        const step = (hi - lo) > 10 ? 2 : 1;
-        for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) {
-          el('line', { x1: X(v), x2: X(v), y1: 45, y2: yb, stroke: COL.grid }, H);
-          txt(H, X(v), yb + 15, v + '%', { 'text-anchor': 'middle' });
-        }
-        counts.forEach((c, k) => {
-          if (!c) return;
-          const r = el('rect', { x: X(lo + k * bw) + 1, y: Y(c), width: X(lo + bw) - X(lo) - 2, height: yb - Y(c), rx: 2,
-                                 fill: k === curBin ? COL.fakeOn : COL.fake }, H);
-          el('title', {}, r).textContent = `${c} random pairings reached ${(lo + k * bw).toFixed(1)}–${(lo + (k + 1) * bw).toFixed(1)}%`;
-        });
-        el('line', { x1: x0, x2: x1, y1: yb, y2: yb, stroke: COL.ink2 }, H);
-        el('line', { x1: X(F.baseline_acc), x2: X(F.baseline_acc), y1: 32, y2: yb, stroke: COL.ink,
-                     'stroke-dasharray': '4 3', 'stroke-width': 1.5 }, H);
-        txt(H, X(F.baseline_acc), 28, `no symmetry prior ${F.baseline_acc.toFixed(1)}%`, { 'text-anchor': 'middle', fill: COL.ink });
-        el('line', { x1: X(F.real_acc), x2: X(F.real_acc), y1: 14, y2: yb, stroke: COL[S.cohort], 'stroke-width': 3 }, H);
-        txt(H, X(F.real_acc), 10, `real mirror ${F.real_acc.toFixed(1)}%`,
-            { 'text-anchor': 'middle', fill: COL[S.cohort], 'font-weight': 600 });
-        txt(H, (x0 + x1) / 2, 207, 'Cross-subject balanced accuracy (mean over people)', { 'text-anchor': 'middle', fill: '#475569' });
-        txt(H, (x0 + x1) / 2, 224, 'Grey bars: 200 random pairings. Left of the dashed line = worse than no prior.',
-            { 'text-anchor': 'middle', 'font-size': 10, fill: '#94a3b8' });
-
-        const n = accs.length, beats = accs.filter((a) => a < F.real_acc).length;
-        const meanFake = accs.reduce((a, b) => a + b, 0) / n;
-        const p = (1 + F.fake_gains.filter((g) => g >= F.real_gain).length) / (n + 1);
-        const who = S.cohort === 'healthy' ? 'Healthy (50 subjects)' : 'Stroke (47 patients)';
-        let s = `<strong>${who}</strong>: real mirror <strong>${F.real_acc.toFixed(1)}%</strong> ` +
-                `(${fmt(F.real_acc - F.baseline_acc)} vs no prior); random mirrors <strong>${meanFake.toFixed(1)}%</strong> on average ` +
-                `(${fmt(meanFake - F.baseline_acc)}). The real mirror beats <strong>${Math.round(100 * beats / n)}%</strong> of them ` +
-                `(p&nbsp;=&nbsp;${p.toFixed(3)}).`;
-        if (cur !== null) s += ` This random pairing: <strong>${cur.toFixed(1)}%</strong>.`;
-        document.getElementById('msym-read').innerHTML = s;
-      }
-
-      function render() {
-        updatePills();
-        const F = D.fake[S.cohort][S.chset];
-        if (!F) return;
-        drawHead(F);
-        drawHist(F);
-      }
-      render();
-    })();
-    </script>
-
-
-
-
-    
-
-        <!-- Interpretability vs. Explainability: Stroke Outcome Prediction -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Interpretability vs. Explainability in Stroke Outcome Prediction</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        A head-to-head comparison of two paradigms for trusting a clinical model: inherently interpretable
-        models (logistic regression, a shallow decision tree) versus post-hoc explanations (SHAP, permutation
-        importance) applied to a black-box gradient-boosted model — trained on identical baseline clinical
-        features from the International Stroke Trial to predict 6-month death/dependency.
-        Beyond just running SHAP on a black box, as most clinical XAI papers do, this project directly tests
-        whether the two paradigms agree, whether the post-hoc explanation is faithful to what the model
-        actually does (against a random-order baseline), and whether it's reproducible across resampled
-        training data.
-      </p>
-
-      <div class="mt-6 grid sm:grid-cols-4 gap-3">
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.8 / 0.8</div>
-          <div class="text-xs text-slate-600">AUROC, interpretable vs. black-box</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.23–0.75</div>
-          <div class="text-xs text-slate-600">Rank correlation across methods</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.8</div>
-          <div class="text-xs text-slate-600">SHAP stability, 50 bootstrap resamples</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">19,435</div>
-          <div class="text-xs text-slate-600">Patients, IST database</div>
-        </div>
-      </div>
-
-      <div class="mt-6 p-5 sm:p-6 bg-white border border-slate-200 rounded-xl">
-        <h3 class="text-base font-semibold text-navy-900 mb-1">Compare Feature Importance Across Methods</h3>
-        <p class="text-xs text-slate-500 mb-5">
-          Same trained models, four ways of asking "what matters" — pick a clinical variable and see how much
-          each method thinks it drives the prediction. Bars are normalized to each method's own strongest
-          feature overall.
-        </p>
-
-        <div id="xai-feature-pills" class="flex flex-wrap gap-2 mb-6"></div>
-        <div id="xai-bars" class="space-y-4"></div>
-        <div id="xai-caption" class="mt-6 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed"></div>
-      </div>
-
-      <script>
-      (function() {
-        const FEATURES = {
-          AGE:       { label: 'Age',                              logreg: 0.548987, tree: 0.294764, shap: 0.433026, perm: 0.065406 },
-          RCONSC_F:  { label: 'Fully conscious at admission',      logreg: 1.151049, tree: 0.084893, shap: 0.375255, perm: 0.039659 },
-          RDEF6_N:   { label: 'No visuospatial deficit',           logreg: 0.269614, tree: 0.469731, shap: 0.306661, perm: 0.013530 },
-          RDEF5_N:   { label: 'No hemianopia (visual field loss)', logreg: 0.160188, tree: 0.0,      shap: 0.229950, perm: 0.010442 },
-          RDEF3_N:   { label: 'No leg/foot weakness',              logreg: 0.312892, tree: 0.131924, shap: 0.200290, perm: 0.013468 },
-          RCT_N:     { label: 'No CT scan before randomisation',   logreg: 0.446066, tree: 0.0,      shap: 0.151097, perm: 0.009527 },
-          SEX_F:     { label: 'Female',                            logreg: 0.303593, tree: 0.0,      shap: 0.101064, perm: 0.003001 },
-          RDEF4_N:   { label: 'No dysphasia (speech difficulty)',  logreg: 0.036705, tree: 0.0,      shap: 0.067031, perm: 0.002389 },
-          RDEF2_N:   { label: 'No arm/hand weakness',              logreg: 0.029334, tree: 0.005525, shap: 0.065658, perm: 0.004004 },
-          RVISINF_N: { label: 'No infarct visible on CT',          logreg: 0.004044, tree: 0.0,      shap: 0.062178, perm: 0.002702 },
-          RDEF1_N:   { label: 'No facial weakness',                logreg: 0.032,    tree: 0.0,      shap: 0.061,    perm: 0.0023 },
-          RATRIAL_Y: { label: 'Atrial fibrillation',               logreg: 0.292,    tree: 0.0,      shap: 0.056,    perm: 0.0013 },
-        };
-
-        const METHOD_MAX = { logreg: 1.622378, tree: 0.469731, shap: 0.433026, perm: 0.065406 };
-        const METHODS = [
-          { key: 'logreg', name: 'LogReg',        color: '#4c72b0' },
-          { key: 'tree',   name: 'Decision Tree', color: '#55a868' },
-          { key: 'shap',   name: 'SHAP',          color: '#c44e52' },
-          { key: 'perm',   name: 'Permutation',   color: '#dd8452' },
-        ];
-
-        const pillsEl = document.getElementById('xai-feature-pills');
-        const barsEl = document.getElementById('xai-bars');
-        const captionEl = document.getElementById('xai-caption');
-        let current = 'AGE';
-
-        Object.keys(FEATURES).forEach((key) => {
-          const btn = document.createElement('button');
-          btn.textContent = FEATURES[key].label;
-          btn.className = 'xai-pill text-xs px-3 py-1.5 rounded-full border transition';
-          btn.dataset.key = key;
-          btn.addEventListener('click', () => { current = key; render(); });
-          pillsEl.appendChild(btn);
-        });
-
-        function updatePills() {
-          document.querySelectorAll('.xai-pill').forEach((btn) => {
-            const active = btn.dataset.key === current;
-            btn.className = 'xai-pill text-xs px-3 py-1.5 rounded-full border transition ' +
-              (active
-                ? 'bg-accent-600 text-white border-accent-600'
-                : 'bg-white text-slate-600 border-slate-200 hover:border-accent-400 hover:text-accent-700');
-          });
-        }
-
-        function makeCaption(key) {
-          const f = FEATURES[key];
-          const norm = {};
-          METHODS.forEach(m => { norm[m.key] = f[m.key] / METHOD_MAX[m.key]; });
-          const vals = METHODS.map(m => norm[m.key]);
-          const spread = Math.max(...vals) - Math.min(...vals);
-
-          if (f.tree === 0 && norm.shap > 0.3) {
-            return `The decision tree assigns <strong>zero</strong> importance to this feature — a depth-4 ` +
-                   `tree only splits on ~5 variables total — while SHAP ranks it meaningfully important for ` +
-                   `the black-box model. Same patients, same outcome, structurally different answers.`;
-          }
-          if (spread > 0.5) {
-            return `Large disagreement here: the four methods rank this feature very differently ` +
-                   `(normalized importance ranges from ${Math.min(...vals).toFixed(2)} to ${Math.max(...vals).toFixed(2)} ` +
-                   `of each method's own maximum).`;
-          }
-          if (spread < 0.15) {
-            return `All four methods broadly agree this feature matters — one of the more consistent ` +
-                   `cases across the interpretable/post-hoc divide.`;
-          }
-          return `Moderate agreement: the post-hoc methods (SHAP, Permutation) track each other closely, ` +
-                 `as expected since both explain the same black-box model; the interpretable models diverge somewhat more.`;
-        }
-
-        function render() {
-          updatePills();
-          barsEl.innerHTML = '';
-          const f = FEATURES[current];
-
-          METHODS.forEach((m) => {
-            const value = f[m.key];
-            const pct = Math.max(2, (value / METHOD_MAX[m.key]) * 100);
-            const row = document.createElement('div');
-            row.innerHTML = `
-              <div class="flex items-center justify-between mb-1">
-                <span class="text-xs font-medium text-slate-600">${m.name}</span>
-                <span class="text-xs text-slate-400">${(value / METHOD_MAX[m.key]).toFixed(2)}</span>
-              </div>
-              <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
-                <div class="h-full rounded-full transition-all duration-300" style="width:${pct}%; background:${m.color};"></div>
-              </div>
-            `;
-            barsEl.appendChild(row);
-          });
-
-          captionEl.innerHTML = makeCaption(current);
-        }
-
-        render();
-      })();
-      </script>
-
-      <p class="text-xs text-slate-400 mt-6">
-        Design directly tests the argument in Rudin,
-        <a href="https://doi.org/10.1038/s42256-019-0048-x" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Nat. Mach. Intell. 2019</a>
-        (prefer interpretable models when they match black-box accuracy), and measures the
-        <a href="https://arxiv.org/abs/2202.01602" target="_blank" rel="noopener" class="text-accent-600 hover:underline">disagreement problem</a>
-        (Krishna et al., 2022) directly on clinical data.
-      </p>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/ist-interpretability-explainability" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
-      </p>
-    </article>
-
-
-        <!-- Motor Imagery Stroke Rehabilitation -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Motor Imagery BCI for Stroke Rehabilitation</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        The goal was to decode left versus right hand motor imagery from 16-channel EEG for upper-extremity stroke rehabilitation. 
-        Implemented Filter Bank CSP and Riemannian-geometry classifiers (tangent-space
-        logistic regression and MDM) alongside a regularized CSP+LDA baseline. 
-      </p>
-
-      <div class="mt-6">
-        <img src="/projects/motor-imagery-bci/results_comparison.png"
-             alt="Bar chart comparing our best model accuracy against published CSP+LDA and TVLDA benchmarks, per patient and therapy phase"
-             class="w-full rounded-lg border border-slate-200 bg-white p-2">
-        <p class="text-xs text-slate-500 mt-2 text-center">Our best model per session vs. both published benchmarks</p>
-        <p class="text-xs text-slate-400 mt-2">
-          Published benchmarks: Sebastián-Romagosa et al.,
-          <a href="https://doi.org/10.3389/fnins.2020.591435" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Front. Neurosci. 2020</a>
-          (CSP+LDA) and Gruenwald et al.,
-          <a href="https://doi.org/10.3389/fnins.2019.00901" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Front. Neurosci. 2019</a>
-          (TVLDA).
-        </p>
-      </div>
-
-      <div class="mt-6">
-        <img src="/projects/motor-imagery-bci/csp_feature_view.png"
-             alt="CSP feature time course on held-out test data, showing right-hand and left-hand imagery separating cleanly in the model's actual feature space after the cue"
-             class="w-full rounded-lg border border-slate-200 bg-white p-2">
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          The classifier's actual feature (CSP log-variance) on held-out test trials — right- and left-hand
-          imagery separate clearly once the model looks at the right spatial combination of channels, not any
-          single electrode.
-        </p>
-      </div>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/motor-imagery-stroke-bci" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
-      </p>
-    </article>
-
-    <!-- Sleep Stage Classification -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Sleep Stage Classification on Sleep-EDF</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        Built an end-to-end pipeline for automatic 5-class sleep-stage scoring (Wake, N1, N2, N3, REM) from
-        polysomnography (EEG, EOG, EMG) on the Sleep-EDF Expanded dataset (22 patients). Engineered ~900
-        time/frequency-domain features per 30s epoch via tsflex, tsfresh, antropy, and YASA band power, with
-        strictly patient-grouped cross-validation throughout — no patient's epochs ever appear in both train and
-        test within a fold. A gradient-boosted model (CatBoost) was tuned with early stopping and statistical
-        feature selection to close an initial overfitting gap, but a simpler linear baseline matched it on accuracy
-        while generalizing better.
-      </p>
-
-      <div class="mt-6 grid sm:grid-cols-4 gap-3">
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.79</div>
-          <div class="text-xs text-slate-600">Macro F1</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">82.8%</div>
-          <div class="text-xs text-slate-600">Accuracy</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.76</div>
-          <div class="text-xs text-slate-600">Cohen's kappa</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">22</div>
-          <div class="text-xs text-slate-600">Patients, grouped CV</div>
-        </div>
-      </div>
-
-      <div class="mt-6">
-        <img src="/projects/sleep-edf/hypnogram.png"
-             alt="Full-night hypnogram for a held-out patient: true sleep stage over time as a solid line, predicted stage as a dashed line"
-             class="w-full rounded-lg border border-slate-200 bg-white p-2">
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          Held-out patient, full night.
-        </p>
-      </div>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/sleep-stage-classification" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
-      </p>
-    </article>
-
-    <!-- Optical Triangulation for Imaging Sulcus Vocalis -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Optical Triangulation for Imaging Sulcus Vocalis</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        Designed a fiber-optic probe concept for detecting sulcus vocalis — a structural vocal-fold abnormality
-        that current laryngoscopy methods struggle to image reliably — using optical triangulation instead of
-        conventional endoscopic imaging. Derived the fiber-angle/cutting-angle relationship analytically from
-        Snell's law and anatomical constraints (5&ndash;10 mm probe diameter, 25&ndash;50 mm target range), then
-        verified it against ZEMAX non-sequential ray-trace simulations across multiple angle combinations, matching
-        analytical and simulated results to within 20% error. Designed the probe body and angled fiber-polishing
-        jigs in SolidWorks and Fusion 360, 3D-printed the jigs, and used them to polish real fiber-optic cable to
-        the target angles, confirmed under microscope.
-      </p>
-
-      <div class="mt-6 grid sm:grid-cols-2 gap-4">
-        <div>
-          <img src="/projects/sulcus-vocalis/probe.jpg"
-               alt="Hand-derived geometry diagram showing d1, d2, theta1 and theta2 relating the fiber angle to the probe's imaging distance"
-               class="w-full rounded-lg border border-slate-200 bg-white p-2">
-          <p class="text-xs text-slate-500 mt-2 text-center">Example of the probe</p>
-        </div>
-        <div>
-          <img src="/projects/sulcus-vocalis/microscope.jpg"
-               alt="Microscope photo of the fiber-optic cable tip after polishing to the designed cutting angle"
-               class="w-full rounded-lg border border-slate-200 bg-white p-2">
-          <p class="text-xs text-slate-500 mt-2 text-center">Polished fiber tip under microscope</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- Eye-tracking robot car -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2023</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Robot Car Movement Controlled by Eye-Tracking</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        Developed a prototype system in which a mobile robot car is steered by eye-gaze direction. 
-        Eye-tracking data were mapped to motion commands, enabling hands-free directional control. 
-        The project combined basic gaze-estimation techniques with embedded motor control and served as an 
-        exploration of human–computer interaction for assistive scenarios.
-      </p>
-    </article>
-
-      <!-- Seizure onset as a bifurcation -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Seizure Onset as a Bifurcation: An Excitatory/Inhibitory Network Model</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        A simulation study that treats seizure onset as a dynamical transition instead of a detection problem.
-        Starting from a published excitatory/inhibitory network (Kim &amp; Nykamp, 2017; originally written for Brian&nbsp;1),
-        I ported it to Brian2 (3,750 conductance-based Morris&ndash;Lecar neurons) and tested whether interneurons that stop
-        firing under strong input (depolarization block) give an abrupt, hysteretic and triggerable switch from a calm state
-        to a seizure-like state as the external drive is ramped up and back down. At a fixed drive the network sits in either
-        state depending on its history, and a 100&nbsp;ms pulse moves it from one to the other for good. A two-population rate
-        model built from the measured neuron responses reproduces the two stable states and the unstable state between them,
-        and removing the interneuron shutdown removes most of the bistable window. Adding a slow adaptation variable makes the
-        high state switch itself off and repeat.
-      </p>
-
-      <div class="mt-6 grid sm:grid-cols-4 gap-3">
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">27 &rarr; 200 Hz</div>
-          <div class="text-xs text-slate-600">Excitatory rate at the same drive: calm vs. seizure-like, set by history</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">23&ndash;35%</div>
-          <div class="text-xs text-slate-600">Interneurons silent and depolarized on the seizure-like branch</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">&asymp; 90%</div>
-          <div class="text-xs text-slate-600">Bistable window lost without interneuron shutdown (rate model)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">&le; 0.01 kHz</div>
-          <div class="text-xs text-slate-600">Spread of the jump thresholds across 3 random seeds</div>
-        </div>
-      </div>
-
-      <!-- Hero animation (MP4). To use the GIF instead, replace the <video> element with:
-           <img src="/projects/seizure-bifurcation/hero.gif" loading="lazy" alt="..." class="w-full rounded-lg border border-slate-200 bg-white"> -->
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">The transition</h3>
-        <video class="w-full rounded-lg border border-slate-200 bg-white"
-               autoplay loop muted playsinline controls preload="metadata"
-               poster="/projects/seizure-bifurcation/hero_poster.jpg"
-               aria-label="Animation of the spiking network going from a calm state to a seizure-like state and back as the input drive is raised and lowered">
-          <source src="/projects/seizure-bifurcation/hero.mp4" type="video/mp4">
-        </video>
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          Left: spikes of excitatory (blue) and inhibitory (orange) neurons. Top right: population rates and the input drive
-          (dashed, right axis). Bottom right: excitatory rate against drive. Raising the drive makes the network jump to a
-          high-rate state near 1.5&nbsp;kHz as the interneurons shut down; lowering it, the state persists until about
-          0.56&nbsp;kHz, so between the two thresholds the same input can give either state
-          (E<sub>K</sub>&nbsp;=&nbsp;&minus;90&nbsp;mV).
-        </p>
-      </div>
-
-      <p class="text-xs text-slate-400 mt-6">
-        A replication and extension of Kim &amp; Nykamp,
-        <a href="https://doi.org/10.1007/s10827-017-0647-7" target="_blank" rel="noopener" class="text-accent-600 hover:underline">J. Comput. Neurosci. 2017</a>
-        (ModelDB&nbsp;189346). The rate model is a simplification built from the measured neuron responses; the spiking network
-        is the reference. The repository also contains an exploratory, qualitative comparison with public human Utah-array
-        recordings (one subject, three seizures;
-        <a href="https://www.nature.com/articles/s41597-025-05026-4" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Scientific Data 2025</a>,
-        EBRAINS): compatible with, but not a validation of, the model.
-      </p>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/seizure-bifurcation" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
-        full <a href="https://github.com/MutluEray/seizure-bifurcation/blob/main/WRITEUP.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
-        with methods, controls and limitations.
-      </p>
-    </article>
-
-
-    <!-- Explainable knowledge-graph drug repurposing -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Explainable Knowledge-Graph Drug Repurposing for Alzheimer's and Parkinson's Disease</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        A pipeline that ranks drug-repurposing hypotheses for Alzheimer's and Parkinson's disease on Hetionet
-        (47,031 nodes, 2.25M edges) and shows the evidence behind each one. Degree-weighted path counts over three
-        compound-to-disease metapaths are combined with a z-score against 100 degree-preserving permutations of the
-        graph, so the ranking is not simply a list of promiscuous drugs. Each shortlisted candidate is explained by its
-        actual supporting paths, retrieved with SPARQL (rdflib) from an RDF export of the graph, and audited with
-        gene-level counterfactuals: remove the gene driving a candidate and see where it lands. On a 58-disease benchmark
-        the consensus score reaches AUROC 0.76 against 0.70 for a "number of bound genes" baseline.
-      </p>
-
-      <div class="mt-6 grid sm:grid-cols-4 gap-3">
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.76 vs 0.70</div>
-          <div class="text-xs text-slate-600">AUROC, consensus vs degree baseline</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">2.25M</div>
-          <div class="text-xs text-slate-600">Edges, all 1,552 &times; 137 pairs scored in &lt;1 s</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">16 / 16</div>
-          <div class="text-xs text-slate-600">SPARQL path weights equal the matrix score</div>
-        </div>
-      </div>
-
-      <!-- Benchmark figure -->
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">Results</h3>
-        <img src="/projects/kg-drug-repurposing/fig_benchmark.png"
-             alt="Pan-disease benchmark: AUROC of DWPC, permutation z-score and consensus scores versus a degree baseline, and each score's dependence on the number of bound genes"
-             class="w-full rounded-lg border border-slate-200 bg-white p-2">
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          58 diseases, 731 known treatments. Left: AUROC with 95% bootstrap CI. Right: accuracy against dependence on
-          how many genes a compound binds &mdash; the consensus keeps most of the accuracy with none of the popularity effect.
-        </p>
-      </div>
-
-      <!-- Path-graph carousel -->
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">Why the graph suggests a compound</h3>
-        <div class="relative rounded-lg border border-slate-200 bg-white overflow-hidden">
-          <img id="kg-carousel-img" src="" alt="Layered path graph from the compound through bound genes and pathways to disease-associated genes and the disease"
-               class="w-full h-auto block">
-          <button id="kg-carousel-prev" type="button" aria-label="Previous candidate"
-                  class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-          </button>
-          <button id="kg-carousel-next" type="button" aria-label="Next candidate"
-                  class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-3 gap-2 sm:gap-3">
-          <div class="flex items-center gap-3 text-xs text-slate-500 flex-wrap">
-            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#4c78a8"></span>compound</span>
-            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#9ecae9"></span>bound gene</span>
-            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#a1d99b"></span>pathway</span>
-            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#fdae6b"></span>disease gene</span>
-            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#e6550d"></span>disease</span>
+          <a class="row-thumb" href="/projects/wearable-electrode-placement.html" tabindex="-1" aria-hidden="true"><img src="/projects/wearable-electrode-placement/figures/site_placement.png" alt="" loading="lazy"></a>
+        </li>
+        <li class="row has-thumb">
+          <div class="row-year">2025</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/ssvep-bci.html">High-Speed SSVEP Speller: Benchmarking Detectors on a 40-Target BCI</a></h3>
+            <p class="row-text">Three established SSVEP detectors compared on a 40-target speller benchmark: 98.3% accuracy from 2 s of EEG, about 229 bits/min at best.</p>
+            <p class="row-note">DTU course project</p>
           </div>
-          <span id="kg-carousel-cap" class="text-sm font-semibold text-accent-700 sm:text-right"></span>
-        </div>
-        <p id="kg-carousel-note" class="text-xs text-slate-500 mt-2"></p>
-      </div>
-
-      <!-- Interactive explorer -->
-      <details class="mt-8 border border-slate-200 rounded-xl p-4">
-        <summary class="cursor-pointer text-base font-semibold text-navy-900">Try the interactive path explorer</summary>
-        <p class="text-xs text-slate-500 mt-3 mb-3 leading-relaxed">
-          Pick a disease and a candidate, toggle the three metapaths, and click a node to see the paths through it.
-          Candidates excluded by triage are listed with the reason.
-          <a href="/projects/kg-drug-repurposing/explorer.html" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Open full page</a>.
-        </p>
-        <iframe src="/projects/kg-drug-repurposing/explorer.html?theme=light&embed=1" loading="lazy"
-                title="Interactive path explorer for knowledge-graph drug repurposing"
-                class="w-full h-[900px] rounded-lg border border-slate-200 bg-white"></iframe>
-      </details>
-
-      <p class="text-xs text-slate-400 mt-6">
-        Data: Hetionet v1.0, Himmelstein et al.,
-        <a href="https://doi.org/10.7554/eLife.26726" target="_blank" rel="noopener" class="text-accent-600 hover:underline">eLife 2017</a>
-        (content CC0; individual source licenses apply). Graph evidence prioritises hypotheses; it does not validate them.
-      </p>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/hetionet-repurposing" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
-        full <a href="https://github.com/MutluEray/hetionet-repurposing/blob/main/writeup.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
-        with limitations and a literature triage of the top candidates.
-      </p>
-    </article>
-
-    <script>
-    (function() {
-      const cases = [
-        { file: 'path_alzheimer_Topiramate.png',  cap: 'Topiramate \u00b7 Alzheimer\u2019s',
-          note: 'Rank 2; 13 without its top gene, so several genes support it (kainate/AMPA-receptor genes). Documented cognitive side effects make it a questionable candidate.' },
-        { file: 'path_alzheimer_Lithium.png',     cap: 'Lithium \u00b7 Alzheimer\u2019s',
-          note: 'Rank 7; 8 without its top gene (GSK3A). Mechanistically coherent, but clinical trials have been mixed.' },
-        { file: 'path_parkinson_Dronedarone.png', cap: 'Dronedarone \u00b7 Parkinson\u2019s',
-          note: 'Rank 1, but 93% of its direct evidence is one gene (HCN3): rank 162 without it. A fragile top hit.' },
-        { file: 'path_parkinson_Sunitinib.png',   cap: 'Sunitinib \u00b7 Parkinson\u2019s',
-          note: 'Rank 3; 6 without its top gene. Stable only because it binds 132 genes: breadth, not specificity.' }
-      ];
-      const basePath = '/projects/kg-drug-repurposing/';
-      let i = 0;
-
-      const img = document.getElementById('kg-carousel-img');
-      const cap = document.getElementById('kg-carousel-cap');
-      const note = document.getElementById('kg-carousel-note');
-
-      function render() {
-        img.src = basePath + cases[i].file;
-        img.alt = 'Path graph for ' + cases[i].cap;
-        cap.textContent = cases[i].cap;
-        note.textContent = cases[i].note;
-      }
-
-      document.getElementById('kg-carousel-prev').addEventListener('click', () => {
-        i = (i - 1 + cases.length) % cases.length;
-        render();
-      });
-      document.getElementById('kg-carousel-next').addEventListener('click', () => {
-        i = (i + 1) % cases.length;
-        render();
-      });
-
-      render();
-    })();
-    </script>
-
-
-        <!-- fMRI GLM: Calibration vs. Reliability -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Does a Better-Calibrated fMRI Model Reproduce Better? A From-Scratch GLM Audit</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        Implemented a first-level and group-level fMRI general linear model from scratch in NumPy — design matrix
-        construction, AR(1) noise prewhitening, group inference — and validated it against nilearn and against
-        simulations with known ground truth. Found that standard per-voxel AR(1) prewhitening carries a small
-        anticonservative bias (present in nilearn's own implementation too), implemented a documented correction,
-        and confirmed the effect on two independent public datasets. Preprocessed raw multi-session data with
-        fMRIPrep and tested whether better statistical calibration also means a more reproducible activation map
-        across scanning sessions. It doesn't, cleanly: whole-brain-corrected significance can differ sharply
-        between two sessions even where the underlying response looks similar, consistent with the low
-        test-retest reliability widely reported for task-fMRI.
-      </p>
-
-      <div class="mt-6">
-        <img src="/projects/fmri-glm/finger_test_retest.png"
-             alt="Two rows of brain slices showing the Finger versus other-conditions contrast in the same subject's right precentral cortex, for a test session and a retest six months later, plotted with identical slice position, threshold and color scale"
-             class="w-full rounded-lg border border-slate-200 bg-white p-2">
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          Same subject, same task, same statistical threshold and color scale, two scanning sessions ~6 months
-          apart. The peak response near right precentral/postcentral cortex looks comparable in both sessions
-          here — but after correcting for ~228,000 whole-brain comparisons, only the top session's cluster
-          survived at FDR q&lt;.05 (314 voxels vs. 4).
-        </p>
-      </div>
-
-      <p class="text-xs text-slate-400 mt-6">
-        Test-retest reliability benchmark: Elliott et al.,
-        <a href="https://doi.org/10.1177/0956797620916786" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Psychological Science 2020</a>
-        (mean ICC ≈ 0.40 across 90 task-fMRI studies), with commentary from
-        <a href="https://doi.org/10.1177/0956797621989730" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Kragel et al., 2021</a>.
-        Prewhitening bias correction follows Worsley et al., NeuroImage 2002.
-      </p>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/fmri-language-glm" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
-      </p>
-    </article>
-
-     <!-- Diabetes Prediction -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2022</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Diabetes Prediction with Exploratory Data Analysis</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        Developed a complete machine-learning pipeline for early prediction of diabetes mellitus on the PIMA Indian 
-        Diabetes Dataset (768 patients, 8 clinical features). After thorough exploratory data analysis, feature 
-        engineering and normalization, five supervised algorithms were trained and compared: Naïve Bayes, Decision Tree, 
-        K-Nearest Neighbors, Support Vector Machine and an Adaptive Boosting ensemble. With optimized hyperparameters, 
-        KNN achieved the highest performance (accuracy and F1 ≈ 0.99 on the held-out test set).
-      </p>
-      <p class="text-sm text-slate-500">
-        Code available on <a href="https://github.com/MutluEray/Diabetes-Prediction" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>.
-      </p>
-            <div class="mt-6 p-5 sm:p-6 bg-white border border-slate-200 rounded-xl">
-        <h3 class="text-base font-semibold text-navy-900 mb-1">Interactive Risk Calculator</h3>
-        <p class="text-xs text-slate-500 mb-5">
-          Real machine learning, zero server calls — this model runs entirely on your device.
-          Just 4 questions, all things you actually know off the top of your head.
-        </p>
-
-        <div id="diabetes-calc" class="space-y-5">
-          <!-- rows injected here by JS -->
-        </div>
-
-        <div class="mt-6 pt-5 border-t border-slate-100">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-sm font-medium text-navy-900">Predicted risk</span>
-            <span id="risk-pct" class="text-lg font-bold text-accent-700">—</span>
+          <a class="row-thumb" href="/projects/ssvep-bci.html" tabindex="-1" aria-hidden="true"><img src="/projects/ssvep-bci/speller_poster.png" alt="" loading="lazy"></a>
+        </li>
+        <li class="row has-thumb">
+          <div class="row-year">2021</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/hierarchical-bci-planning.html">How Much Autonomy Does a Sparse BCI Channel Need? Hierarchical Latent Planning for Assistive Manipulation</a></h3>
+            <p class="row-text">A simulation study of how much robot autonomy a noisy, low-bandwidth BCI command channel needs to manipulate objects.</p>
+            <p class="row-note">Re-analysed and written up in 2026</p>
           </div>
-          <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
-            <div id="risk-bar" class="h-full bg-accent-500 transition-all duration-200" style="width:0%"></div>
+          <a class="row-thumb" href="/projects/hierarchical-bci-planning.html" tabindex="-1" aria-hidden="true"><img src="/projects/hierarchical-bci-planning/effort_vs_success_final_v2.png" alt="" loading="lazy"></a>
+        </li>
+        <li class="row has-thumb">
+          <div class="row-year">2023</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/motor-imagery-bci.html">Motor Imagery BCI for Stroke Rehabilitation</a></h3>
+            <p class="row-text">Left- versus right-hand motor-imagery decoding for stroke rehabilitation with filter-bank CSP and Riemannian classifiers.</p>
+            <p class="row-note">g.tec BCI &amp; Neurotechnology Spring School hackathon</p>
           </div>
-          <p id="risk-label" class="text-xs text-slate-500 mt-2"></p>
-        </div>
-
-        <p class="text-[11px] text-slate-400 mt-5 leading-relaxed">
-          Trained on the public PIMA Indian Diabetes dataset for demonstration purposes only. This is not a diagnostic
-          tool and should not be used to make health decisions — consult a medical professional for that.
-        </p>
-      </div>
-
-      <script>
-      (function() {
-        const FEATURES = [
-          {
-            key: 'Pregnancies', label: 'Pregnancies', unit: '',
-            min: 0, max: 17, step: 1, default: 3,
-            info: 'Number of times pregnant.'
-          },
-          {
-            key: 'Glucose', label: 'Glucose', unit: 'mg/dL',
-            min: 44, max: 200, step: 1, default: 117,
-            info: 'Plasma glucose 2 hours after a 75g oral glucose tolerance test (OGTT), not a random finger-prick reading. A fasting or home glucometer value is a rough substitute — ask your doctor about an OGTT for an exact figure.'
-          },
-          {
-            key: 'BMI', label: 'BMI', unit: '',
-            min: 15, max: 60, step: 0.1, default: 32.3,
-            info: 'Body Mass Index = weight (kg) / height (m)\u00B2. Underweight < 18.5, normal 18.5\u201324.9, overweight 25\u201329.9, obese \u2265 30. Easy to compute yourself if you know your height and weight.'
-          },
-          {
-            key: 'Age', label: 'Age', unit: 'years',
-            min: 21, max: 90, step: 1, default: 29,
-            info: 'The slider tops out at 90 for readability \u2014 type an exact value in the box if you are older.'
-          },
-        ];
-
-        const MEAN = [3.8599, 122.0521, 32.5277, 33.1515];
-        const STD  = [3.3986, 30.5226, 6.9158, 11.64];
-        const COEF = [0.322, 0.99856, 0.48301, 0.06688];
-        const INTERCEPT = -0.70784;
-
-        const container = document.getElementById('diabetes-calc');
-        const values = {};
-
-        FEATURES.forEach((f) => {
-          values[f.key] = f.default;
-
-          const row = document.createElement('div');
-          row.innerHTML = `
-            <div class="flex items-center justify-between mb-1">
-              <div class="flex items-center gap-1.5">
-                <label class="text-sm text-slate-700">${f.label}${f.unit ? ' <span class=\"text-slate-400\">(' + f.unit + ')</span>' : ''}</label>
-                <button type="button" class="info-btn w-4 h-4 rounded-full bg-slate-200 text-slate-600 text-[10px] font-bold leading-none flex items-center justify-center hover:bg-accent-100 hover:text-accent-700 transition" aria-label="Info">i</button>
-              </div>
-              <input type="number" min="${f.min}" max="${f.max * 3}" step="${f.step}" value="${f.default}"
-                     id="num-${f.key}"
-                     class="w-20 text-sm text-right font-medium text-navy-900 border border-slate-200 rounded px-1.5 py-0.5 focus:outline-none focus:ring-1 focus:ring-accent-500">
-            </div>
-            <div class="info-panel hidden text-xs text-slate-500 bg-slate-50 border border-slate-100 rounded-md p-2 mb-2 leading-relaxed">
-              ${f.info}
-            </div>
-            <input type="range" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.default}"
-                   id="slider-${f.key}"
-                   class="w-full h-2 rounded-lg appearance-none bg-slate-200 accent-teal-600 cursor-pointer">
-          `;
-          container.appendChild(row);
-
-          const slider = row.querySelector(`#slider-${f.key}`);
-          const num = row.querySelector(`#num-${f.key}`);
-          const infoBtn = row.querySelector('.info-btn');
-          const infoPanel = row.querySelector('.info-panel');
-
-          infoBtn.addEventListener('click', () => infoPanel.classList.toggle('hidden'));
-
-          function setValue(v) {
-            const clamped = Math.max(f.min, Math.min(f.max * 3, v));
-            values[f.key] = clamped;
-            num.value = Number.isInteger(f.step) ? Math.round(clamped) : clamped.toFixed(2);
-            // slider clamps visually at its max even if the number input goes higher
-            slider.value = Math.min(clamped, f.max);
-            compute();
-          }
-
-          slider.addEventListener('input', (e) => setValue(parseFloat(e.target.value)));
-          num.addEventListener('change', (e) => setValue(parseFloat(e.target.value) || f.default));
-        });
-
-        function sigmoid(z) { return 1 / (1 + Math.exp(-z)); }
-
-        function compute() {
-          let z = INTERCEPT;
-          FEATURES.forEach((f, i) => {
-            const standardized = (values[f.key] - MEAN[i]) / STD[i];
-            z += standardized * COEF[i];
-          });
-          const p = sigmoid(z);
-          const pct = Math.round(p * 100);
-
-          document.getElementById('risk-pct').textContent = pct + '%';
-          const barEl = document.getElementById('risk-bar');
-          barEl.style.width = pct + '%';
-          const labelEl = document.getElementById('risk-label');
-
-          if (pct < 30) {
-            barEl.className = 'h-full bg-accent-500 transition-all duration-200';
-            labelEl.textContent = 'Lower predicted likelihood relative to this dataset.';
-          } else if (pct < 60) {
-            barEl.className = 'h-full bg-amber-500 transition-all duration-200';
-            labelEl.textContent = 'Moderate predicted likelihood relative to this dataset.';
-          } else {
-            barEl.className = 'h-full bg-rose-500 transition-all duration-200';
-            labelEl.textContent = 'Higher predicted likelihood relative to this dataset.';
-          }
-        }
-
-        compute();
-      })();
-      </script>
-    </article>
-
-        <!-- Hierarchical latent planning for BCI-controlled assistive manipulation (simulation study) -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2021</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">How Much Autonomy Does a Sparse BCI Channel Need? Hierarchical Latent Planning for Assistive Manipulation</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        A simulation study of how much robot autonomy a noisy, low-bandwidth BCI intent channel needs. A simulated user
-        repeats one high-level command (which disc, which zone) through a decoder with a given accuracy; a Bayesian belief
-        over the possible intents commits once it is confident; and a CAVIN-inspired two-level latent planner (effect codes
-        and motion codes, trained on self-supervised interaction data in MuJoCo, planning with CEM/MPC) fills in the
-        multi-step manipulation. I compare it with direct low-level control (four directions plus grip, same noisy decoder)
-        and with a scripted oracle executor that separates decoding errors from planning errors. The planner needs 1&ndash;5
-        commands per task instead of 31&ndash;71, and succeeds more often than direct control when decoder accuracy is about
-        0.7 or lower; above about 0.9, direct control succeeds more often, and the planner trails the oracle throughout.
-        It also fails at pushing, which I report together with four attempted fixes that did not work. One round of
-        on-policy data aggregation raised success from 0.78/0.73 to 0.86/0.80 (unblocked/blocked, fresh scenes).
-      </p>
-
-      <div class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed">
-        <strong>The BCI signal is simulated, not EEG</strong>: a discrete command vocabulary with a confusion matrix set by
-        decoder accuracy. The arm is cosmetic, grasping is a kinematic weld, observations are low-dimensional states, and
-        there is no user study. The write-up spells out what that does and does not support.
-      </div>
-
-      <div class="mt-6 grid sm:grid-cols-4 gap-3">
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">1&ndash;5 vs 31&ndash;71</div>
-          <div class="text-xs text-slate-600">BCI commands per task: planner vs direct control</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">14&ndash;42&times; fewer</div>
-          <div class="text-xs text-slate-600">BCI commands than direct control at the same decoder accuracy</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">0.69&ndash;0.88</div>
-          <div class="text-xs text-slate-600">Planner success over decoder accuracy 0.5&ndash;1.0 (direct control: 0.15&ndash;1.00)</div>
-        </div>
-      </div>
-
-      <!-- Best-performing session (disclosed as such) -->
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">Three tasks in a row from sparse, noisy commands</h3>
-        <video class="w-full rounded-lg border border-slate-200 bg-black"
-               autoplay loop muted playsinline controls preload="metadata"
-               aria-label="Simulated robot arm completing three fetch tasks from sparse noisy BCI commands, with a side panel showing the planner's predicted subgoals, the belief over intents and the running task tally">
-          <source src="/projects/hierarchical-bci-planning/default_session3.mp4" type="video/mp4">
-        </video>
-        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-          Session 3 of 4, the best of four fixed-seed sessions at decoder accuracy 0.8: 3 of 3 tasks completed with 6 BCI
-          commands in total.
-        </p>
-        <p class="text-xs text-slate-400 mt-2">
-          Left: the simulated scene. Right: the planner's view (dashed circles are its predicted subgoals for the commanded
-          disc), the belief over intents as commands arrive, the task tally, and the user input so far compared with direct
-          control.
-        </p>
-      </div>
-
-      <p class="text-xs text-slate-400 mt-6">
-        Method follows the two-level latent planning idea of Fang et al.,
-        <a href="https://arxiv.org/abs/1910.13395" target="_blank" rel="noopener" class="text-accent-600 hover:underline">CoRL 2019</a>
-        (CAVIN), re-implemented on low-dimensional states rather than reproduced. Task-level hierarchical BCI control with
-        noisy commands is an established idea (for example Chung et al.,
-        <a href="https://ijcai.org/Abstract/11/277" target="_blank" rel="noopener" class="text-accent-600 hover:underline">IJCAI 2011</a>);
-        this study contributes a controlled simulation sweep of success and user input against decoder accuracy, and documented negative results.
-        Limitations: simulated decoder and user, abstract manipulation, planner reliability below the oracle, pushing unsolved, no user study.
-      </p>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/bci-hierarchical-planning" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
-        full <a href="https://github.com/MutluEray/bci-hierarchical-planning/blob/main/docs/WRITEUP.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">write-up</a>
-        with methods, ablations, the pushing investigation and limitations.
-      </p>
-    </article>
-
-    <!-- NeuroAI: EEG alignment with deep vision models -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2021</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Do Deep Vision Models Predict Human EEG? A Brain-Score-Style Layer Analysis on THINGS-EEG2</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        A Brain-Score-style analysis adapted from primate recordings to human EEG. For every layer of ImageNet-trained
-        ResNet-50 and ViT-B/16, a cross-validated ridge regression maps the layer&rsquo;s activations to the EEG response to the
-        same image (THINGS-EEG2: 9 subjects, 17 occipito-parietal channels, 16,540 training and 200 held-out test images).
-        Predictivity is scored on the held-out images and divided by the EEG&rsquo;s own split-half reliability. To see what
-        &ldquo;learned&rdquo; adds, every comparison includes an untrained ResNet-50 (with calibrated normalization) and a
-        non-learned Gabor-energy + Fourier-power baseline. Uncertainty comes from a two-way bootstrap over subjects and test
-        images, and each model&rsquo;s layer is chosen leave-one-subject-out. Because readout choices moved the first results,
-        I added a spatial-pooling sensitivity analysis and report where the conclusions change.
-      </p>
-
-      <ul class="list-disc pl-5 text-slate-700 leading-relaxed mb-4 space-y-1.5 text-[15px]">
-        <li>Trained networks predict EEG far better than an untrained network (+0.21 normalized r overall), and the advantage is larger after 200&nbsp;ms (+0.24) than before (+0.17).</li>
-        <li>An untrained ResNet-50 is statistically indistinguishable from a Gabor/Fourier baseline: much of the early predictivity is low-level image structure.</li>
-        <li>The depth profile depends on the metric: the sharp early peak favours early-to-mid layers, sustained late predictivity favours deeper ones.</li>
-        <li>ResNet-50 and ViT-B/16 are comparable. How the ViT is read out matters more (&asymp;&nbsp;+0.05 for a spatial vs. mean-token readout), and the early-window sign of their difference flips at the finest readout.</li>
+          <a class="row-thumb" href="/projects/motor-imagery-bci.html" tabindex="-1" aria-hidden="true"><img src="/projects/motor-imagery-bci/csp_feature_view.png" alt="" loading="lazy"></a>
+        </li>
+        <li class="row">
+          <div class="row-year">2025 – 2026</div>
+          <div>
+            <h3 class="row-title">Context-Aware Speller</h3>
+            <p class="row-text">A gaze speller that listens to the conversation partner and suggests letters, words and whole sentences.</p>
+            <p class="row-note">Own start-up concept</p><details><summary>Read the summary</summary><p>A context-aware assistive speller designed for individuals with severe speech and motor impairments (e.g. ALS). Unlike traditional letter-by-letter spellers, it listens to the conversational partner, obtains user approval of the context, and then generates AI-powered suggestions at letter, word and full-sentence levels. The user retains full control and selects via gaze (or other pointing methods). Early evaluation on 50 real-life communication scenarios showed approximately 1.7× faster response times (≈40 % reduction) compared with a conventional eye-tracking speller operating at ~15 words per minute.</p></details>
+          </div>
+          
+        </li>
       </ul>
-
-      <div class="mt-6 grid sm:grid-cols-4 gap-3">
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">51% / 82%</div>
-          <div class="text-xs text-slate-600">Top-1 / top-5, EEG &rarr; viewed image among 200 (chance 0.5% / 2.5%)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">+0.21</div>
-          <div class="text-xs text-slate-600">Trained minus untrained ResNet-50, normalized r (95% CI 0.18&ndash;0.23)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">&asymp; 0</div>
-          <div class="text-xs text-slate-600">Untrained ResNet-50 vs. Gabor/Fourier baseline (&minus;0.01, CI includes 0)</div>
-        </div>
-        <div class="px-4 py-3 bg-accent-50 rounded-lg text-center">
-          <div class="text-lg font-bold text-navy-900">+0.02</div>
-          <div class="text-xs text-slate-600">ResNet-50 minus ViT-B/16 at a matched readout: small, readout-dependent</div>
-        </div>
-      </div>
-
-      <div class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed">
-        <strong>Scope</strong>: an encoding analysis on public data with simple linear models. The decoding views below are
-        illustrative: they use 17 channels, linear read-outs and EEG averaged over 80 repetitions, so they are <strong>not</strong>
-        comparable to deep decoders on 63-channel data. Only two supervised architectures were tested, so this says nothing
-        general about CNNs versus transformers.
-      </div>
-
-      <!-- Interactive layer explorer -->
-      <div class="mt-8 p-5 sm:p-6 bg-white border border-slate-200 rounded-xl">
-        <h3 class="text-base font-semibold text-navy-900 mb-1">Explore: which layers predict the EEG?</h3>
-        <p class="text-xs text-slate-500 mb-4">
-          Pick a response window and compare layer depth for ResNet-50 and ViT-B/16 (4&times;4 spatial readout, mean over 9
-          subjects). Hover a point for its value. The dashed line is the best layer of the non-learned Gabor/Fourier baseline.
-        </p>
-        <div id="eeg-pills" class="flex flex-wrap gap-2 mb-4"></div>
-        <svg id="eeg-chart" viewBox="0 0 640 300" class="w-full h-auto" role="img"
-             aria-label="EEG predictivity against relative network depth for ResNet-50 and ViT-B/16 in the selected response window"></svg>
-        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 mt-2">
-          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#0072B2"></span>ResNet-50 (ImageNet)</span>
-          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full" style="background:#D55E00"></span>ViT-B/16 (ImageNet)</span>
-          <span class="inline-flex items-center gap-1"><span class="inline-block w-5 border-t-2 border-dashed" style="border-color:#CC79A7"></span>Gabor/Fourier baseline</span>
-        </div>
-        <div id="eeg-caption" class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed"></div>
-        <p class="text-[11px] text-slate-400 mt-3">
-          ResNet-50 is shown from conv1 to layer3_5 (layer4 was not extracted at this readout), so its curve ends before the
-          network&rsquo;s output; ViT-B/16 is shown for 8 of its 12 blocks.
-        </p>
-      </div>
-
-      <!-- Effect sizes -->
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">Effect sizes</h3>
-        <img src="/projects/neuroai-eeg-alignment/figC_effect_sizes.png" loading="lazy"
-             alt="Forest plot of differences in normalized EEG predictivity between model pairs for early, late and all response windows, with 95% confidence intervals"
-             class="w-full rounded-lg border border-slate-200 bg-white p-2">
-        <p class="text-xs text-slate-500 mt-2 text-center">
-          Differences in normalized r with 95% CIs from a two-way bootstrap over subjects and test images (2&times;2 readout;
-          each model at its leave-one-subject-out best layer).
-        </p>
-      </div>
-
-      <!-- Decoding carousel -->
-      <div class="mt-8">
-        <h3 class="text-base font-semibold text-navy-900 mb-3">Layer &times; time, and decoding views</h3>
-        <div class="relative rounded-lg border border-slate-200 bg-white overflow-hidden">
-          <img id="eeg-car-img" src="" alt="" class="w-full max-h-[720px] object-contain block mx-auto bg-white">
-          <button id="eeg-car-prev" type="button" aria-label="Previous figure"
-                  class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-          </button>
-          <button id="eeg-car-next" type="button" aria-label="Next figure"
-                  class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-accent-600 hover:border-accent-500 flex items-center justify-center">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-        <div class="flex items-center justify-between mt-3">
-          <span id="eeg-car-cap" class="text-sm font-semibold text-accent-700"></span>
-          <span id="eeg-car-count" class="text-xs text-slate-400"></span>
-        </div>
-        <p id="eeg-car-note" class="text-xs text-slate-500 mt-2 leading-relaxed"></p>
-      </div>
-
-      <p class="text-xs text-slate-400 mt-6">
-        Data: THINGS-EEG2, Gifford et al.,
-        <a href="https://doi.org/10.1016/j.neuroimage.2022.119754" target="_blank" rel="noopener" class="text-accent-600 hover:underline">NeuroImage 2022</a>
-        (CC-BY 4.0), authors&rsquo; preprocessed epochs. Method follows the Brain-Score idea (Schrimpf et al., 2018, 2020). The analysis adds untrained and low-level baselines, a noise-ceiling normalization, an image-level bootstrap and a readout-sensitivity analysis.
-        Limitations: 9 subjects and 200 test images, 17 channels, overlapping responses in the 5&nbsp;Hz image stream, and
-        layer-selection uncertainty is not propagated into the intervals.
-      </p>
-
-      <p class="text-sm text-slate-500 mt-6">
-        Code available on <a href="https://github.com/MutluEray/neuroai-eeg-alignment" target="_blank" rel="noopener" class="text-accent-600 hover:underline">GitHub</a>;
-        the <a href="https://github.com/MutluEray/neuroai-eeg-alignment/blob/main/README.md" target="_blank" rel="noopener" class="text-accent-600 hover:underline">README</a>
-        has methods, all result tables and limitations.
-      </p>
-    </article>
-
-    <script>
-    (function() {
-      // Layer explorer: means over 9 subjects, 4x4 readout. x = relative depth in the FULL network
-      // (ResNet-50: position among 19 stages; ViT-B/16: (block-1)/11).
-      const RES = [
-        { l: 'conv1',    x: 0.0000, all: 0.410, early: 0.542, late: 0.288, peak: 0.637 },
-        { l: 'layer1_0', x: 0.0556, all: 0.502, early: 0.640, late: 0.380, peak: 0.702 },
-        { l: 'layer1_1', x: 0.1111, all: 0.512, early: 0.646, late: 0.393, peak: 0.701 },
-        { l: 'layer1_2', x: 0.1667, all: 0.522, early: 0.656, late: 0.402, peak: 0.708 },
-        { l: 'layer2_0', x: 0.2222, all: 0.537, early: 0.661, late: 0.423, peak: 0.700 },
-        { l: 'layer2_1', x: 0.2778, all: 0.551, early: 0.678, late: 0.439, peak: 0.707 },
-        { l: 'layer2_2', x: 0.3333, all: 0.566, early: 0.692, late: 0.453, peak: 0.712 },
-        { l: 'layer2_3', x: 0.3889, all: 0.572, early: 0.697, late: 0.460, peak: 0.713 },
-        { l: 'layer3_0', x: 0.4444, all: 0.579, early: 0.688, late: 0.479, peak: 0.690 },
-        { l: 'layer3_1', x: 0.5000, all: 0.591, early: 0.696, late: 0.492, peak: 0.694 },
-        { l: 'layer3_2', x: 0.5556, all: 0.597, early: 0.696, late: 0.503, peak: 0.691 },
-        { l: 'layer3_3', x: 0.6111, all: 0.606, early: 0.696, late: 0.516, peak: 0.684 },
-        { l: 'layer3_4', x: 0.6667, all: 0.615, early: 0.698, late: 0.530, peak: 0.678 },
-        { l: 'layer3_5', x: 0.7222, all: 0.617, early: 0.694, late: 0.538, peak: 0.668 }
-      ];
-      const VIT = [
-        { l: 'block01', x: 0.0000, all: 0.479, early: 0.616, late: 0.361, peak: 0.682 },
-        { l: 'block02', x: 0.0909, all: 0.527, early: 0.662, late: 0.408, peak: 0.703 },
-        { l: 'block03', x: 0.1818, all: 0.554, early: 0.680, late: 0.440, peak: 0.706 },
-        { l: 'block04', x: 0.2727, all: 0.576, early: 0.694, late: 0.468, peak: 0.705 },
-        { l: 'block05', x: 0.3636, all: 0.593, early: 0.698, late: 0.495, peak: 0.696 },
-        { l: 'block07', x: 0.5455, all: 0.600, early: 0.676, late: 0.519, peak: 0.661 },
-        { l: 'block09', x: 0.7273, all: 0.596, early: 0.648, late: 0.533, peak: 0.628 },
-        { l: 'block12', x: 1.0000, all: 0.572, early: 0.629, late: 0.501, peak: 0.618 }
-      ];
-      const BASE = { all: 0.403, early: 0.535, late: 0.306, peak: 0.613 };
-      const METRICS = [
-        { key: 'early', label: 'Early (50\u2013200 ms)', axis: 'normalized r',
-          note: 'Early response: both models are best at early-to-mid layers. The ResNet-50 curve is a plateau (about 0.69\u20130.70) from layer2_3 onward; the ViT peaks at block05 and then declines.' },
-        { key: 'late', label: 'Late (200\u2013500 ms)', axis: 'normalized r',
-          note: 'Late response: predictivity keeps rising with depth (ResNet-50 layer3_5, ViT block09), and the ViT declines at its final block. Learned features matter most here.' },
-        { key: 'peak', label: 'Peak over time', axis: 'raw r (channel mean)',
-          note: 'Peak over time: the sharpest early peak is best predicted by early-to-mid layers (ResNet-50 layer2_3, ViT block03); deeper layers lose it.' },
-        { key: 'all', label: 'All (50\u2013400 ms)', axis: 'normalized r',
-          note: 'Averaged over 50\u2013400 ms the best layers are ResNet-50 layer3_5 and ViT block07, a compromise between the early peak and the late response.' }
-      ];
-
-      const W = 640, H = 300, L = 58, R = 18, T = 14, B = 46;
-      const pw = W - L - R, ph = H - T - B;
-      let current = 'early';
-      const pillsEl = document.getElementById('eeg-pills');
-      const svg = document.getElementById('eeg-chart');
-      const capEl = document.getElementById('eeg-caption');
-
-      METRICS.forEach((m) => {
-        const btn = document.createElement('button');
-        btn.textContent = m.label;
-        btn.className = 'eeg-pill text-xs px-3 py-1.5 rounded-full border transition';
-        btn.dataset.key = m.key;
-        btn.addEventListener('click', () => { current = m.key; render(); });
-        pillsEl.appendChild(btn);
-      });
-
-      function updatePills() {
-        document.querySelectorAll('.eeg-pill').forEach((btn) => {
-          const active = btn.dataset.key === current;
-          btn.className = 'eeg-pill text-xs px-3 py-1.5 rounded-full border transition ' +
-            (active
-              ? 'bg-accent-600 text-white border-accent-600'
-              : 'bg-white text-slate-600 border-slate-200 hover:border-accent-400 hover:text-accent-700');
-        });
-      }
-
-      function xpos(x) { return L + x * pw; }
-
-      function render() {
-        updatePills();
-        const k = current;
-        const metric = METRICS.find((m) => m.key === k);
-        const vals = RES.map((d) => d[k]).concat(VIT.map((d) => d[k]), [BASE[k]]);
-        let lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
-        const pad = (hi - lo) * 0.12;
-        lo -= pad; hi += pad;
-        const ypos = (v) => T + (1 - (v - lo) / (hi - lo)) * ph;
-        let s = '';
-
-        for (let i = 0; i <= 4; i++) {
-          const v = lo + (hi - lo) * i / 4, y = ypos(v);
-          s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y + '" y2="' + y + '" stroke="#e2e8f0" stroke-width="1"/>';
-          s += '<text x="' + (L - 8) + '" y="' + (y + 4) + '" text-anchor="end" font-size="11" fill="#64748b">' + v.toFixed(2) + '</text>';
-        }
-        [0, 0.2, 0.4, 0.6, 0.8, 1].forEach((t) => {
-          s += '<text x="' + xpos(t) + '" y="' + (H - B + 18) + '" text-anchor="middle" font-size="11" fill="#64748b">' + t.toFixed(1) + '</text>';
-        });
-        s += '<text x="' + (L + pw / 2) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="11" fill="#475569">relative depth in the full network</text>';
-        s += '<text transform="rotate(-90 13 ' + (T + ph / 2) + ')" x="13" y="' + (T + ph / 2) + '" text-anchor="middle" font-size="11" fill="#475569">' + metric.axis + '</text>';
-
-        const by = ypos(BASE[k]);
-        s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + by + '" y2="' + by + '" stroke="#CC79A7" stroke-width="1.6" stroke-dasharray="6 4"/>';
-        s += '<text x="' + (W - R) + '" y="' + (by - 5) + '" text-anchor="end" font-size="10.5" fill="#CC79A7">Gabor/Fourier baseline</text>';
-
-        [[RES, '#0072B2', 'ResNet-50', -11], [VIT, '#D55E00', 'ViT-B/16', 19]].forEach((series) => {
-          const data = series[0], color = series[1], name = series[2], dy = series[3];
-          const pts = data.map((d) => xpos(d.x).toFixed(1) + ',' + ypos(d[k]).toFixed(1)).join(' ');
-          s += '<polyline points="' + pts + '" fill="none" stroke="' + color + '" stroke-width="2.5" stroke-linejoin="round"/>';
-          let best = 0;
-          data.forEach((d, i) => { if (d[k] > data[best][k]) best = i; });
-          data.forEach((d, i) => {
-            const r = i === best ? 6 : 3.5;
-            s += '<circle cx="' + xpos(d.x).toFixed(1) + '" cy="' + ypos(d[k]).toFixed(1) + '" r="' + r + '" fill="' + color +
-                 '" stroke="#fff" stroke-width="' + (i === best ? 2 : 1) + '"><title>' + name + ' ' + d.l + ': ' + d[k].toFixed(3) + '</title></circle>';
-          });
-          const b = data[best];
-          s += '<text x="' + xpos(b.x).toFixed(1) + '" y="' + (ypos(b[k]) + dy).toFixed(1) + '" text-anchor="middle" font-size="11" font-weight="600" fill="' + color + '">' + b.l + '</text>';
-        });
-
-        svg.innerHTML = s;
-        capEl.innerHTML = metric.note;
-      }
-      render();
-    })();
-
-    (function() {
-      const cases = [
-        { file: 'figB_layer_by_time.png', cap: 'When does each layer predict the EEG?',
-          alt: 'Layer by time heatmaps of noise-ceiling-normalized EEG predictivity for ResNet-50, ViT-B/16 and an untrained ResNet-50',
-          note: 'Noise-ceiling-normalized predictivity by layer and time (4\u00d74 readout; dotted lines mark stimulus onset and the next image at 200 ms). The early peak near 100 ms is shared with the untrained network; sustained predictivity after 200 ms is where learned features stand out.' },
-        { file: 'figE_identification.png', cap: 'Identifying the viewed image from EEG',
-          alt: 'Top-1 identification accuracy by layer, response window and number of averaged repetitions',
-          note: 'Observed EEG matched to the EEG predicted by each layer\u2019s encoding model, 200-way (chance 0.5%). Up to 69% top-1 with 80 averaged repetitions (ResNet-50 layer3_5); roughly half that with 10. Untrained ResNet-50 and Gabor/Fourier baselines are shown at both repetition counts.' },
-        { file: 'figF2_retrieval_gallery.png', cap: 'Decoding EEG into feature space',
-          alt: 'Examples of viewed images and the three images retrieved from EEG through ResNet-50 layer3_5 features',
-          note: 'Ridge from EEG to ResNet-50 layer3_5 features, then retrieval among the 200 test images: 51% top-1 and 82% top-5 over subjects (best untrained layer: about 14% / 35%). Examples are random, not cherry-picked; green frames mark the exact image, and errors are often semantic or colour neighbours.' },
-        { file: 'figG_reconstructions.png', cap: 'What can be linearly recovered?',
-          alt: '16 by 16 linear reconstructions of viewed images from EEG time windows and from network layers',
-          note: 'Linear 16\u00d716 reconstructions. EEG carries coarse luminance and colour layout (r \u2248 0.27, 0.30 and 0.24 in the 50\u2013150, 150\u2013250 and 250\u2013350 ms windows; 0.12 at 350\u2013450 ms) \u2014 not object detail. Network layers, shown as a reference, reach r = 0.68\u20130.87.' },
-        { file: 'decoding.gif', cap: 'Reconstruction building up over time (animation)',
-          alt: 'Animation of 16 by 16 reconstructions from EEG appearing window by window from 50 to 450 ms',
-          note: 'The same reconstructions as an animation: each 100 ms EEG window adds a reconstruction as the time bar advances; the last frame shows the ResNet-50 layer3_5 reference. Random test images of one subject, not cherry-picked.' }
-      ];
-      const basePath = '/projects/neuroai-eeg-alignment/';
-      let i = 0;
-      const img = document.getElementById('eeg-car-img');
-      const cap = document.getElementById('eeg-car-cap');
-      const note = document.getElementById('eeg-car-note');
-      const count = document.getElementById('eeg-car-count');
-
-      function render() {
-        img.src = basePath + cases[i].file;
-        img.alt = cases[i].alt;
-        cap.textContent = cases[i].cap;
-        note.textContent = cases[i].note;
-        count.textContent = (i + 1) + ' / ' + cases.length;
-      }
-      document.getElementById('eeg-car-prev').addEventListener('click', () => { i = (i - 1 + cases.length) % cases.length; render(); });
-      document.getElementById('eeg-car-next').addEventListener('click', () => { i = (i + 1) % cases.length; render(); });
-      render();
-    })();
-    </script>    
-
-    <!-- Obstacle-avoiding robot -->
-    <article class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-8">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="text-xs font-medium bg-accent-50 text-accent-700 px-2.5 py-1 rounded-full">2021</span>
-      </div>
-      <h2 class="text-xl font-semibold text-navy-900 mb-4">Obstacle-Avoiding Robot with Arduino</h2>
-      <p class="text-slate-700 leading-relaxed mb-4">
-        Designed and built an autonomous obstacle-avoiding mobile robot as part of IEEE YTU Student Branch activities. 
-        The system used ultrasonic sensors for distance measurement and an Arduino microcontroller for real-time 
-        control of differential-drive motors. Basic reactive navigation logic enabled the robot to detect and 
-        circumnavigate obstacles in unstructured indoor environments.
-      </p>
-    </article>
-
+    </section>
+    <section class="theme" id="models" aria-labelledby="models-h">
+      <div class="theme-head"><div>
+        <h2 class="section-title" id="models-h" style="margin:0">Brain models and neural decoding</h2>
+        <p>What brain signals contain, how far a model of the brain can be trusted, and what changes after injury.</p>
+      </div></div>
+      <ul class="rows">
+        <li class="row has-thumb">
+          <div class="row-year">2023</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/stroke-mirror-symmetry.html">Does the Brain&rsquo;s Left&ndash;Right Symmetry Survive Stroke? Testing a Mirror-Symmetry Prior for Motor-Imagery BCIs</a></h3>
+            <p class="row-text">Does a left–right symmetry prior still help motor-imagery decoding after stroke? In healthy subjects it carries real information; in patients it no longer helps.</p>
+            <p class="row-note">Re-analysed and written up in 2026</p>
+          </div>
+          <a class="row-thumb" href="/projects/stroke-mirror-symmetry.html" tabindex="-1" aria-hidden="true"><img src="/projects/stroke-mirror-symmetry/figures/fig_mirror_concept.png" alt="" loading="lazy"></a>
+        </li>
+        <li class="row has-thumb">
+          <div class="row-year">2021</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/neuroai-eeg-alignment.html">Do Deep Vision Models Predict Human EEG? A Brain-Score-Style Layer Analysis on THINGS-EEG2</a></h3>
+            <p class="row-text">Which layers of ResNet-50 and ViT-B/16 predict human EEG responses to images, and how much of that is low-level image structure?</p>
+            <p class="row-note">Re-analysed and written up in 2026</p>
+          </div>
+          <a class="row-thumb" href="/projects/neuroai-eeg-alignment.html" tabindex="-1" aria-hidden="true"><img src="/projects/neuroai-eeg-alignment/figF2_retrieval_gallery.png" alt="" loading="lazy"></a>
+        </li>
+        <li class="row has-thumb">
+          <div class="row-year">2022</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/seizure-bifurcation.html">Seizure Onset as a Bifurcation: An Excitatory/Inhibitory Network Model</a></h3>
+            <p class="row-text">Seizure onset modelled as a switch between two stable states in a 3,750-neuron excitatory/inhibitory network.</p>
+            <p class="row-note">Re-analysed and written up in 2026</p>
+          </div>
+          <a class="row-thumb" href="/projects/seizure-bifurcation.html" tabindex="-1" aria-hidden="true"><img src="/projects/seizure-bifurcation/hero_poster.jpg" alt="" loading="lazy"></a>
+        </li>
+        <li class="row has-thumb">
+          <div class="row-year">2022</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/fmri-glm.html">Does a Better-Calibrated fMRI Model Reproduce Better? A From-Scratch GLM Audit</a></h3>
+            <p class="row-text">An fMRI GLM written from scratch and validated against nilearn, asking whether better calibration also means better test–retest reproducibility.</p>
+            <p class="row-note">Re-analysed and written up in 2026</p>
+          </div>
+          <a class="row-thumb" href="/projects/fmri-glm.html" tabindex="-1" aria-hidden="true"><img src="/projects/fmri-glm/finger_test_retest.png" alt="" loading="lazy"></a>
+        </li>
+        <li class="row has-thumb">
+          <div class="row-year">2023</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/sleep-edf.html">Sleep Stage Classification on Sleep-EDF</a></h3>
+            <p class="row-text">Five-class sleep staging from polysomnography with patient-grouped cross-validation; a linear baseline matched gradient boosting.</p>
+            
+          </div>
+          <a class="row-thumb" href="/projects/sleep-edf.html" tabindex="-1" aria-hidden="true"><img src="/projects/sleep-edf/hypnogram.png" alt="" loading="lazy"></a>
+        </li>
+      </ul>
+    </section>
+    <section class="theme" id="clinical" aria-labelledby="clinical-h">
+      <div class="theme-head"><div>
+        <h2 class="section-title" id="clinical-h" style="margin:0">Clinical AI that can be checked</h2>
+        <p>Prediction from clinical records, images and knowledge graphs, with explanations tested rather than assumed.</p>
+      </div></div>
+      <ul class="rows">
+        <li class="row">
+          <div class="row-year">2023</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/ist-interpretability-explainability.html">Interpretability vs. Explainability in Stroke Outcome Prediction</a></h3>
+            <p class="row-text">Interpretable models against post-hoc explanations for 19,435 stroke patients: do the two agree, and are the explanations stable?</p>
+            <p class="row-note">Re-analysed and written up in 2026</p>
+          </div>
+          
+        </li>
+        <li class="row has-thumb">
+          <div class="row-year">2024</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/stroke-lesion-unet.html">3D U-Net for Ischemic Stroke Lesion Segmentation</a></h3>
+            <p class="row-text">A patch-based 3D U-Net that segments ischemic stroke lesions from diffusion MRI.</p>
+            <p class="row-note">Re-analysed and written up in 2026</p>
+          </div>
+          <a class="row-thumb" href="/projects/stroke-lesion-unet.html" tabindex="-1" aria-hidden="true"><img src="/projects/stroke-lesion-unet/sub-strokecase0237.png" alt="" loading="lazy"></a>
+        </li>
+        <li class="row has-thumb">
+          <div class="row-year">2022</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/kg-drug-repurposing.html">Explainable Knowledge-Graph Drug Repurposing for Alzheimer's and Parkinson's Disease</a></h3>
+            <p class="row-text">Ranking drug-repurposing hypotheses for Alzheimer’s and Parkinson’s on a knowledge graph, with the evidence paths behind each one.</p>
+            <p class="row-note">Re-analysed and written up in 2026</p>
+          </div>
+          <a class="row-thumb" href="/projects/kg-drug-repurposing.html" tabindex="-1" aria-hidden="true"><img src="/projects/kg-drug-repurposing/path_alzheimer_Lithium.png" alt="" loading="lazy"></a>
+        </li>
+        <li class="row">
+          <div class="row-year">2022</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/diabetes-prediction.html">Diabetes Prediction with Exploratory Data Analysis</a></h3>
+            <p class="row-text">Five classifiers compared on the PIMA Indian Diabetes dataset, with a risk calculator that runs in the browser.</p>
+            
+          </div>
+          
+        </li>
+      </ul>
+    </section>
+    <section class="theme" id="hardware" aria-labelledby="hardware-h">
+      <div class="theme-head"><div>
+        <h2 class="section-title" id="hardware-h" style="margin:0">Hardware and early engineering</h2>
+        <p>Optics, embedded control and robotics from my undergraduate years.</p>
+      </div></div>
+      <ul class="rows">
+        <li class="row has-thumb">
+          <div class="row-year">2023</div>
+          <div>
+            <h3 class="row-title"><a href="/projects/sulcus-vocalis.html">Optical Triangulation for Imaging Sulcus Vocalis</a></h3>
+            <p class="row-text">A fiber-optic probe concept for imaging a vocal-fold abnormality by optical triangulation, from Snell’s law to polished fiber.</p>
+            <p class="row-note">Internship, ITU Electro-Optic Devices Laboratory</p>
+          </div>
+          <a class="row-thumb" href="/projects/sulcus-vocalis.html" tabindex="-1" aria-hidden="true"><img src="/projects/sulcus-vocalis/microscope.jpg" alt="" loading="lazy"></a>
+        </li>
+        <li class="row">
+          <div class="row-year">2023</div>
+          <div>
+            <h3 class="row-title">Robot Car Movement Controlled by Eye-Tracking</h3>
+            <p class="row-text">A mobile robot steered by the direction of the user’s gaze.</p>
+            <details><summary>Read the summary</summary><p>Developed a prototype system in which a mobile robot car is steered by eye-gaze direction. Eye-tracking data were mapped to motion commands, enabling hands-free directional control. The project combined basic gaze-estimation techniques with embedded motor control and served as an exploration of human–computer interaction for assistive scenarios.</p></details>
+          </div>
+          
+        </li>
+        <li class="row">
+          <div class="row-year">2021</div>
+          <div>
+            <h3 class="row-title">Obstacle-Avoiding Robot with Arduino</h3>
+            <p class="row-text">An autonomous robot that avoids obstacles with ultrasonic sensing, built in the IEEE YTU Student Branch.</p>
+            <p class="row-note">IEEE YTU Student Branch</p><details><summary>Read the summary</summary><p>Designed and built an autonomous obstacle-avoiding mobile robot as part of IEEE YTU Student Branch activities. The system used ultrasonic sensors for distance measurement and an Arduino microcontroller for real-time control of differential-drive motors. Basic reactive navigation logic enabled the robot to detect and circumnavigate obstacles in unstructured indoor environments.</p></details>
+          </div>
+          
+        </li>
+      </ul>
+    </section>
+      <div style="height:3rem"></div>
+    </div>
   </main>
-
-  <footer class="border-t border-slate-200 bg-slate-50 mt-12">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-500 flex flex-col sm:flex-row justify-between gap-2">
-      <p>© 2026 Eray Mutlu</p>
-      <p>Copenhagen, Denmark</p>
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p style="margin:0">&copy; 2026 Eray Mutlu &nbsp;/&nbsp; Bursa, Türkiye</p>
+      <nav aria-label="Profiles">
+        <a href="mailto:eraymutlu00@hotmail.com">Email</a>
+        <a href="https://scholar.google.com/citations?user=A43iN0MAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://github.com/MutluEray" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/eray-mutlu/" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
     </div>
   </footer>
-
-  <script>
-    document.getElementById('menu-btn').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-  </script>
+  <script src="/assets/site.js"></script>
 </body>
 </html>
