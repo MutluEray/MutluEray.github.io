@@ -235,3 +235,7 @@ body.site {
 .site-footer a { color: var(--ink-2); }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* News list on the home page: one wide column */
+.dated.news { max-width: 48rem; }
+.dated.news li { grid-template-columns: 7rem minmax(0, 1fr); }
