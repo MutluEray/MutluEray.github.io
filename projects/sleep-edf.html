@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Stage Classification on Sleep-EDF | Eray Mutlu</title>
+  <meta name="description" content="Five-class sleep staging from polysomnography with patient-grouped cross-validation; a linear baseline matched gradient boosting.">
+  <meta property="og:title" content="Sleep Stage Classification on Sleep-EDF | Eray Mutlu">
+  <meta property="og:description" content="Five-class sleep staging from polysomnography with patient-grouped cross-validation; a linear baseline matched gradient boosting.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mutlueray.github.io/projects/sleep-edf.html">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/tailwind.css">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="bar">
+        <a href="/" class="wordmark">Eray Mutlu</a>
+        <nav class="nav-links" aria-label="Main">
+          <a href="/research.html">Research</a>
+          <a href="/projects.html" aria-current="page">Projects</a>
+          <a href="/publications.html">Publications</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/documents/Resume.pdf" class="nav-cv" target="_blank" rel="noopener">CV (PDF)</a>
+        </nav>
+        <button id="menu-btn" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+      <nav id="mobile-menu" class="mobile-menu" aria-label="Main (mobile)">
+        <a href="/research.html">Research</a>
+        <a href="/projects.html" aria-current="page">Projects</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/documents/Resume.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <div class="project-head">
+        <p class="crumbs"><a href="/projects.html">Projects</a> &nbsp;/&nbsp; <a href="/projects.html#models">Brain models and neural decoding</a></p>
+        <h1 class="page-title">Sleep Stage Classification on Sleep-EDF</h1>
+        <p class="lead">Five-class sleep staging from polysomnography with patient-grouped cross-validation; a linear baseline matched gradient boosting.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://github.com/MutluEray/sleep-stage-classification" target="_blank" rel="noopener">Code on GitHub</a>
+      </div>
+        <dl class="meta-row">
+        <div><dt>Year</dt><dd>2023</dd></div>
+        <div><dt>Data</dt><dd>Sleep-EDF Expanded (22 patients)</dd></div>
+        </dl>
+      </div>
+      <div class="project-body">
+      
+      
+      <p class="text-slate-700 leading-relaxed mb-4">
+        Built an end-to-end pipeline for automatic 5-class sleep-stage scoring (Wake, N1, N2, N3, REM) from
+        polysomnography (EEG, EOG, EMG) on the Sleep-EDF Expanded dataset (22 patients). Engineered ~900
+        time/frequency-domain features per 30s epoch via tsflex, tsfresh, antropy, and YASA band power, with
+        strictly patient-grouped cross-validation throughout — no patient's epochs ever appear in both train and
+        test within a fold. A gradient-boosted model (CatBoost) was tuned with early stopping and statistical
+        feature selection to close an initial overfitting gap, but a simpler linear baseline matched it on accuracy
+        while generalizing better.
+      </p>
+
+      <div class="stats mt-2 grid sm:grid-cols-4 gap-3">
+        <div class="stat">
+          <div class="stat-value">0.79</div>
+          <div class="stat-label">Macro F1</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">82.8%</div>
+          <div class="stat-label">Accuracy</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">0.76</div>
+          <div class="stat-label">Cohen's kappa</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">22</div>
+          <div class="stat-label">Patients, grouped CV</div>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <img src="/projects/sleep-edf/hypnogram.png"
+             alt="Full-night hypnogram for a held-out patient: true sleep stage over time as a solid line, predicted stage as a dashed line"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          Held-out patient, full night.
+        </p>
+      </div>
+
+      
+    </div>
+      
+      <nav class="pager" aria-label="More projects">
+        <a class="prev" href="/projects/fmri-glm.html"><span class="dir">Previous project</span><br><span class="name">fMRI GLM: calibration vs. reliability</span></a>
+        <a class="next" href="/projects/ist-interpretability-explainability.html"><span class="dir">Next project</span><br><span class="name">Interpretability vs. explainability in stroke</span></a>
+      </nav>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p style="margin:0">&copy; 2026 Eray Mutlu &nbsp;/&nbsp; Bursa, Türkiye</p>
+      <nav aria-label="Profiles">
+        <a href="mailto:eraymutlu00@hotmail.com">Email</a>
+        <a href="https://scholar.google.com/citations?user=A43iN0MAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://github.com/MutluEray" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/eray-mutlu/" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

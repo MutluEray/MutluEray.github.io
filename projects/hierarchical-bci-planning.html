@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Much Autonomy Does a Sparse BCI Channel Need? Hierarchical Latent Planning for Assistive Manipulation | Eray Mutlu</title>
+  <meta name="description" content="A simulation study of how much robot autonomy a noisy, low-bandwidth BCI command channel needs to manipulate objects.">
+  <meta property="og:title" content="How Much Autonomy Does a Sparse BCI Channel Need? Hierarchical Latent Planning for Assistive Manipulation | Eray Mutlu">
+  <meta property="og:description" content="A simulation study of how much robot autonomy a noisy, low-bandwidth BCI command channel needs to manipulate objects.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mutlueray.github.io/projects/hierarchical-bci-planning.html">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/tailwind.css">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="bar">
+        <a href="/" class="wordmark">Eray Mutlu</a>
+        <nav class="nav-links" aria-label="Main">
+          <a href="/research.html">Research</a>
+          <a href="/projects.html" aria-current="page">Projects</a>
+          <a href="/publications.html">Publications</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/documents/Resume.pdf" class="nav-cv" target="_blank" rel="noopener">CV (PDF)</a>
+        </nav>
+        <button id="menu-btn" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+      <nav id="mobile-menu" class="mobile-menu" aria-label="Main (mobile)">
+        <a href="/research.html">Research</a>
+        <a href="/projects.html" aria-current="page">Projects</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/documents/Resume.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <div class="project-head">
+        <p class="crumbs"><a href="/projects.html">Projects</a> &nbsp;/&nbsp; <a href="/projects.html#wearable">Wearable and assistive neurotechnology</a></p>
+        <h1 class="page-title">How Much Autonomy Does a Sparse BCI Channel Need? Hierarchical Latent Planning for Assistive Manipulation</h1>
+        <p class="lead">A simulation study of how much robot autonomy a noisy, low-bandwidth BCI command channel needs to manipulate objects.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://github.com/MutluEray/bci-hierarchical-planning" target="_blank" rel="noopener">Code on GitHub</a>
+        <a class="btn" href="https://github.com/MutluEray/bci-hierarchical-planning/blob/main/docs/WRITEUP.md" target="_blank" rel="noopener">Read the full write-up</a>
+      </div>
+        <dl class="meta-row">
+        <div><dt>Year</dt><dd>2021</dd></div>
+        <div><dt>Data</dt><dd>Simulation (MuJoCo)</dd></div>
+        <div><dt>Methods</dt><dd>Latent planning, CEM/MPC, Bayesian intent inference</dd></div>
+        <div><dt>Status</dt><dd>Re-analysed and written up in 2026</dd></div>
+        </dl>
+      </div>
+      <div class="project-body">
+      
+      
+      <p class="text-slate-700 leading-relaxed mb-4">
+        A simulation study of how much robot autonomy a noisy, low-bandwidth BCI intent channel needs. A simulated user
+        repeats one high-level command (which disc, which zone) through a decoder with a given accuracy; a Bayesian belief
+        over the possible intents commits once it is confident; and a CAVIN-inspired two-level latent planner (effect codes
+        and motion codes, trained on self-supervised interaction data in MuJoCo, planning with CEM/MPC) fills in the
+        multi-step manipulation. I compare it with direct low-level control (four directions plus grip, same noisy decoder)
+        and with a scripted oracle executor that separates decoding errors from planning errors. The planner needs 1&ndash;5
+        commands per task instead of 31&ndash;71, and succeeds more often than direct control when decoder accuracy is about
+        0.7 or lower; above about 0.9, direct control succeeds more often, and the planner trails the oracle throughout.
+        It also fails at pushing, which I report together with four attempted fixes that did not work. One round of
+        on-policy data aggregation raised success from 0.78/0.73 to 0.86/0.80 (unblocked/blocked, fresh scenes).
+      </p>
+
+      <div class="mt-4 p-3 bg-accent-50 border border-accent-100 rounded-lg text-xs text-slate-700 leading-relaxed">
+        <strong>The BCI signal is simulated, not EEG</strong>: a discrete command vocabulary with a confusion matrix set by
+        decoder accuracy. The arm is cosmetic, grasping is a kinematic weld, observations are low-dimensional states, and
+        there is no user study. The write-up spells out what that does and does not support.
+      </div>
+
+      <div class="stats mt-2 grid sm:grid-cols-2 gap-3">
+        <div class="stat">
+          <div class="stat-value">1&ndash;5 vs 31&ndash;71</div>
+          <div class="stat-label">BCI commands per task: planner vs direct control</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">0.69&ndash;0.88</div>
+          <div class="stat-label">Planner success over decoder accuracy 0.5&ndash;1.0 (direct control: 0.15&ndash;1.00)</div>
+        </div>
+      </div>
+
+      <!-- Best-performing session (disclosed as such) -->
+      <div class="mt-8">
+        <h3 class="text-base font-semibold text-navy-900 mb-3">Three tasks in a row from sparse, noisy commands</h3>
+        <video class="w-full rounded-lg border border-slate-200 bg-black"
+               autoplay loop muted playsinline controls preload="metadata"
+               aria-label="Simulated robot arm completing three fetch tasks from sparse noisy BCI commands, with a side panel showing the planner's predicted subgoals, the belief over intents and the running task tally">
+          <source src="/projects/hierarchical-bci-planning/default_session3.mp4" type="video/mp4">
+        </video>
+        <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+          Session 3 of 4, the best of four fixed-seed sessions at decoder accuracy 0.8: 3 of 3 tasks completed with 6 BCI
+          commands in total.
+        </p>
+        <p class="text-xs text-slate-500 mt-2">
+          Left: the simulated scene. Right: the planner's view (dashed circles are its predicted subgoals for the commanded
+          disc), the belief over intents as commands arrive, the task tally, and the user input so far compared with direct
+          control.
+        </p>
+      </div>
+
+      <p class="text-xs text-slate-500 mt-6">
+        Method follows the two-level latent planning idea of Fang et al.,
+        <a href="https://arxiv.org/abs/1910.13395" target="_blank" rel="noopener" class="text-accent-600 hover:underline">CoRL 2019</a>
+        (CAVIN), re-implemented on low-dimensional states rather than reproduced. Task-level hierarchical BCI control with
+        noisy commands is an established idea (for example Chung et al.,
+        <a href="https://ijcai.org/Abstract/11/277" target="_blank" rel="noopener" class="text-accent-600 hover:underline">IJCAI 2011</a>);
+        this study contributes a controlled simulation sweep of success and user input against decoder accuracy, and documented negative results.
+        Limitations: simulated decoder and user, abstract manipulation, planner reliability below the oracle, pushing unsolved, no user study.
+      </p>
+
+      
+    </div>
+      
+      <nav class="pager" aria-label="More projects">
+        <a class="prev" href="/projects/ssvep-bci.html"><span class="dir">Previous project</span><br><span class="name">High-speed SSVEP speller</span></a>
+        <a class="next" href="/projects/motor-imagery-bci.html"><span class="dir">Next project</span><br><span class="name">Motor-imagery BCI for stroke rehabilitation</span></a>
+      </nav>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p style="margin:0">&copy; 2026 Eray Mutlu &nbsp;/&nbsp; Bursa, Türkiye</p>
+      <nav aria-label="Profiles">
+        <a href="mailto:eraymutlu00@hotmail.com">Email</a>
+        <a href="https://scholar.google.com/citations?user=A43iN0MAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://github.com/MutluEray" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/eray-mutlu/" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

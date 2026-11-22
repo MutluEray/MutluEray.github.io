@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motor Imagery BCI for Stroke Rehabilitation | Eray Mutlu</title>
+  <meta name="description" content="Left- versus right-hand motor-imagery decoding for stroke rehabilitation with filter-bank CSP and Riemannian classifiers.">
+  <meta property="og:title" content="Motor Imagery BCI for Stroke Rehabilitation | Eray Mutlu">
+  <meta property="og:description" content="Left- versus right-hand motor-imagery decoding for stroke rehabilitation with filter-bank CSP and Riemannian classifiers.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mutlueray.github.io/projects/motor-imagery-bci.html">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/tailwind.css">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="bar">
+        <a href="/" class="wordmark">Eray Mutlu</a>
+        <nav class="nav-links" aria-label="Main">
+          <a href="/research.html">Research</a>
+          <a href="/projects.html" aria-current="page">Projects</a>
+          <a href="/publications.html">Publications</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/documents/Resume.pdf" class="nav-cv" target="_blank" rel="noopener">CV (PDF)</a>
+        </nav>
+        <button id="menu-btn" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+      <nav id="mobile-menu" class="mobile-menu" aria-label="Main (mobile)">
+        <a href="/research.html">Research</a>
+        <a href="/projects.html" aria-current="page">Projects</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/documents/Resume.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <div class="project-head">
+        <p class="crumbs"><a href="/projects.html">Projects</a> &nbsp;/&nbsp; <a href="/projects.html#wearable">Wearable and assistive neurotechnology</a></p>
+        <h1 class="page-title">Motor Imagery BCI for Stroke Rehabilitation</h1>
+        <p class="lead">Left- versus right-hand motor-imagery decoding for stroke rehabilitation with filter-bank CSP and Riemannian classifiers.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://github.com/MutluEray/motor-imagery-stroke-bci" target="_blank" rel="noopener">Code on GitHub</a>
+      </div>
+        <dl class="meta-row">
+        <div><dt>Year</dt><dd>2023</dd></div>
+        <div><dt>Type</dt><dd>g.tec BCI &amp; Neurotechnology Spring School hackathon</dd></div>
+        <div><dt>Data</dt><dd>16-channel EEG, stroke patients</dd></div>
+        </dl>
+      </div>
+      <div class="project-body">
+      
+      
+      <p class="text-slate-700 leading-relaxed mb-4">
+        The goal was to decode left versus right hand motor imagery from 16-channel EEG for upper-extremity stroke rehabilitation. 
+        Implemented Filter Bank CSP and Riemannian-geometry classifiers (tangent-space
+        logistic regression and MDM) alongside a regularized CSP+LDA baseline. 
+      </p>
+
+      <div class="mt-6">
+        <img src="/projects/motor-imagery-bci/results_comparison.png"
+             alt="Bar chart comparing our best model accuracy against published CSP+LDA and TVLDA benchmarks, per patient and therapy phase"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">Our best model per session vs. both published benchmarks</p>
+        <p class="text-xs text-slate-500 mt-2">
+          Published benchmarks: Sebastián-Romagosa et al.,
+          <a href="https://doi.org/10.3389/fnins.2020.591435" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Front. Neurosci. 2020</a>
+          (CSP+LDA) and Gruenwald et al.,
+          <a href="https://doi.org/10.3389/fnins.2019.00901" target="_blank" rel="noopener" class="text-accent-600 hover:underline">Front. Neurosci. 2019</a>
+          (TVLDA).
+        </p>
+      </div>
+
+      <div class="mt-6">
+        <img src="/projects/motor-imagery-bci/csp_feature_view.png"
+             alt="CSP feature time course on held-out test data, showing right-hand and left-hand imagery separating cleanly in the model's actual feature space after the cue"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          The classifier's actual feature (CSP log-variance) on held-out test trials — right- and left-hand
+          imagery separate clearly once the model looks at the right spatial combination of channels, not any
+          single electrode.
+        </p>
+      </div>
+
+      
+    </div>
+      
+      <nav class="pager" aria-label="More projects">
+        <a class="prev" href="/projects/hierarchical-bci-planning.html"><span class="dir">Previous project</span><br><span class="name">How much autonomy does a sparse BCI need?</span></a>
+        <a class="next" href="/projects/stroke-mirror-symmetry.html"><span class="dir">Next project</span><br><span class="name">Does left–right symmetry survive stroke?</span></a>
+      </nav>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p style="margin:0">&copy; 2026 Eray Mutlu &nbsp;/&nbsp; Bursa, Türkiye</p>
+      <nav aria-label="Profiles">
+        <a href="mailto:eraymutlu00@hotmail.com">Email</a>
+        <a href="https://scholar.google.com/citations?user=A43iN0MAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://github.com/MutluEray" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/eray-mutlu/" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

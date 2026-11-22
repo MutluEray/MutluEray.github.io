@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High-Speed SSVEP Speller: Benchmarking Detectors on a 40-Target BCI | Eray Mutlu</title>
+  <meta name="description" content="Three established SSVEP detectors compared on a 40-target speller benchmark: 98.3% accuracy from 2 s of EEG, about 229 bits/min at best.">
+  <meta property="og:title" content="High-Speed SSVEP Speller: Benchmarking Detectors on a 40-Target BCI | Eray Mutlu">
+  <meta property="og:description" content="Three established SSVEP detectors compared on a 40-target speller benchmark: 98.3% accuracy from 2 s of EEG, about 229 bits/min at best.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mutlueray.github.io/projects/ssvep-bci.html">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/tailwind.css">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="bar">
+        <a href="/" class="wordmark">Eray Mutlu</a>
+        <nav class="nav-links" aria-label="Main">
+          <a href="/research.html">Research</a>
+          <a href="/projects.html" aria-current="page">Projects</a>
+          <a href="/publications.html">Publications</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/documents/Resume.pdf" class="nav-cv" target="_blank" rel="noopener">CV (PDF)</a>
+        </nav>
+        <button id="menu-btn" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+      <nav id="mobile-menu" class="mobile-menu" aria-label="Main (mobile)">
+        <a href="/research.html">Research</a>
+        <a href="/projects.html" aria-current="page">Projects</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/documents/Resume.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <div class="project-head">
+        <p class="crumbs"><a href="/projects.html">Projects</a> &nbsp;/&nbsp; <a href="/projects.html#wearable">Wearable and assistive neurotechnology</a></p>
+        <h1 class="page-title">High-Speed SSVEP Speller: Benchmarking Detectors on a 40-Target BCI</h1>
+        <p class="lead">Three established SSVEP detectors compared on a 40-target speller benchmark: 98.3% accuracy from 2 s of EEG, about 229 bits/min at best.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://github.com/MutluEray/ssvep-benchmark-classification" target="_blank" rel="noopener">Code on GitHub</a>
+        <a class="btn" href="https://github.com/MutluEray/ssvep-benchmark-classification/blob/main/WRITEUP.md" target="_blank" rel="noopener">Read the full write-up</a>
+      </div>
+        <dl class="meta-row">
+        <div><dt>Year</dt><dd>2025</dd></div>
+        <div><dt>Type</dt><dd>DTU course project</dd></div>
+        <div><dt>Credit</dt><dd>With Federica Rumor</dd></div>
+        <div><dt>Data</dt><dd>Tsinghua benchmark (35 participants)</dd></div>
+        </dl>
+      </div>
+      <div class="project-body">
+      
+      
+      <p class="text-slate-700 leading-relaxed mb-4">
+        Steady-state visual evoked potentials (SSVEPs) power the fastest non-invasive brain&ndash;computer interface spellers:
+        each key flickers at its own frequency, and the visual cortex echoes the frequency the user looks at. The hard part is
+        telling 40 targets only 0.2&nbsp;Hz apart from a fraction of a second of EEG. On the public Tsinghua benchmark
+        (35 participants, 64-channel EEG), I implemented and compared three established detectors:
+        training-free filter-bank CCA, extended CCA with user templates, and ensemble task-related component analysis (TRCA).
+        Each was evaluated by training on five blocks of a participant's data and testing on the sixth, at data lengths from
+        0.3 to 2&nbsp;s, with paired statistics across participants.
+      </p>
+ 
+      <div class="stats mt-2 grid sm:grid-cols-4 gap-3">
+        <div class="stat">
+          <div class="stat-value">98.3%</div>
+          <div class="stat-label">Accuracy from 2&nbsp;s of EEG, 40 targets</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">&asymp; 229 bits/min</div>
+          <div class="stat-label">Peak information transfer rate (0.4&ndash;0.5&nbsp;s windows)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">98.8%</div>
+          <div class="stat-label">With no calibration at all (FBCCA, 5&nbsp;s)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">35</div>
+          <div class="stat-label">Participants, held-out blocks only</div>
+        </div>
+      </div>
+ 
+      <!-- Hero animation (MP4). To use the GIF instead, replace the <video> element with:
+           <img src="/projects/ssvep-bci/speller.gif" loading="lazy" alt="..." class="w-full rounded-lg border border-slate-200 bg-white"> -->
+      <div class="mt-8">
+        <h3 class="text-base font-semibold text-navy-900 mb-3">The speller, replayed from real EEG</h3>
+        <video class="w-full rounded-lg border border-slate-200 bg-white"
+               autoplay loop muted playsinline controls preload="metadata"
+               poster="/projects/ssvep-bci/speller_poster.png"
+               aria-label="Animation of a 40-key SSVEP speller typing a word: for each character the target is cued, occipital EEG is recorded, and the decoder's scores for all 40 targets select the key">
+          <source src="/projects/ssvep-bci/speller.mp4" type="video/mp4">
+        </video>
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          Every character is a real recorded trial the model never saw during training: ensemble TRCA is calibrated on the
+          other five blocks of the same participant and decides from 0.5&nbsp;s of EEG. Right: occipital EEG with the analysis
+          window, and the score for each of the 40 targets. Key flicker is slowed 8&times; for display (real stimuli run at
+          8&ndash;15.8&nbsp;Hz).
+        </p>
+      </div>
+ 
+      <!-- Results figure -->
+      <div class="mt-8">
+        <h3 class="text-base font-semibold text-navy-900 mb-3">Speed versus accuracy</h3>
+        <img src="/projects/ssvep-bci/accuracy_itr_all_methods.png"
+             alt="Accuracy and information transfer rate against data length for FBCCA, extended CCA and ensemble TRCA, mean and standard error over 35 participants"
+             class="w-full rounded-lg border border-slate-200 bg-white p-2">
+        <p class="text-xs text-slate-500 mt-2 text-center">
+          35 participants, mean &plusmn; SEM. A few minutes of a user's own calibration data lifts accuracy at 0.5&nbsp;s from
+          25% to 81%. Ensemble TRCA gives the best trade-off, significantly ahead of extended CCA at every window up to
+          0.8&nbsp;s (paired Wilcoxon, Holm-corrected); above 1&nbsp;s all calibrated methods exceed 94%.
+        </p>
+      </div>
+ 
+      <p class="text-xs text-slate-500 mt-6">
+        Methods: Chen et al.,
+        <a href="https://doi.org/10.1088/1741-2560/12/4/046008" target="_blank" rel="noopener" class="text-accent-600 hover:underline">J. Neural Eng. 2015</a>
+        (FBCCA) and
+        <a href="https://doi.org/10.1073/pnas.1508080112" target="_blank" rel="noopener" class="text-accent-600 hover:underline">PNAS 2015</a>
+        (extended CCA); Nakanishi et al.,
+        <a href="https://doi.org/10.1109/TBME.2017.2694818" target="_blank" rel="noopener" class="text-accent-600 hover:underline">IEEE TBME 2018</a>
+        (TRCA). Data: Wang et al.,
+        <a href="https://doi.org/10.1109/TNSRE.2016.2627556" target="_blank" rel="noopener" class="text-accent-600 hover:underline">IEEE TNSRE 2017</a>.
+      </p>
+ 
+      
+
+      
+    </div>
+      
+      <nav class="pager" aria-label="More projects">
+        <a class="prev" href="/projects/wearable-electrode-placement.html"><span class="dir">Previous project</span><br><span class="name">Where to put a wearable EEG electrode</span></a>
+        <a class="next" href="/projects/hierarchical-bci-planning.html"><span class="dir">Next project</span><br><span class="name">How much autonomy does a sparse BCI need?</span></a>
+      </nav>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p style="margin:0">&copy; 2026 Eray Mutlu &nbsp;/&nbsp; Bursa, Türkiye</p>
+      <nav aria-label="Profiles">
+        <a href="mailto:eraymutlu00@hotmail.com">Email</a>
+        <a href="https://scholar.google.com/citations?user=A43iN0MAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://github.com/MutluEray" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/eray-mutlu/" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="/assets/site.js"></script>
+</body>
+</html>
