@@ -91,7 +91,7 @@
         </div>
 
         <figure>
-          <img src="/projects/neuroprosthetic-bp-control/figures/fig2_example.png" alt="Systolic blood pressure, stimulation amplitude and tilt angle over a 30-minute session for one virtual patient under three controllers" loading="lazy">
+          <img src="/projects/neuroprosthetic-bp-control/results/c10b_step6/fig2_example.png" alt="Systolic blood pressure, stimulation amplitude and tilt angle over a 30-minute session for one virtual patient under three controllers" loading="lazy">
           <figcaption>One held-out virtual patient (chosen by a fixed rule: the median clinical-PID patient). Green band: 110&ndash;120&nbsp;mmHg target; dashed: 150&nbsp;mmHg; grey: blood-pressure sensor dropouts. On return to lying, every controller briefly reaches about 150&nbsp;mmHg, but the plain PID stays high about twice as long because it lowers stimulation only after pressure has risen. The posture controllers cut stimulation as the tilt ends. Their costs are visible too: PID with posture overshoots at tilt-up, and both undershoot after the return.</figcaption>
         </figure>
 
@@ -111,7 +111,7 @@
 
         <h2>Results</h2>
         <figure>
-          <img src="/projects/neuroprosthetic-bp-control/figures/fig3_paired.png" alt="Per-patient time above 150 mmHg and time in range for five controllers" loading="lazy">
+          <img src="/projects/neuroprosthetic-bp-control/results/c10b_step6/fig3_paired.png" alt="Per-patient time above 150 mmHg and time in range for five controllers" loading="lazy">
           <figcaption>Twenty held-out virtual patients; lines join the same patient. Mean time above 150&nbsp;mmHg: clinical PID 0.58&nbsp;%, PID + posture 0.09&nbsp;%, LQI + posture 0.12&nbsp;%, MPC 0.44&nbsp;%, MPC + posture 0.07&nbsp;%. Time in range splits into two groups of patients (about 35&nbsp;% and about 80&nbsp;%): it depends on how strongly the patient responds to stimulation, not on the controller.</figcaption>
         </figure>
         <ul>
@@ -128,7 +128,7 @@
 
         <h2>When does it break?</h2>
         <figure>
-          <img src="/projects/neuroprosthetic-bp-control/figures/fig5_robustness.png" alt="Heatmap of the reduction in time above 150 mmHg across 15 stress conditions and four controllers" loading="lazy">
+          <img src="/projects/neuroprosthetic-bp-control/results/c10b_step6/fig5_robustness.png" alt="Heatmap of the reduction in time above 150 mmHg across 15 stress conditions and four controllers" loading="lazy">
           <figcaption>Each controller was tested under 15 conditions without re-tuning. The benefit survives changes to the least-validated part of the model (how fast the patient is lowered, how fast fluid returns), posture-sensor bias, noise and delay, and blood-pressure noise and dropouts. It is lost when the posture sensor freezes at 60&deg; for 30&nbsp;s after the patient lies back down. LQI with posture is also sensitive to angle noise.</figcaption>
         </figure>
         <div class="callout">The pre-specified robustness test (at least 50&nbsp;% benefit in every condition) <strong>failed</strong>, because of the frozen-sensor case. The failure is graceful: the posture controllers fall back to roughly plain-PID behaviour and were never worse than it on time above 150&nbsp;mmHg. A real device would still need posture-sensor fault detection.</div>
