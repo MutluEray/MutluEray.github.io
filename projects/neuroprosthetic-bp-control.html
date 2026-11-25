@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smarter Controller or Posture Sensor? Blood-Pressure Control by Spinal Stimulation | Eray Mutlu</title>
+  <meta name="description" content="A virtual-patient study of closed-loop spinal cord stimulation for blood pressure after spinal cord injury: posture feedforward on the clinical PID cut time above 150 mmHg by about 85 %; a model-based controller added little.">
+  <meta property="og:title" content="Does a Blood-Pressure Neuroprosthesis Need a Smarter Controller, or Just a Posture Sensor?">
+  <meta property="og:description" content="60 virtual patients, seven controllers tuned with equal effort, 15 stress conditions. Posture feedforward does the work; it depends on the posture sensor working.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mutlueray.github.io/projects/neuroprosthetic-bp-control.html">
+  <meta property="og:image" content="https://mutlueray.github.io/projects/neuroprosthetic-bp-control/figures/fig2_example.png">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/tailwind.css">
+  <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    .project-body h2 { font-family: var(--serif); font-weight: 500; font-size: 1.625rem; color: var(--ink); margin: 3rem 0 1rem; }
+    .project-body figure { margin: 2rem 0; }
+    .project-body figure img { width: 100%; border: 1px solid var(--rule); border-radius: 4px; background: #fff; display: block; }
+    .project-body figcaption { font-size: 0.8125rem; color: var(--muted); margin-top: 0.5rem; max-width: var(--prose); }
+    .project-body li { margin-bottom: 0.4rem; }
+    .stats-grid { display: grid; grid-template-columns: 1fr; margin: 2rem 0 1rem; }
+    @media (min-width: 640px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 960px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    .demo-frame { width: 100%; height: 1010px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); display: block; }
+    @media (max-width: 640px) { .demo-frame { height: 1150px; } }
+    .callout { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--signal); border-radius: 4px; padding: 1rem 1.25rem; max-width: var(--prose); margin: 1.5rem 0; font-size: 0.9375rem; }
+    .refs li { margin-bottom: 0.35rem; }
+  </style>
+</head>
+<body class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="bar">
+        <a href="/" class="wordmark">Eray Mutlu</a>
+        <nav class="nav-links" aria-label="Main">
+          <a href="/research.html">Research</a>
+          <a href="/projects.html" aria-current="page">Projects</a>
+          <a href="/publications.html">Publications</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/documents/Resume.pdf" class="nav-cv" target="_blank" rel="noopener">CV (PDF)</a>
+        </nav>
+        <button id="menu-btn" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+      <nav id="mobile-menu" class="mobile-menu" aria-label="Main (mobile)">
+        <a href="/research.html">Research</a>
+        <a href="/projects.html" aria-current="page">Projects</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/documents/Resume.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <div class="project-head">
+        <p class="crumbs"><a href="/projects.html">Projects</a> / Wearable and assistive neurotechnology</p>
+        <h1 class="page-title">Does a Blood-Pressure Neuroprosthesis Need a Smarter Controller, or Just a Posture Sensor?</h1>
+        <p class="lead">In 20 held-out virtual patients with spinal cord injury, giving the clinical PID controller a posture signal cut the time systolic blood pressure spent above 150&nbsp;mmHg by about 85&nbsp;%. A model-based controller added little, and the benefit disappears when the posture sensor fails.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/MutluEray/neuroprosthetic-bp-control" target="_blank" rel="noopener">Code</a>
+          <a class="btn" href="#demo">Try the virtual patients</a>
+        </div>
+        <dl class="meta-row">
+          <div><dt>Year</dt><dd>2026</dd></div>
+          <div><dt>Data</dt><dd>Simulated patients; checked against PhysioNet PRCP and published tilt data</dd></div>
+          <div><dt>Methods</dt><dd>MPC, LQI, PID, system identification, Bayesian optimisation, cardiovascular modelling</dd></div>
+          <div><dt>Type</dt><dd>Independent simulation study</dd></div>
+          <div><dt>Credit</dt><dd>Solo project</dd></div>
+        </dl>
+      </div>
+
+      <article class="project-body">
+        <h2>The problem</h2>
+        <p>After a spinal cord injury high in the neck or upper back, the nerve pathways that tighten blood vessels when a person sits up no longer work. When they are tilted or sat upright, blood pools in the legs and belly and blood pressure falls, sometimes enough to faint (orthostatic hypotension).</p>
+        <p>Epidural stimulation of the lower spinal cord can switch those circuits back on and raise blood pressure. Clinical teams now run it in a closed loop: a sensor measures blood pressure, and a controller adjusts the stimulation amplitude. The published controllers are a PI controller (Squair et&nbsp;al., <em>Nature</em> 2021), a PID controller on a purpose-built implant (Phillips et&nbsp;al., <em>Nature Medicine</em> 2025) and a rule-based controller with timers (Christie et&nbsp;al., medRxiv 2026). All of them react only after blood pressure has already changed. In the Christie study, every tilt pushed systolic pressure above 150&nbsp;mmHg.</p>
+        <p>None of these studies identifies a model of how blood pressure responds to stimulation, and none compares controller designs on the same patients. This project asks, in simulation: would a model-based controller, or simply knowing the patient's posture, make the system safer?</p>
+
+        <div class="stats-grid">
+          <div class="stat"><div class="stat-value">&minus;85&nbsp;%</div><div class="stat-label">time above 150&nbsp;mmHg, clinical PID with a posture signal vs without (95&nbsp;% CI 76&ndash;97)</div></div>
+          <div class="stat"><div class="stat-value">&minus;89&nbsp;%</div><div class="stat-label">same comparison for model-predictive control with a posture signal</div></div>
+          <div class="stat"><div class="stat-value">5&ndash;10 min</div><div class="stat-label">of calibration data were enough for the model-based controllers</div></div>
+          <div class="stat"><div class="stat-value">4&ndash;25&nbsp;%</div><div class="stat-label">of the benefit left when the posture sensor freezes after the patient lies back down</div></div>
+        </div>
+
+        <figure>
+          <img src="/projects/neuroprosthetic-bp-control/figures/fig2_example.png" alt="Systolic blood pressure, stimulation amplitude and tilt angle over a 30-minute session for one virtual patient under three controllers" loading="lazy">
+          <figcaption>One held-out virtual patient (chosen by a fixed rule: the median clinical-PID patient). Green band: 110&ndash;120&nbsp;mmHg target; dashed: 150&nbsp;mmHg; grey: blood-pressure sensor dropouts. On return to lying, every controller briefly reaches about 150&nbsp;mmHg, but the plain PID stays high about twice as long because it lowers stimulation only after pressure has risen. The posture controllers cut stimulation as the tilt ends. Their costs are visible too: PID with posture overshoots at tilt-up, and both undershoot after the return.</figcaption>
+        </figure>
+
+        <h2 id="demo">Try it: 20 virtual patients</h2>
+        <p>Pick a patient and press Play. The bottom panel is what happens to the patient (tilt angle), the middle panel is what the controller does (stimulation amplitude), and the top panel is the result (systolic blood pressure). Watch the return to lying at 15 minutes, then switch the posture sensor to &ldquo;Frozen&rdquo;. Patients with a weak response to stimulation hit the amplitude limit during the 60&deg; tilt, and no controller can hold them in range.</p>
+        <iframe class="demo-frame" src="/projects/neuroprosthetic-bp-control/bp-demo.html" title="Interactive virtual-patient demo" loading="lazy"></iframe>
+
+        <h2>What I built</h2>
+        <ul>
+          <li><strong>A virtual-patient simulator.</strong> CVSim, an open 21-compartment model of the heart and circulation with baroreflex control (Heldt et&nbsp;al., PhysioNet), compiled from its own C code with three small patches: an external tilt profile, and two hooks through which stimulation acts on vessel resistance and venous volume.</li>
+          <li><strong>Checked against people.</strong> The healthy model was calibrated to head-up tilt recordings from 10 healthy adults (PRCP database, PhysioNet): early mean-pressure drop after rapid tilt &minus;10.5 vs &minus;9.0&nbsp;mmHg, heart-rate peak +16.0 vs +15.2&nbsp;bpm. The injury model (sympathetic control cut, lower vascular tone, reset baroreflex) was fitted to tilt responses after complete cervical injury reported by Corbett et&nbsp;al. (1971).</li>
+          <li><strong>A stimulation actuator</strong> with delay, lag and a linear amplitude&ndash;pressure gain (Phillips et&nbsp;al. report a linear relationship). The delay and lag have not been published, so they were varied across patients (2&ndash;12&nbsp;s delay, 5&ndash;30&nbsp;s lag) rather than assumed.</li>
+          <li><strong>60 virtual patients</strong> with different physiology and stimulation response: 40 for tuning, 20 held out for testing. Each runs a 30-minute session with a 60&deg; tilt, a return to lying, a 30&deg; tilt, a dysreflexia-like pressure surge the controller cannot see, sensor dropouts and measurement noise.</li>
+          <li><strong>Seven controller types</strong>: rule-based with timers (after Christie et&nbsp;al.), PID with and without a measurement filter, LQI and model-predictive control (MPC), each with and without posture feedforward (the tilt angle from a wearable sensor). Every type was tuned by Bayesian optimisation with the same budget. The model-based controllers never see the true patient: they use a model identified from a simulated 5&ndash;60-minute calibration session.</li>
+          <li><strong>Decision rules written before the runs</strong>, including a 30&nbsp;% improvement threshold over the tuned PID and a robustness test over 15 conditions.</li>
+        </ul>
+
+        <h2>Results</h2>
+        <figure>
+          <img src="/projects/neuroprosthetic-bp-control/figures/fig3_paired.png" alt="Per-patient time above 150 mmHg and time in range for five controllers" loading="lazy">
+          <figcaption>Twenty held-out virtual patients; lines join the same patient. Mean time above 150&nbsp;mmHg: clinical PID 0.58&nbsp;%, PID + posture 0.09&nbsp;%, LQI + posture 0.12&nbsp;%, MPC 0.44&nbsp;%, MPC + posture 0.07&nbsp;%. Time in range splits into two groups of patients (about 35&nbsp;% and about 80&nbsp;%): it depends on how strongly the patient responds to stimulation, not on the controller.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>Posture is what matters, not controller sophistication.</strong> Adding the posture signal to the clinical PID gave nearly the whole benefit (&minus;85&nbsp;% time above 150&nbsp;mmHg). MPC with posture reached &minus;89&nbsp;%; MPC without posture only &minus;24&nbsp;%.</li>
+          <li><strong>Time in range barely moves.</strong> 56&nbsp;% for the tuned clinical PID, 56&ndash;60&nbsp;% for the LQI and MPC variants, 52&nbsp;% for the tuned rule-based controller. Patients whose stimulation response is weak hit the amplitude limit during the 60&deg; tilt whatever the controller does.</li>
+          <li><strong>Tuning matters more than people assume.</strong> An untuned PID reacting to raw, noisy pressure changed the amplitude about 900 times per session; with a simple measurement filter and tuning, about 240.</li>
+          <li><strong>Model-based control adds some robustness.</strong> MPC with posture stayed lower than PID with posture under faster tilt-down, a 30&nbsp;% stronger stimulation response and long sensor dropouts, and made about half as many amplitude changes (198 vs 376 per session).</li>
+          <li><strong>Calibration is cheap.</strong> A 5&ndash;10-minute calibration gave the full benefit. The identified model was imperfect (longer sessions fit the slow fluid shift worse), but the closed loop did not care.</li>
+        </ul>
+        <figure>
+          <img src="/projects/neuroprosthetic-bp-control/figures/fig4_calibration.png" alt="Time above 150 mmHg and time in range against calibration-session length" loading="lazy">
+          <figcaption>Mean &plusmn; SEM over 20 held-out patients for model-based controllers whose model was identified from calibration sessions of 5 to 60 minutes. Dashed: tuned clinical PID, which needs no model.</figcaption>
+        </figure>
+
+        <h2>When does it break?</h2>
+        <figure>
+          <img src="/projects/neuroprosthetic-bp-control/figures/fig5_robustness.png" alt="Heatmap of the reduction in time above 150 mmHg across 15 stress conditions and four controllers" loading="lazy">
+          <figcaption>Each controller was tested under 15 conditions without re-tuning. The benefit survives changes to the least-validated part of the model (how fast the patient is lowered, how fast fluid returns), posture-sensor bias, noise and delay, and blood-pressure noise and dropouts. It is lost when the posture sensor freezes at 60&deg; for 30&nbsp;s after the patient lies back down. LQI with posture is also sensitive to angle noise.</figcaption>
+        </figure>
+        <div class="callout">The pre-specified robustness test (at least 50&nbsp;% benefit in every condition) <strong>failed</strong>, because of the frozen-sensor case. The failure is graceful: the posture controllers fall back to roughly plain-PID behaviour and were never worse than it on time above 150&nbsp;mmHg. A real device would still need posture-sensor fault detection.</div>
+
+        <h2>How far to trust the simulator</h2>
+        <figure>
+          <img src="/projects/neuroprosthetic-bp-control/figures/fig1_credibility.png" alt="Model responses compared with healthy human tilt data and published spinal-cord-injury tilt responses" loading="lazy">
+          <figcaption>Left: the healthy model against 10 healthy adults after rapid head-up tilt (PRCP). The model overshoots about 25&nbsp;s after tilt (+10 vs about +5&nbsp;mmHg). Right: the injury model against Corbett et&nbsp;al. (1971). Fitted at 30&deg; and 45&deg; (&minus;28 vs &minus;24 and &minus;39 vs &minus;38&nbsp;mmHg). The 60&deg; case was held out and missed (&minus;47 vs &minus;26&nbsp;mmHg); the published group means are not monotonic in angle. Heart rate at 45&deg; and 60&deg; is underestimated.</figcaption>
+        </figure>
+
+        <h2>Limitations</h2>
+        <ul>
+          <li>Everything is simulated. The results rank controller designs; they do not predict what any patient would experience.</li>
+          <li>The spinal-cord-injury model is fitted to one 1971 study, and the stimulation dynamics are assumed and varied, not measured.</li>
+          <li>The model understates the clinical problem: the tuned PID was above 150&nbsp;mmHg for about 3&nbsp;% of the return-to-lying phase, whereas Christie et&nbsp;al. saw every tilt cross it. Absolute hypertensive time is small, so the relative reductions rest on short episodes.</li>
+          <li>Return to lying, where the effect lives, is the least validated part of the model. It was stress-tested (tilt-down speed, fluid return), and the effect held, but it has not been checked against human data.</li>
+          <li>Posture feedforward raises the pressure peak at tilt-up (about 125 vs 117&nbsp;mmHg on average) because it stimulates ahead of the fall.</li>
+          <li>No human stimulation data were available. A real-data system-identification arm is the obvious next step.</li>
+        </ul>
+
+        <h2>Process notes</h2>
+        <p>The decision rules were written down before each set of runs. Two fairness problems were found in the first comparison: the PID's tuning stopped early, and it acted on unfiltered pressure while the model-based controllers had a filter. Both favoured my own method; both were fixed before the final comparison, and the stronger PID became the reference. The method follows the RWTH Aachen <em>Learning-based Control</em> course (LQR, learned dynamics, Bayesian tuning, MPC).</p>
+
+        <h2>References and data</h2>
+        <ul class="refs small">
+          <li>Squair et al., <em>Nature</em> 2021 (PI closed loop): <a href="https://www.nature.com/articles/s41586-020-03180-w" target="_blank" rel="noopener">nature.com/articles/s41586-020-03180-w</a></li>
+          <li>Phillips et al., <em>Nature Medicine</em> 2025 (implantable system, PID): <a href="https://www.nature.com/articles/s41591-025-03614-w" target="_blank" rel="noopener">nature.com/articles/s41591-025-03614-w</a></li>
+          <li>Christie et al., medRxiv 2026 (rule-based automated stimulation): <a href="https://www.medrxiv.org/content/10.64898/2026.07.21.26358253v1.full" target="_blank" rel="noopener">medRxiv preprint</a></li>
+          <li>Harkema et al., <em>Front Hum Neurosci</em> 2018 (110&ndash;120&nbsp;mmHg target): <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5852107" target="_blank" rel="noopener">PMC5852107</a></li>
+          <li>Corbett, Frankel &amp; Harris, <em>J Physiol</em> 1971 (tilt responses after complete cervical injury): <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1331891" target="_blank" rel="noopener">PMC1331891</a></li>
+          <li>CVSim, Heldt et al. 2010: <a href="https://www.physionet.org/content/cvsim/" target="_blank" rel="noopener">physionet.org/content/cvsim</a></li>
+          <li>PRCP database, Heldt et al. 2003: <a href="https://www.physionet.org/content/prcp/" target="_blank" rel="noopener">physionet.org/content/prcp</a></li>
+        </ul>
+      </article>
+
+      <nav class="pager" aria-label="More projects">
+        <a href="/projects.html"><span class="dir">Back to</span><br><span class="name">All projects</span></a>
+        <a class="next" href="/projects/wearable-electrode-placement.html"><span class="dir">Next</span><br><span class="name">Can Physics Tell You Where to Put a Wearable EEG Electrode?</span></a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap cols">
+      <p style="margin:0">&copy; 2026 Eray Mutlu &nbsp;/&nbsp; Bursa, Türkiye</p>
+      <nav aria-label="Profiles">
+        <a href="mailto:eraymutlu00@hotmail.com">Email</a>
+        <a href="https://scholar.google.com/citations?user=A43iN0MAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://github.com/MutluEray" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/eray-mutlu/" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="/assets/site.js"></script>
+</body>
+</html>
