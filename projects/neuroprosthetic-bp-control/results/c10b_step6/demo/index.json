@@ -1,0 +1,181 @@
+{
+ "patients": [
+  {
+   "id": 40,
+   "ees_u1_dsbp": 17.6,
+   "delay_s": 10.9,
+   "tau_s": 6.2,
+   "supine_sbp": 85.0
+  },
+  {
+   "id": 41,
+   "ees_u1_dsbp": 40.6,
+   "delay_s": 2.8,
+   "tau_s": 18.8,
+   "supine_sbp": 80.0
+  },
+  {
+   "id": 42,
+   "ees_u1_dsbp": 23.8,
+   "delay_s": 7.3,
+   "tau_s": 13.9,
+   "supine_sbp": 69.0
+  },
+  {
+   "id": 43,
+   "ees_u1_dsbp": 24.1,
+   "delay_s": 8.1,
+   "tau_s": 20.3,
+   "supine_sbp": 78.0
+  },
+  {
+   "id": 44,
+   "ees_u1_dsbp": 46.7,
+   "delay_s": 2.1,
+   "tau_s": 17.1,
+   "supine_sbp": 103.0
+  },
+  {
+   "id": 45,
+   "ees_u1_dsbp": 36.9,
+   "delay_s": 11.3,
+   "tau_s": 16.0,
+   "supine_sbp": 97.0
+  },
+  {
+   "id": 46,
+   "ees_u1_dsbp": 23.7,
+   "delay_s": 8.1,
+   "tau_s": 13.1,
+   "supine_sbp": 62.0
+  },
+  {
+   "id": 47,
+   "ees_u1_dsbp": 22.5,
+   "delay_s": 7.1,
+   "tau_s": 9.9,
+   "supine_sbp": 65.0
+  },
+  {
+   "id": 48,
+   "ees_u1_dsbp": 21.1,
+   "delay_s": 7.7,
+   "tau_s": 27.5,
+   "supine_sbp": 69.0
+  },
+  {
+   "id": 49,
+   "ees_u1_dsbp": 24.1,
+   "delay_s": 7.7,
+   "tau_s": 20.7,
+   "supine_sbp": 109.0
+  },
+  {
+   "id": 50,
+   "ees_u1_dsbp": 46.7,
+   "delay_s": 5.7,
+   "tau_s": 16.8,
+   "supine_sbp": 74.0
+  },
+  {
+   "id": 51,
+   "ees_u1_dsbp": 29.5,
+   "delay_s": 8.6,
+   "tau_s": 7.1,
+   "supine_sbp": 79.0
+  },
+  {
+   "id": 52,
+   "ees_u1_dsbp": 39.0,
+   "delay_s": 11.0,
+   "tau_s": 16.5,
+   "supine_sbp": 73.0
+  },
+  {
+   "id": 53,
+   "ees_u1_dsbp": 21.4,
+   "delay_s": 8.2,
+   "tau_s": 14.4,
+   "supine_sbp": 80.0
+  },
+  {
+   "id": 54,
+   "ees_u1_dsbp": 28.2,
+   "delay_s": 3.6,
+   "tau_s": 22.2,
+   "supine_sbp": 71.0
+  },
+  {
+   "id": 55,
+   "ees_u1_dsbp": 30.3,
+   "delay_s": 3.9,
+   "tau_s": 12.9,
+   "supine_sbp": 107.0
+  },
+  {
+   "id": 56,
+   "ees_u1_dsbp": 24.5,
+   "delay_s": 4.9,
+   "tau_s": 15.0,
+   "supine_sbp": 108.0
+  },
+  {
+   "id": 57,
+   "ees_u1_dsbp": 26.0,
+   "delay_s": 6.2,
+   "tau_s": 29.1,
+   "supine_sbp": 84.0
+  },
+  {
+   "id": 58,
+   "ees_u1_dsbp": 26.5,
+   "delay_s": 5.3,
+   "tau_s": 11.1,
+   "supine_sbp": 71.0
+  },
+  {
+   "id": 59,
+   "ees_u1_dsbp": 39.6,
+   "delay_s": 4.3,
+   "tau_s": 16.3,
+   "supine_sbp": 118.0
+  }
+ ],
+ "families": [
+  "none",
+  "C1",
+  "C2f",
+  "C2ff",
+  "C4ff"
+ ],
+ "labels": {
+  "none": "No stimulation",
+  "C1": "Rule-based (Christie-style)",
+  "C2f": "PID (clinical)",
+  "C2ff": "PID + posture",
+  "C4ff": "MPC + posture"
+ },
+ "scenarios": {
+  "base": "Posture sensor working",
+  "imu_dropout30": "Posture sensor frozen at 60\u00b0 for 30 s after tilt-down"
+ },
+ "target": [
+  110.0,
+  120.0
+ ],
+ "ceiling": 150,
+ "dropouts": [
+  [
+   600,
+   630
+  ],
+  [
+   1350,
+   1365
+  ]
+ ],
+ "ad": [
+  1560.0,
+  1680.0
+ ]
+}

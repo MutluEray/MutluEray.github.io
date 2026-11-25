@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Virtual patient demo — blood-pressure neuroprosthesis</title>
+<style>
+  :root { --paper:#F5F7F6; --ink:#15232D; --muted:#55626B; --line:#D5DBDE; --teal:#0B6B66; --amber:#B7791F; --red:#B23A3A; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.5 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 18px 16px 28px; }
+  .controls { display:flex; flex-wrap:wrap; gap:14px 22px; align-items:flex-end; margin-bottom:10px; }
+  label.ctl { display:flex; flex-direction:column; font-size:13px; color:var(--muted); gap:4px; }
+  select, button { font:inherit; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:6px; padding:6px 10px; }
+  button { cursor:pointer; }
+  button.primary { background:var(--teal); color:#fff; border-color:var(--teal); min-width:92px; }
+  .fams { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:14px; }
+  .fams label { display:flex; align-items:center; gap:6px; cursor:pointer; }
+  .sw { width:14px; height:3px; border-radius:2px; display:inline-block; }
+  .seg { display:inline-flex; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  .seg button { border:0; border-radius:0; padding:6px 10px; }
+  .seg button.on { background:var(--ink); color:#fff; }
+  svg { width:100%; height:auto; display:block; background:#fff; border:1px solid var(--line); border-radius:8px; }
+  .note { font-size:13px; color:var(--muted); margin:8px 0 0; }
+  table { border-collapse:collapse; width:100%; margin-top:12px; font-size:14px; }
+  th, td { text-align:right; padding:5px 8px; border-bottom:1px solid var(--line); }
+  th:first-child, td:first-child { text-align:left; }
+  th { font-weight:500; color:var(--muted); }
+  .meta { font-size:13px; color:var(--muted); }
+  @media (prefers-reduced-motion: reduce) { .anim-hint { display:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="controls">
+    <label class="ctl">Virtual patient
+      <select id="patient"></select>
+    </label>
+    <div>
+      <div class="meta" style="margin-bottom:4px">Posture sensor</div>
+      <div class="seg" id="scen"></div>
+    </div>
+    <button class="primary" id="play">Play</button>
+  </div>
+  <div class="fams" id="fams"></div>
+  <p class="meta" id="pmeta"></p>
+  <svg id="plot" viewBox="0 0 940 470" role="img" aria-label="Blood pressure, stimulation amplitude and tilt angle over a 30-minute session"></svg>
+  <p class="note">Green band: 110–120 mmHg target. Dashed red: 150 mmHg. Grey bars: blood-pressure sensor dropouts. Pink: dysreflexia-like surge the controller cannot see. Simulated patients from a CVSim-based model; not clinical data.</p>
+  <table id="tab"></table>
+</div>
+<script>
+(() => {
+  // folder holding index.json and p40.json … p59.json; the first one that answers is used
+  const DIRS = ["bp-demo/", "demo/", "./"];
+  let DATA_DIR = DIRS[0];
+  // tolerant JSON: Python may write NaN, which JSON.parse rejects
+  const getJSON = async url => {
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`${r.status} for ${url}`);
+    return JSON.parse((await r.text()).replace(/\bNaN\b/g, "null").replace(/-?Infinity\b/g, "null"));
+  };
+  const COL = { none:"#C3C9CC", C1:"#6B7B86", C2f:"#15232D", C2ff:"#B7791F", C4ff:"#0B6B66" };
+  const DEFAULT_ON = ["C2f", "C2ff", "C4ff"];
+  const W = 940, L = 58, R = 14, PW = W - L - R;
+  const PAN = [ {y:12,  h:250, lo:40, hi:170, lab:"Systolic BP (mmHg)", key:"sbp"},
+                {y:282, h:100, lo:0,  hi:3,   lab:"Stim. amplitude",    key:"u"},
+                {y:402, h:44,  lo:0,  hi:60,  lab:"Tilt (°)",           key:"angle"} ];
+  const T0 = 0, T1 = 1800;
+  const svg = document.getElementById("plot"), NS = "http://www.w3.org/2000/svg";
+  let IDX = null, REC = null, scen = "base", on = new Set(DEFAULT_ON), cursor = T1, raf = null;
+  const cache = {};
+
+  const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; };
+  const X = t => L + (t - T0) / (T1 - T0) * PW;
+  const Y = (p, v) => p.y + p.h - (Math.max(p.lo, Math.min(p.hi, v)) - p.lo) / (p.hi - p.lo) * p.h;
+
+  function path(p, t, v, tmax) {
+    let d = "";
+    for (let i = 0; i < t.length && t[i] <= tmax; i++) d += (d ? "L" : "M") + X(t[i]).toFixed(1) + " " + Y(p, v[i]).toFixed(1);
+    return d;
+  }
+
+  function draw() {
+    svg.innerHTML = "";
+    if (!REC) return;
+    const t = REC.t;
+    for (const p of PAN) {
+      el("rect", {x:L, y:p.y, width:PW, height:p.h, fill:"#fff", stroke:"#E3E7E9"});
+      for (const [a, b] of IDX.dropouts) el("rect", {x:X(a), y:p.y, width:X(b) - X(a), height:p.h, fill:"#EEF0F1"});
+      el("rect", {x:X(IDX.ad[0]), y:p.y, width:X(IDX.ad[1]) - X(IDX.ad[0]), height:p.h, fill:"#B23A3A", opacity:0.06});
+      const ticks = p.key === "sbp" ? [50, 90, 110, 120, 150] : p.key === "u" ? [0, 1, 2, 3] : [0, 30, 60];
+      for (const v of ticks) {
+        el("line", {x1:L, x2:L + PW, y1:Y(p, v), y2:Y(p, v), stroke:"#EEF1F2"});
+        const tx = el("text", {x:L - 6, y:Y(p, v) + 4, "text-anchor":"end", "font-size":11, fill:"#55626B"}); tx.textContent = v;
+      }
+      const lab = el("text", {x:14, y:p.y + p.h / 2, transform:`rotate(-90 14 ${p.y + p.h / 2})`, "text-anchor":"middle", "font-size":11, fill:"#55626B"});
+      lab.textContent = p.lab;
+    }
+    const P = PAN[0];
+    el("rect", {x:L, y:Y(P, IDX.target[1]), width:PW, height:Y(P, IDX.target[0]) - Y(P, IDX.target[1]), fill:"#0B6B66", opacity:0.10});
+    el("line", {x1:L, x2:L + PW, y1:Y(P, IDX.ceiling), y2:Y(P, IDX.ceiling), stroke:"#B23A3A", "stroke-dasharray":"5 4", "stroke-width":1});
+    for (const s of [0, 300, 600, 900, 1200, 1500, 1800]) {
+      const tx = el("text", {x:X(s), y:462, "text-anchor":"middle", "font-size":11, fill:"#55626B"}); tx.textContent = s === 1800 ? "30 min" : (s / 60) + "";
+    }
+    const pa = path(PAN[2], t, REC.angle, cursor);
+    if (pa) el("path", {d:pa + `L${X(Math.min(cursor, t[t.length - 1]))} ${Y(PAN[2], 0)}L${X(t[0])} ${Y(PAN[2], 0)}Z`, fill:"#8A9399", opacity:0.45});
+    const sc = REC.scenarios[scen];
+    for (const f of IDX.families) {
+      if (!on.has(f) || !sc[f]) continue;
+      const w = f === "C2f" ? 1.3 : 1.7;
+      const ps = path(PAN[0], t, sc[f].sbp, cursor), pu = path(PAN[1], t, sc[f].u, cursor);
+      if (ps) el("path", {d:ps, fill:"none", stroke:COL[f], "stroke-width":w, "stroke-linejoin":"round"});
+      if (pu) el("path", {d:pu, fill:"none", stroke:COL[f], "stroke-width":1.2});
+    }
+    if (cursor < T1) el("line", {x1:X(cursor), x2:X(cursor), y1:PAN[0].y, y2:PAN[2].y + PAN[2].h, stroke:"#15232D", "stroke-width":0.8, opacity:0.5});
+    table();
+  }
+
+  const fx = (v, d) => (v === null || v === undefined || !isFinite(v)) ? "–" : v.toFixed(d);
+  function table() {
+    const sc = REC.scenarios[scen];
+    let h = "<tr><th>Controller</th><th>% time in 110–120</th><th>% time &gt; 150</th><th>&gt; 150 on return to lying (%)</th><th>% time &lt; 90</th><th>Peak SBP in surge</th><th>Amplitude changes</th></tr>";
+    for (const f of IDX.families) {
+      if (!sc[f]) continue;
+      const m = sc[f].m;
+      h += `<tr style="opacity:${on.has(f) ? 1 : 0.45}"><td><span class="sw" style="background:${COL[f]}"></span> ${IDX.labels[f]}</td>` +
+           `<td>${fx(m.in_range, 0)}</td><td>${fx(m.hyper, 1)}</td><td>${fx(m.hyper_return, 1)}</td>` +
+           `<td>${fx(m.hypo, 0)}</td><td>${fx(m.ad_peak, 0)}</td><td>${fx(m.n_changes, 0)}</td></tr>`;
+    }
+    document.getElementById("tab").innerHTML = h;
+  }
+
+  async function load(pid) {
+    if (!cache[pid]) cache[pid] = await getJSON(`${DATA_DIR}p${pid}.json`);
+    REC = cache[pid];
+    const m = REC.meta;
+    document.getElementById("pmeta").textContent =
+      `Stimulation raises lying SBP by ${m.ees_u1_dsbp} mmHg per unit amplitude · actuator delay ${m.delay_s} s, lag ${m.tau_s} s · lying SBP without stimulation ${m.supine_sbp} mmHg`;
+    stop(); cursor = T1; draw();
+  }
+
+  function stop() { if (raf) cancelAnimationFrame(raf); raf = null; document.getElementById("play").textContent = "Play"; }
+  function play() {
+    if (raf) { stop(); return; }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { cursor = T1; draw(); return; }
+    document.getElementById("play").textContent = "Pause";
+    if (cursor >= T1) cursor = 0;
+    let last = performance.now();
+    const step = now => {
+      cursor += (now - last) / 1000 * 120; last = now;      // 120 simulated s per real s (≈ 15 s per session)
+      if (cursor >= T1) { cursor = T1; draw(); stop(); return; }
+      draw(); raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+  }
+
+  async function init() {
+    if (location.protocol === "file:") throw new Error("opened as a file; start a local server (see note)");
+    let lastErr = null;
+    for (const d of DIRS) {
+      try { IDX = await getJSON(d + "index.json"); DATA_DIR = d; break; } catch (e) { lastErr = e; }
+    }
+    if (!IDX) throw lastErr;
+    const sel = document.getElementById("patient");
+    const pts = [...IDX.patients].sort((a, b) => b.ees_u1_dsbp - a.ees_u1_dsbp);
+    const q = pts.map(p => p.ees_u1_dsbp), hiT = q[Math.floor(q.length / 3)], loT = q[Math.floor(2 * q.length / 3)];
+    for (const p of pts) {
+      const o = document.createElement("option");
+      const kind = p.ees_u1_dsbp >= hiT ? "strong" : p.ees_u1_dsbp <= loT ? "weak" : "medium";
+      o.value = p.id; o.textContent = `Patient ${p.id} — ${kind} response to stimulation`;
+      sel.appendChild(o);
+    }
+    sel.onchange = () => load(sel.value);
+    const seg = document.getElementById("scen");
+    for (const [k, v] of Object.entries(IDX.scenarios)) {
+      const b = document.createElement("button"); b.textContent = k === "base" ? "Working" : "Frozen after tilt-down"; b.title = v;
+      b.className = k === scen ? "on" : "";
+      b.onclick = () => { scen = k; [...seg.children].forEach(c => c.className = ""); b.className = "on"; stop(); cursor = T1; draw(); };
+      seg.appendChild(b);
+    }
+    const fams = document.getElementById("fams");
+    for (const f of IDX.families) {
+      const l = document.createElement("label");
+      l.innerHTML = `<input type="checkbox" ${on.has(f) ? "checked" : ""}> <span class="sw" style="background:${COL[f]}"></span>${IDX.labels[f]}`;
+      l.querySelector("input").onchange = e => { e.target.checked ? on.add(f) : on.delete(f); draw(); };
+      fams.appendChild(l);
+    }
+    document.getElementById("play").onclick = play;
+    await load(sel.value);
+  }
+  init().catch(e => { document.getElementById("pmeta").textContent = "Could not load demo data: " + e.message +
+    ". Put index.json and p40.json … p59.json in a folder called bp-demo next to this page and open it through a local server (python3 -m http.server)."; });
+})();
+</script>
+</body>
+</html>
