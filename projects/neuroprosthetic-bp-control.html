@@ -9,7 +9,7 @@
   <meta property="og:description" content="60 virtual patients, seven controllers tuned with equal effort, 15 stress conditions. Posture feedforward does the work; it depends on the posture sensor working.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mutlueray.github.io/projects/neuroprosthetic-bp-control.html">
-  <meta property="og:image" content="https://mutlueray.github.io/projects/neuroprosthetic-bp-control/figures/fig2_example.png">
+  <meta property="og:image" content="https://mutlueray.github.io/projects/neuroprosthetic-bp-control/results/c10b_step6/fig2_example.png">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -97,7 +97,7 @@
 
         <h2 id="demo">Try it: 20 virtual patients</h2>
         <p>Pick a patient and press Play. The bottom panel is what happens to the patient (tilt angle), the middle panel is what the controller does (stimulation amplitude), and the top panel is the result (systolic blood pressure). Watch the return to lying at 15 minutes, then switch the posture sensor to &ldquo;Frozen&rdquo;. Patients with a weak response to stimulation hit the amplitude limit during the 60&deg; tilt, and no controller can hold them in range.</p>
-        <iframe class="demo-frame" src="/projects/neuroprosthetic-bp-control/bp-demo.html" title="Interactive virtual-patient demo" loading="lazy"></iframe>
+        <iframe class="demo-frame" src="/projects/neuroprosthetic-bp-control/results/c10b_step6/bp-demo.html" title="Interactive virtual-patient demo" loading="lazy"></iframe>
 
         <h2>What I built</h2>
         <ul>
@@ -122,7 +122,7 @@
           <li><strong>Calibration is cheap.</strong> A 5&ndash;10-minute calibration gave the full benefit. The identified model was imperfect (longer sessions fit the slow fluid shift worse), but the closed loop did not care.</li>
         </ul>
         <figure>
-          <img src="/projects/neuroprosthetic-bp-control/figures/fig4_calibration.png" alt="Time above 150 mmHg and time in range against calibration-session length" loading="lazy">
+          <img src="/projects/neuroprosthetic-bp-control/results/c10b_step6/fig4_calibration.png" alt="Time above 150 mmHg and time in range against calibration-session length" loading="lazy">
           <figcaption>Mean &plusmn; SEM over 20 held-out patients for model-based controllers whose model was identified from calibration sessions of 5 to 60 minutes. Dashed: tuned clinical PID, which needs no model.</figcaption>
         </figure>
 
@@ -135,7 +135,7 @@
 
         <h2>How far to trust the simulator</h2>
         <figure>
-          <img src="/projects/neuroprosthetic-bp-control/figures/fig1_credibility.png" alt="Model responses compared with healthy human tilt data and published spinal-cord-injury tilt responses" loading="lazy">
+          <img src="/projects/neuroprosthetic-bp-control/results/c10b_step6/fig1_credibility.png" alt="Model responses compared with healthy human tilt data and published spinal-cord-injury tilt responses" loading="lazy">
           <figcaption>Left: the healthy model against 10 healthy adults after rapid head-up tilt (PRCP). The model overshoots about 25&nbsp;s after tilt (+10 vs about +5&nbsp;mmHg). Right: the injury model against Corbett et&nbsp;al. (1971). Fitted at 30&deg; and 45&deg; (&minus;28 vs &minus;24 and &minus;39 vs &minus;38&nbsp;mmHg). The 60&deg; case was held out and missed (&minus;47 vs &minus;26&nbsp;mmHg); the published group means are not monotonic in angle. Heart rate at 45&deg; and 60&deg; is underestimated.</figcaption>
         </figure>
 
